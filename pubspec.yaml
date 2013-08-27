@@ -1,0 +1,11 @@
+name: controls_and_panels
+version: 0.0.0
+author: Daniel Robinson
+description: controls and panels for developing a UI programmatically.
+homepage: http://0xor1.com/control
+environment:
+  sdk: any
+dependencies:
+  browser: any
+dev_dependencies:
+  unittest: any
