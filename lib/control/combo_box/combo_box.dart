@@ -9,42 +9,92 @@ part of controls_and_panels;
 const String COMBO_BOX = 'combo-box';
 
 
-typedef Future<List<Base>> GetItemList();
+const String CLOSED = 'closed';
 
 
-typedef void ProcessSelectedItem(Base base);
+const String OPEN = 'open';
+
+
+typedef Future<List<Base>> GetBaseList(String filter);
+
+
+typedef void ProcessSelectedBase(Base base);
 
 
 class ComboBox extends Control{
 
 
-  GetItemList getItemList;
+  GetBaseList getBaseList;
 
 
-  ProcessSelectedItem processSelection;
+  ProcessSelectedBase processSelection;
 
 
-  ComboBox(GetItemList getItems, ProcessSelectedItem selectionProcessor){
+  List<Base> _baseList;
+
+
+  ComboBox(GetBaseList getList, ProcessSelectedBase selectionProcessor){
 
     _insertComboBoxStyleElement();
 
-    getItemList = getItems;
+    getBaseList = getList;
 
     processSelection = selectionProcessor;
 
-    html.classes.add(COMBO_BOX);
+    html.classes.addAll([COMBO_BOX, CLOSED]);
 
-    var stackPanel = new StackPanel.horizontal(
-      [
-        new StackPanel.vertical(
-          [
-
-          ]
-        ),
-      ]
-    );
+    _attachEventListeners();
 
   }
 
+
+  _selectItem(Base base){
+
+
+
+  }
+
+
+  bool get isOpen => html.classes.contains(OPEN);
+
+
+  void toggleOpenClose(){
+
+    if(isOpen){
+
+      close();
+
+    }else{
+
+      open();
+
+    }
+
+  }
+
+
+  void open(){
+
+    html.classes.remove(CLOSED);
+
+    html.classes.add(OPEN);
+
+  }
+
+
+  void close(){
+
+    html.classes.remove(OPEN);
+
+    html.classes.add(CLOSED);
+
+  }
+
+
+  void _attachEventListeners(){
+
+
+
+  }
 
 }
