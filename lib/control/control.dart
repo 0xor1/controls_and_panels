@@ -18,6 +18,9 @@ const String FOCUS = 'focus';
 final Map<int, Control> _controls = new Map<int, Control>();
 
 
+Control currentFocus = null;
+
+
 int _idSource = 0;
 
 
@@ -67,6 +70,16 @@ abstract class Control extends Base{
   int get id => _id;
 
 
+  StreamController _focusController = new StreamController();
+  Stream _focusStream;
+  Stream get onFocus => (_focusStream != null) ? _focusStream : _focusStream = _focusController.stream.asBroadcastStream();
+
+
+  StreamController _blurController = new StreamController();
+  Stream _blurStream;
+  Stream get onBlur => (_blurStream != null) ? _blurStream : _blurStream = _blurController.stream.asBroadcastStream();
+
+
   Control()
     : _id = _idSource++{
 
@@ -81,6 +94,42 @@ abstract class Control extends Base{
     html.attributes[CONTROL_ID] = _id.toString();
 
     _controls[_id] = this;
+
+    onFocus.listen((Event event){
+
+      if(currentFocus != null){
+
+        currentFocus.blur(event);
+
+      }
+
+      currentFocus = this;
+
+      html.classes.add(FOCUS);
+
+    });
+
+    onBlur.listen((Event event){
+
+      currentFocus = null;
+
+      html.classes.remove(FOCUS);
+
+    });
+
+  }
+
+
+  void focus(Event event){
+
+    _focusController.add(event);
+
+  }
+
+
+  void blur(Event event){
+
+    _blurController.add(event);
 
   }
 

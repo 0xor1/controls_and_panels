@@ -33,6 +33,7 @@ class TextBox extends Control{
 
     var html = (_html as InputElement)
         ..blur();
+
     var oldWm = _watermark;
     _watermark = wm;
 
@@ -60,7 +61,9 @@ class TextBox extends Control{
 
     _html = new InputElement(type:'text')
       ..classes.addAll(classes)
-      ..classes.add(TEXT_BOX);
+      ..classes.add(TEXT_BOX)
+      ..onBlur.listen(blur)
+      ..onFocus.listen(focus);
 
     watermark = wm;
 
