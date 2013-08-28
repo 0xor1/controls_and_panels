@@ -9,6 +9,11 @@ final StyleElement sizerPanelStyleElement = new Element.html('''
 
 <style>
 
+  .$BASE.$PANEL.$SIZER_PANEL
+  {
+    /*overflow: auto;???????*/
+  }
+
   .$BASE.$PANEL.$SIZER_PANEL > *
   {
     position: absolute;
