@@ -31,8 +31,7 @@ class TextBox extends Control{
 
   void set watermark(String wm){
 
-    var html = (_html as InputElement)
-        ..blur();
+    var html = (_html as InputElement);
 
     var oldWm = _watermark;
     _watermark = wm;

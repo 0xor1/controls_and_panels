@@ -11,12 +11,12 @@ void main() {
 
   var stackPanel2 = new StackPanel.vertical();
   document.body.children.add(stackPanel2.html);
-  stackPanels.add(stackPanel2);
+  //stackPanels.add(stackPanel2);
 
 
   var stackPanel3 = new StackPanel.vertical();
   document.body.children.add(stackPanel3.html);
-  stackPanels.add(stackPanel3);
+  //stackPanels.add(stackPanel3);
 
   var comboList = new List<Base>()
       ..add(new Label('one')..html.attributes['data-value'] = 'one')

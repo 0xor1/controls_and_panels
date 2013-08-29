@@ -97,27 +97,39 @@ abstract class Control extends Base{
 
     onFocus.listen((Event event){
 
-      if(currentFocus != null){
+      //print('focus'); TODO work out why this fires 3 times when a textbox gets focus????
 
-        currentFocus.blur(event);
+      if(currentFocus != this){
 
+        if(currentFocus != null){
+
+          currentFocus.blur(event);
+
+        }
+
+        currentFocus = this;
+
+        html.classes.add(FOCUS);
       }
-
-      currentFocus = this;
-
-      html.classes.add(FOCUS);
 
     });
 
     onBlur.listen((Event event){
 
-      currentFocus = null;
+      if(currentFocus == this){
 
-      html.classes.remove(FOCUS);
+        currentFocus = null;
+
+        html.classes.remove(FOCUS);
+
+      }
 
     });
 
   }
+
+
+  bool get hasFocus => html.classes.contains(FOCUS);
 
 
   void focus(Event event){
