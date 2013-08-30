@@ -13,12 +13,15 @@ const String WATERMARK = 'watermark';
 class TextBox extends Control{
 
 
-  String get value => (html as InputElement).value;
+  InputElement _inputElement = new InputElement(type:'text');
+
+
+  String get value => _inputElement.value == _watermark ? '' : _inputElement.value;
 
 
   void set value (String str){
 
-    (html as InputElement).value = str;
+    _inputElement.value = str;
 
   }
 
@@ -31,47 +34,36 @@ class TextBox extends Control{
 
   void set watermark(String wm){
 
-    var html = (_html as InputElement);
-
     var oldWm = _watermark;
     _watermark = wm;
 
-    if(html.value == '' || html.value == null || html.value == oldWm){
-      html.value = _watermark;
+    if(value == '' || value == null || value == oldWm){
+      value = _watermark;
       html.classes.add(WATERMARK);
     }
 
   }
 
 
-  StreamSubscription<Event> removeWatermarkOnFocusSubscription;
-
-
-  StreamSubscription<Event>  addWatermarkOnBlurSubscription;
-
-
   TextBox([String wm]){
 
     _insertTextBoxStyleElement();
 
-    var classes = html.classes;
-
-    var self = this;
-
-    _html = new InputElement(type:'text')
-      ..classes.addAll(classes)
-      ..classes.add(TEXT_BOX)
+    _html
+      ..children.add(_inputElement)
+      ..classes.add(TEXT_BOX);
+    _inputElement
       ..onBlur.listen(blur)
       ..onFocus.listen(focus);
 
     watermark = wm;
 
-    addWatermarkOnBlurSubscription = html.onBlur.listen((Event event){
-      self.watermark = self.watermark;
+    onBlur.listen((Event event){
+      watermark = watermark;
     });
 
-    removeWatermarkOnFocusSubscription = html.onFocus.listen((Event event){
-      value = value == watermark ? '' : value;
+    onFocus.listen((Event event){
+      value = value == '' ? '' : value;
       html.classes.remove(WATERMARK);
     });
 

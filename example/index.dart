@@ -11,12 +11,12 @@ void main() {
 
   var stackPanel2 = new StackPanel.vertical();
   document.body.children.add(stackPanel2.html);
-  //stackPanels.add(stackPanel2);
+  stackPanels.add(stackPanel2);
 
 
   var stackPanel3 = new StackPanel.vertical();
   document.body.children.add(stackPanel3.html);
-  //stackPanels.add(stackPanel3);
+  stackPanels.add(stackPanel3);
 
   var comboList = new List<Base>()
       ..add(new Label('one')..html.attributes['data-value'] = 'one')
@@ -36,6 +36,7 @@ void main() {
   for(var stackPanel in stackPanels){
     //Future<List<Base>>
     var controls = new List<Base>();
+    controls.add(new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:100, height:100));
     controls.add(new TextBox('Please enter first name'));
     controls.add(new Label("Yomma!"));
     controls.add(new Button(new Label('a button')));
