@@ -11,30 +11,30 @@ final StyleElement sizerPanelStyleElement = new Element.html('''
 
   .$BASE.$PANEL.$SIZER_PANEL
   {
-    /*overflow: auto;???????*/
+    /*Nothing required*/
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL > *
+  .$BASE.$PANEL.$SIZER_PANEL > .$BASE
   {
     position: absolute;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$LEFT > *
+  .$BASE.$PANEL.$SIZER_PANEL.$LEFT > .$BASE
   {
     left: 0;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$RIGHT > *
+  .$BASE.$PANEL.$SIZER_PANEL.$RIGHT > .$BASE
   {
     right: 0;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$TOP > *
+  .$BASE.$PANEL.$SIZER_PANEL.$TOP > .$BASE
   {
     top: 0;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$BOTTOM > *
+  .$BASE.$PANEL.$SIZER_PANEL.$BOTTOM > .$BASE
   {
     bottom: 0;
   }

@@ -8,7 +8,7 @@ final StyleElement stackPanelStyleElement = new Element.html('''
 
 <style>
 
-  .$BASE.$PANEL.$STACK_PANEL.$VERTICAL > *
+  .$BASE.$PANEL.$STACK_PANEL.$VERTICAL > .$BASE
   {
     clear: left;
     float: left;
