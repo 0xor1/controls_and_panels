@@ -17,7 +17,7 @@ final StyleElement baseStyleElement = new Element.html('''
     margin: 0;
     border: 0;
     padding: 0;
-    overfow: visible; /*for popups eg. combobox*/
+    overflow: visible; /*for popups eg. combobox*/
   }
 
 </style>

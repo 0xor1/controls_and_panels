@@ -4,7 +4,7 @@
 
 part of controls_and_panels;
 
-const String label = 'label';
+const String LABEL = 'label';
 
 class Label extends Control{
 
@@ -17,7 +17,7 @@ class Label extends Control{
 
     this.text = text;
 
-    html.classes.add(label);
+    html.classes.add(LABEL);
 
   }
 

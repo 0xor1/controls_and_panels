@@ -14,12 +14,12 @@ final StyleElement stackPanelStyleElement = new Element.html('''
     float: left;
   }
 
-  /*
+  
   .$BASE.$PANEL.$STACK_PANEL.$HORIZONTAL
   {
-    Nothing required
+    white-space: nowrap;
+    word-spacing: -1em;
   }
-  */
 
 </style>
 

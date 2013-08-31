@@ -4,7 +4,7 @@
 
 part of controls_and_panels;
 
-const String image = 'image';
+const String IMAGE = 'image';
 
 class Image extends Control{
 
@@ -20,6 +20,8 @@ class Image extends Control{
 
   Image(String src, {String alt:'', int width: null, int height: null}):
     super(){
+
+    _insertImageStyleElement();
 
     _imageElement
       ..src = src
@@ -39,7 +41,7 @@ class Image extends Control{
 
     html.children.add(_imageElement);
 
-    html.classes.add(image);
+    html.classes.add(IMAGE);
 
   }
 

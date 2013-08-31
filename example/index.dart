@@ -39,7 +39,14 @@ void main() {
     controls.add(new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:100, height:100));
     controls.add(new TextBox('Please enter first name'));
     controls.add(new Label("Yomma!"));
-    controls.add(new Button(new Label('a button')));
+    controls.add(new Button(
+        new StackPanel.horizontal(
+          [
+           new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:20, height:20),
+           new Label('Peace')
+          ]
+        )
+    ));
     for(var base in controls){
       stackPanel.add(
           new SizerPanel('200px','100px')
