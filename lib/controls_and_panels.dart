@@ -20,6 +20,8 @@ part 'control/combo_box/combo_box.dart';
 part 'control/combo_box/combo_box_style.dart';
 part 'control/text_box/text_box.dart';
 part 'control/text_box/text_box_style.dart';
+part 'control/tooltip/tooltip.dart';
+part 'control/tooltip/tooltip_style.dart';
 
 part 'panel/panel.dart';
 part 'panel/sizer/sizer_panel.dart';

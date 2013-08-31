@@ -42,7 +42,7 @@ void main() {
     controls.add(new Button(
         new StackPanel.horizontal(
           [
-           new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:20, height:20),
+           new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:18, height:18),
            new Label('Peace')
           ]
         )
@@ -50,9 +50,7 @@ void main() {
     for(var base in controls){
       stackPanel.add(
           new SizerPanel('200px','100px')
-          ..add(base)
-          ..horizontalAlignment = 'left'
-          ..verticalAlignment = 'bottom');
+          ..add(base));
     }
   }
 }

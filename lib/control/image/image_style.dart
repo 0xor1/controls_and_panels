@@ -8,7 +8,7 @@ final StyleElement imageStyleElement = new Element.html('''
 
 <style>
 
-  .$BASE.$CONTROL.$IMAGE > img
+  .$IMAGE > img
   {
     display: block;
   }

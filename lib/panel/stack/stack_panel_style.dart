@@ -18,7 +18,6 @@ final StyleElement stackPanelStyleElement = new Element.html('''
   .$BASE.$PANEL.$STACK_PANEL.$HORIZONTAL
   {
     white-space: nowrap;
-    word-spacing: -1em;
   }
 
 </style>
