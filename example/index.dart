@@ -5,16 +5,16 @@ import 'dart:async';
 void main() {
 
   var stackPanels = new List<StackPanel>();
-  var stackPanel1 = new StackPanel.vertical();
+  var stackPanel1 = new StackPanel.horizontal();
   document.body.children.add(stackPanel1.html);
   stackPanels.add(stackPanel1);
 
-  var stackPanel2 = new StackPanel.vertical();
+  var stackPanel2 = new StackPanel.horizontal();
   document.body.children.add(stackPanel2.html);
   stackPanels.add(stackPanel2);
 
 
-  var stackPanel3 = new StackPanel.vertical();
+  var stackPanel3 = new StackPanel.horizontal();
   document.body.children.add(stackPanel3.html);
   stackPanels.add(stackPanel3);
 
@@ -42,15 +42,16 @@ void main() {
     controls.add(new Button(
         new StackPanel.horizontal(
           [
-           new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:18, height:18),
+           new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:50, height:50),
            new Label('Peace')
           ]
         )
     ));
     for(var base in controls){
-      stackPanel.add(
+      stackPanel.add(base);
+      /*stackPanel.add(
           new SizerPanel('200px','100px')
-          ..add(base));
+          ..add(base));*/
     }
   }
 }

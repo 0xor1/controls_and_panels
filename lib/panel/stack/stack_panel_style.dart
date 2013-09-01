@@ -18,6 +18,15 @@ final StyleElement stackPanelStyleElement = new Element.html('''
   .$BASE.$PANEL.$STACK_PANEL.$HORIZONTAL
   {
     white-space: nowrap;
+    font-size: 0;
+  }
+
+  .$BASE.$PANEL.$STACK_PANEL.$HORIZONTAL > .$BASE
+  {
+    word-spacing: normal;
+    float:none;
+    vertical-align: middle;
+    font-size: 16px;
   }
 
 </style>
