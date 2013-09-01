@@ -4,24 +4,20 @@
 
 part of controls_and_panels;
 
-const String label = 'label';
+const String LABEL = 'label';
 
 class Label extends Control{
 
-  String get text => _span.text;
+  String get text => html.text;
 
-  void set text (String text){_span.text = text;}
-
-  SpanElement _span = new SpanElement();
+  void set text (String text){html.text = text;}
 
   Label(String text):
     super(){
 
     this.text = text;
 
-    html.children.add(_span);
-
-    html.classes.add(label);
+    html.classes.add(LABEL);
 
   }
 

@@ -12,10 +12,13 @@ const String BOTTOM = 'bottom';
 const String H_CENTER = 'h-center';
 const String V_CENTER = 'v-center';
 const String CENTER = 'center';
+const String SIZER_LAYOUT_ASSISTANT = 'sizer-layout-assistant';
 
 
 class SizerPanel extends Panel{
 
+  DivElement _layoutAssistant = new DivElement()
+    ..classes.add(SIZER_LAYOUT_ASSISTANT);
 
   SizerPanel(String widthStyle, String heightStyle){
 
@@ -24,6 +27,12 @@ class SizerPanel extends Panel{
     html.style.width = widthStyle;
 
     html.style.height = heightStyle;
+
+    horizontalAlignment = CENTER;
+
+    verticalAlignment = CENTER;
+
+    html.children.add(_layoutAssistant);
 
     html.classes.add(SIZER_PANEL);
 
@@ -40,16 +49,18 @@ class SizerPanel extends Panel{
 
     html.classes.remove(_horizontalAlignment);
 
-    _horizontalAlignment = alignment == CENTER ? H_CENTER : alignment;
+    switch(alignment){
+      case LEFT:
+        _horizontalAlignment = LEFT;
+        break;
+      case RIGHT:
+        _horizontalAlignment = RIGHT;
+        break;
+      default:
+        _horizontalAlignment = H_CENTER;
+    }
 
     html.classes.add(_horizontalAlignment);
-
-      if(_horizontalAlignment == H_CENTER){
-
-      //TODO IMPLEMENT manual rect calculation to position child in center
-      //NB this only makes sense for sizers which are of constant absolute size
-
-    }
 
   }
 
@@ -64,16 +75,18 @@ class SizerPanel extends Panel{
 
     html.classes.remove(_verticalAlignment);
 
-    _verticalAlignment = alignment == CENTER ? V_CENTER : alignment;
+    switch(alignment){
+      case TOP:
+        _verticalAlignment = TOP;
+        break;
+      case BOTTOM:
+        _verticalAlignment = BOTTOM;
+        break;
+      default:
+        _verticalAlignment = V_CENTER;
+    }
 
     html.classes.add(_verticalAlignment);
-
-    if(_verticalAlignment == V_CENTER){
-
-      //TODO IMPLEMENT manual rect calculation to position child in center
-      //NB this only makes sense for sizers which are of constant absolute size
-
-    }
 
   }
 
@@ -84,7 +97,7 @@ class SizerPanel extends Panel{
 
       children.add(base);
 
-      html.children.add(base.html);
+      _layoutAssistant.children.add(base.html);
 
     }
 
@@ -104,7 +117,7 @@ class SizerPanel extends Panel{
 
   bool remove(Base base){
 
-    html.children.remove(base.html);
+    _layoutAssistant.children.remove(base.html);
 
     children.remove(base);
 
@@ -117,7 +130,7 @@ class SizerPanel extends Panel{
 
       var base = children.removeAt(0);
 
-      html.children.remove(base.html);
+      _layoutAssistant.children.remove(base.html);
 
       return base;
 

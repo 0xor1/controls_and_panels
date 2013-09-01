@@ -14,10 +14,11 @@ final StyleElement baseStyleElement = new Element.html('''
     display: inline-block;
     position: relative;
     float: left;
+    font-family: verdana, arial, sans-serif;
     margin: 0;
     border: 0;
     padding: 0;
-    overfow: visible; /*for popups eg. combobox*/
+    overflow: visible; /*for popups eg. tooltips and combobox drop downs*/
   }
 
 </style>

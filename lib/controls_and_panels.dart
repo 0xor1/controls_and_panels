@@ -12,12 +12,16 @@ part 'base_style.dart';
 
 part 'control/control.dart';
 part 'control/label/label.dart';
+part 'control/image/image.dart';
+part 'control/image/image_style.dart';
 part 'control/button/button.dart';
 part 'control/button/button_style.dart';
 part 'control/combo_box/combo_box.dart';
 part 'control/combo_box/combo_box_style.dart';
 part 'control/text_box/text_box.dart';
 part 'control/text_box/text_box_style.dart';
+part 'control/pop_over/pop_over.dart';
+part 'control/pop_over/pop_over_style.dart';
 
 part 'panel/panel.dart';
 part 'panel/sizer/sizer_panel.dart';
