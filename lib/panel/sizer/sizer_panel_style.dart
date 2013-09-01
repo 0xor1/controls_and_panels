@@ -11,32 +11,47 @@ final StyleElement sizerPanelStyleElement = new Element.html('''
 
   .$BASE.$PANEL.$SIZER_PANEL
   {
-    /*overflow: auto;???????*/
+    display: table;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL > *
+  .$BASE.$PANEL.$SIZER_PANEL > .$SIZER_LAYOUT_ASSISTANT > .$BASE
   {
-    position: absolute;
+    float: none;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$LEFT > *
+  .$BASE.$PANEL.$SIZER_PANEL > .$SIZER_LAYOUT_ASSISTANT
   {
-    left: 0;
+    display: table-cell;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$RIGHT > *
+  .$BASE.$PANEL.$SIZER_PANEL.$LEFT > .$SIZER_LAYOUT_ASSISTANT
   {
-    right: 0;
+    text-align: left;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$TOP > *
+  .$BASE.$PANEL.$SIZER_PANEL.$RIGHT > .$SIZER_LAYOUT_ASSISTANT
   {
-    top: 0;
+    text-align: right;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$BOTTOM > *
+  .$BASE.$PANEL.$SIZER_PANEL.$H_CENTER > .$SIZER_LAYOUT_ASSISTANT
   {
-    bottom: 0;
+    text-align: center;
+  }
+
+  .$BASE.$PANEL.$SIZER_PANEL.$TOP > .$SIZER_LAYOUT_ASSISTANT
+  {
+    vertical-align: top;
+  }
+
+  .$BASE.$PANEL.$SIZER_PANEL.$BOTTOM > .$SIZER_LAYOUT_ASSISTANT
+  {
+    vertical-align: bottom;
+  }
+
+  .$BASE.$PANEL.$SIZER_PANEL.$V_CENTER > .$SIZER_LAYOUT_ASSISTANT
+  {
+    vertical-align: middle;
   }
 
 </style>

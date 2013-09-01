@@ -9,13 +9,14 @@ final StyleElement textBoxStyleElement = new Element.html('''
 
 <style>
 
-  .$BASE.$CONTROL.$TEXT_BOX
+  .$BASE.$CONTROL.$TEXT_BOX > input
   {
+    margin: 0;
     border: 1px solid #888;
     padding: 5px;
   }
 
-  .$BASE.$CONTROL.$TEXT_BOX.$WATERMARK
+  .$BASE.$CONTROL.$TEXT_BOX.$WATERMARK > input
   {
     color: #999;
   }

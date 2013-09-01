@@ -12,8 +12,8 @@ final StyleElement buttonStyleElement = new Element.html('''
   {
     transition: background 0.3s;
     background: #999;
-    border-radius: 6px;
-    padding: 7px 14px;
+    border-radius: 3px;
+    padding: 2px 4px;
     cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
