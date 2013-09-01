@@ -8,7 +8,7 @@ final StyleElement tooltipStyleElement = new Element.html('''
 
 <style>
 
-  .$BASE.$CONTROL.$TOOLTIP
+  .$BASE.$CONTROL.$POP_OVER
   {
     
   }
@@ -18,7 +18,7 @@ final StyleElement tooltipStyleElement = new Element.html('''
 ''');
 
 
-void _insertTooltipStyleElement(){
+void _insertPopOverStyleElement(){
 
   if(tooltipStyleElement.parent != document.head){
 
