@@ -13,7 +13,6 @@ final StyleElement baseStyleElement = new Element.html('''
   {
     display: inline-block;
     position: relative;
-    float: left;
     font-family: verdana, arial, sans-serif;
     margin: 0;
     border: 0;

@@ -16,11 +16,6 @@ final StyleElement textBoxStyleElement = new Element.html('''
     padding: 5px;
   }
 
-  .$BASE.$CONTROL.$TEXT_BOX.$WATERMARK > input
-  {
-    color: #999;
-  }
-
 </style>
 
 ''');

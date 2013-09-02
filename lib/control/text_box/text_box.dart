@@ -7,7 +7,6 @@ part of controls_and_panels;
 
 
 const String TEXT_BOX = 'text-box';
-const String WATERMARK = 'watermark';
 
 
 class TextBox extends Control{
@@ -16,7 +15,7 @@ class TextBox extends Control{
   InputElement _inputElement = new InputElement(type:'text');
 
 
-  String get value => _inputElement.value == _watermark ? '' : _inputElement.value;
+  String get value => _inputElement.value;
 
 
   void set value (String str){
@@ -26,26 +25,23 @@ class TextBox extends Control{
   }
 
 
-  String _watermark = '';
+  String get placeholder => _inputElement.placeholder;
 
 
-  String get watermark => _watermark;
+  void set placeholder (String str){
 
+    if(str == null){
 
-  void set watermark(String wm){
+      str = '';
 
-    var oldWm = _watermark;
-    _watermark = wm;
-
-    if(value == '' || value == null || value == oldWm){
-      value = _watermark;
-      html.classes.add(WATERMARK);
     }
+
+    _inputElement.placeholder = str;
 
   }
 
 
-  TextBox([String wm]){
+  TextBox([String ph]){
 
     _insertTextBoxStyleElement();
 
@@ -56,16 +52,7 @@ class TextBox extends Control{
       ..onBlur.listen(blur)
       ..onFocus.listen(focus);
 
-    watermark = wm;
-
-    onBlur.listen((Event event){
-      watermark = watermark;
-    });
-
-    onFocus.listen((Event event){
-      value = value == '' ? '' : value;
-      html.classes.remove(WATERMARK);
-    });
+    placeholder = ph;
 
   }
 

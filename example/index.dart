@@ -5,16 +5,16 @@ import 'dart:async';
 void main() {
 
   var stackPanels = new List<StackPanel>();
-  var stackPanel1 = new StackPanel.horizontal();
+  var stackPanel1 = new StackPanel.vertical();
   document.body.children.add(stackPanel1.html);
   stackPanels.add(stackPanel1);
 
-  var stackPanel2 = new StackPanel.horizontal();
+  var stackPanel2 = new StackPanel.vertical();
   document.body.children.add(stackPanel2.html);
   stackPanels.add(stackPanel2);
 
 
-  var stackPanel3 = new StackPanel.horizontal();
+  var stackPanel3 = new StackPanel.vertical();
   document.body.children.add(stackPanel3.html);
   stackPanels.add(stackPanel3);
 
@@ -36,8 +36,9 @@ void main() {
   for(var stackPanel in stackPanels){
     //Future<List<Base>>
     var controls = new List<Base>();
-    controls.add(new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:100, height:100));
+    controls.add(new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:50, height:50));
     controls.add(new TextBox('Please enter first name'));
+    controls.add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'));
     controls.add(new Label("Yomma!"));
     controls.add(new Button(
         new StackPanel.horizontal(
@@ -49,10 +50,11 @@ void main() {
     ));
     for(var base in controls){
       stackPanel.add(
-          new SizerPanel('200px','100px')
-            ..horizontalAlignment = 'center'
-            ..verticalAlignment = 'center'
-            ..add(base));
+        new SizerPanel('200px','100px')
+          ..horizontalAlignment = 'center'
+          ..verticalAlignment = 'center'
+          ..add(base)
+          ..html.style.overflow = 'auto');
     }
   }
 }

@@ -23,14 +23,6 @@ final StyleElement sizerPanelStyleElement = new Element.html('''
   .$BASE.$PANEL.$SIZER_PANEL
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
       > .$SIZER_INNER_LAYOUT_ASSISTANT
-        > .$BASE
-  {
-    float: none;
-  }
-
-  .$BASE.$PANEL.$SIZER_PANEL
-    > .$SIZER_OUTER_LAYOUT_ASSISTANT
-      > .$SIZER_INNER_LAYOUT_ASSISTANT
   {
     display: table-cell;
   }

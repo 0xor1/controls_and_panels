@@ -20,6 +20,8 @@ part 'control/combo_box/combo_box.dart';
 part 'control/combo_box/combo_box_style.dart';
 part 'control/text_box/text_box.dart';
 part 'control/text_box/text_box_style.dart';
+part 'control/text_area/text_area.dart';
+part 'control/text_area/text_area_style.dart';
 part 'control/pop_over/pop_over.dart';
 part 'control/pop_over/pop_over_style.dart';
 
