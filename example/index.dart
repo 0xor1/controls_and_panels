@@ -5,16 +5,16 @@ import 'dart:async';
 void main() {
 
   var stackPanels = new List<StackPanel>();
-  var stackPanel1 = new StackPanel.vertical();
+  var stackPanel1 = new StackPanel.horizontal();
   document.body.children.add(stackPanel1.html);
   stackPanels.add(stackPanel1);
 
-  var stackPanel2 = new StackPanel.vertical();
+  var stackPanel2 = new StackPanel.horizontal();
   document.body.children.add(stackPanel2.html);
   stackPanels.add(stackPanel2);
 
 
-  var stackPanel3 = new StackPanel.vertical();
+  var stackPanel3 = new StackPanel.horizontal();
   document.body.children.add(stackPanel3.html);
   stackPanels.add(stackPanel3);
 

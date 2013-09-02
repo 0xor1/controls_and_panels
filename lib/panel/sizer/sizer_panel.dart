@@ -12,13 +12,17 @@ const String BOTTOM = 'bottom';
 const String H_CENTER = 'h-center';
 const String V_CENTER = 'v-center';
 const String CENTER = 'center';
-const String SIZER_LAYOUT_ASSISTANT = 'sizer-layout-assistant';
+const String SIZER_INNER_LAYOUT_ASSISTANT = 'sizer-inner-layout-assistant';
+const String SIZER_OUTER_LAYOUT_ASSISTANT = 'sizer-outer-layout-assistant';
 
 
 class SizerPanel extends Panel{
 
-  DivElement _layoutAssistant = new DivElement()
-    ..classes.add(SIZER_LAYOUT_ASSISTANT);
+  DivElement _outerLayoutAssistant = new DivElement()
+  ..classes.add(SIZER_OUTER_LAYOUT_ASSISTANT);
+
+  DivElement _innerLayoutAssistant = new DivElement()
+    ..classes.add(SIZER_INNER_LAYOUT_ASSISTANT);
 
   SizerPanel(String widthStyle, String heightStyle){
 
@@ -32,7 +36,9 @@ class SizerPanel extends Panel{
 
     verticalAlignment = CENTER;
 
-    html.children.add(_layoutAssistant);
+    html.children.add(
+        _outerLayoutAssistant
+          ..children.add(_innerLayoutAssistant));
 
     html.classes.add(SIZER_PANEL);
 
@@ -97,7 +103,7 @@ class SizerPanel extends Panel{
 
       children.add(base);
 
-      _layoutAssistant.children.add(base.html);
+      _innerLayoutAssistant.children.add(base.html);
 
     }
 
@@ -117,7 +123,7 @@ class SizerPanel extends Panel{
 
   bool remove(Base base){
 
-    _layoutAssistant.children.remove(base.html);
+    _innerLayoutAssistant.children.remove(base.html);
 
     children.remove(base);
 
@@ -130,7 +136,7 @@ class SizerPanel extends Panel{
 
       var base = children.removeAt(0);
 
-      _layoutAssistant.children.remove(base.html);
+      _innerLayoutAssistant.children.remove(base.html);
 
       return base;
 
