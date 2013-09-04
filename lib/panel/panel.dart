@@ -34,7 +34,15 @@ abstract class Panel extends Base{
   Base removeAt(int index);
 
 
+  void clear(){
 
+    children.forEach((child){
+
+      remove(child);
+
+    });
+
+  }
 
 
 }

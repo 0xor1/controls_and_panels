@@ -67,7 +67,23 @@ abstract class Control extends Base{
   final int _id;
 
 
-  int get id => _id;
+  int get controlId => _id;
+
+
+  String get id => _html.id;
+
+
+  PopOver tooltip;
+
+
+  PopOver contextMenu;
+
+
+  void set id(String id){
+
+    _html.id = id;
+
+  }
 
 
   StreamController _focusController = new StreamController();
@@ -91,7 +107,7 @@ abstract class Control extends Base{
 
     }
 
-    html.attributes[CONTROL_ID] = _id.toString();
+    html.dataset[CONTROL_ID] = _id.toString();
 
     _controls[_id] = this;
 
@@ -105,27 +121,24 @@ abstract class Control extends Base{
 
           currentFocus.blur(event);
 
+          currentFocus.html.classes.remove(FOCUS);
+
+          currentFocus = null;
+
         }
 
         currentFocus = this;
 
         html.classes.add(FOCUS);
-      }
-
-    });
-
-    onBlur.listen((Event event){
-
-      if(currentFocus == this){
-
-        currentFocus = null;
-
-        html.classes.remove(FOCUS);
 
       }
 
     });
 
+
+    html.onClick.listen((MouseEvent event){
+      focus(event);
+    });
   }
 
 

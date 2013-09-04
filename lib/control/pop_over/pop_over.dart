@@ -19,4 +19,25 @@ class PopOver extends Control{
 
   }
 
+  void hide(){
+
+    if(html.parent != null){
+
+      html.parent.children.remove(html);
+
+    }
+
+  }
+
+  void show(Base base, { int left: null, int top: null, int right: null, int bottom: null }){
+
+    html.style.left = left != null? '${left}px' : '';
+    html.style.top = top != null? '${top}px' : '';
+    html.style.right = right != null? '${right}px' : '';
+    html.style.bottom = bottom != null? '${bottom}px' : '';
+
+    base.html.children.add(html);
+
+  }
+
 }

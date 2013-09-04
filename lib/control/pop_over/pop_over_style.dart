@@ -4,13 +4,15 @@
 
 part of controls_and_panels;
 
-final StyleElement tooltipStyleElement = new Element.html('''
+const String POP_OVER_STYLE_ELEMENT = 'pop-over-style-element';
 
-<style>
+final StyleElement popOverStyleElement = new Element.html('''
+
+<style id='$POP_OVER_STYLE_ELEMENT'>
 
   .$BASE.$CONTROL.$POP_OVER
   {
-    
+    position: absolute;
   }
 
 </style>
@@ -20,9 +22,9 @@ final StyleElement tooltipStyleElement = new Element.html('''
 
 void _insertPopOverStyleElement(){
 
-  if(tooltipStyleElement.parent != document.head){
+  if(popOverStyleElement.parent != document.head){
 
-    document.head.children.add(tooltipStyleElement);
+    document.head.children.add(popOverStyleElement);
 
   }
 

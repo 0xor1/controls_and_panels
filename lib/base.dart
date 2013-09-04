@@ -9,7 +9,7 @@ const String BASE = 'base';
 abstract class Base{
 
 
-  Element _html = new DivElement();
+  final Element _html = new DivElement();
 
 
   Element get html => _html;

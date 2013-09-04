@@ -31,4 +31,4 @@ part 'panel/sizer/sizer_panel_style.dart';
 part 'panel/stack/stack_panel.dart';
 part 'panel/stack/stack_panel_style.dart';
 
-typedef void FuncStringVoid(String str);
+typedef PopOver Func_Control_PopOver(Control control);
