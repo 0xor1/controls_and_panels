@@ -21,7 +21,7 @@ class Image extends Control{
   Image(String src, {String alt:'', int width: null, int height: null}):
     super(){
 
-    _insertImageStyleElement();
+    _insertStyle(_imageStyle);
 
     _imageElement
       ..src = src
@@ -46,3 +46,14 @@ class Image extends Control{
   }
 
 }
+
+
+
+final Style _imageStyle = new Style('''
+
+  .$BASE.$CONTROL.$IMAGE > img
+  {
+    display: block;
+  }
+
+''');

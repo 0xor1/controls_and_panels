@@ -30,14 +30,15 @@ void main() {
   };
 
   var processSelection = (Base base){
-    print('you selected ${base.html.attributes['data-value']}');
+    print('you selected ${base.html.dataset['value']}');
   };
 
   for(var stackPanel in stackPanels){
     //Future<List<Base>>
     var controls = new List<Base>();
-    controls.add(new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:100, height:100));
+    controls.add(new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:95, height:95));
     controls.add(new TextBox('Please enter first name'));
+    controls.add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'));
     controls.add(new Label("Yomma!"));
     controls.add(new Button(
         new StackPanel.horizontal(
@@ -49,10 +50,10 @@ void main() {
     ));
     for(var base in controls){
       stackPanel.add(
-          new SizerPanel('200px','100px')
-            ..horizontalAlignment = 'center'
-            ..verticalAlignment = 'center'
-            ..add(base));
+        new SizerPanel('200px','100px')
+          ..horizontalAlignment = 'center'
+          ..verticalAlignment = 'center'
+          ..add(base));
     }
   }
 }
