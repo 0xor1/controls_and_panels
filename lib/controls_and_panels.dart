@@ -2,31 +2,62 @@
  * 0xor1  http://github.com/0xor1
  */
 
+
 library controls_and_panels;
+
 
 import 'dart:html';
 import 'dart:async';
 
+
 part 'base.dart';
-part 'base_style.dart';
+part 'control.dart';
+part 'panel.dart';
 
-part 'control/control.dart';
-part 'control/label/label.dart';
-part 'control/image/image.dart';
-part 'control/image/image_style.dart';
-part 'control/button/button.dart';
-part 'control/button/button_style.dart';
-part 'control/combo_box/combo_box.dart';
-part 'control/combo_box/combo_box_style.dart';
-part 'control/text_box/text_box.dart';
-part 'control/text_box/text_box_style.dart';
-part 'control/pop_over/pop_over.dart';
-part 'control/pop_over/pop_over_style.dart';
+part 'control/label.dart';
+part 'control/image.dart';
+part 'control/button.dart';
+part 'control/combo_box.dart';
+part 'control/text_box.dart';
+part 'control/text_area.dart';
+part 'control/pop_over.dart';
+part 'control/pop_over/context_menu.dart';
 
-part 'panel/panel.dart';
-part 'panel/sizer/sizer_panel.dart';
-part 'panel/sizer/sizer_panel_style.dart';
-part 'panel/stack/stack_panel.dart';
-part 'panel/stack/stack_panel_style.dart';
 
-typedef void FuncStringVoid(String str);
+part 'panel/sizer_panel.dart';
+part 'panel/stack_panel.dart';
+
+
+typedef PopOver Func_Control_PopOver(Control control);
+
+
+const String CONTROLS_AND_PANELS_STYLE_ELEMENT_ID = 'controls-and-panels-style-element-id';
+
+
+class Style{
+  bool hasBeenInserted = false;
+  String text;
+  Style(String this.text);
+}
+
+
+void _insertStyle(Style style){
+
+  if(_controlsAndPanelsStyleElement.parent != document.head){
+
+    document.head.children.add(_controlsAndPanelsStyleElement);
+
+  }
+
+  if(!style.hasBeenInserted){
+
+    _controlsAndPanelsStyleElement.text += style.text;
+
+    style.hasBeenInserted = true;
+
+  }
+
+}
+
+
+final StyleElement _controlsAndPanelsStyleElement = new StyleElement()..id = CONTROLS_AND_PANELS_STYLE_ELEMENT_ID;

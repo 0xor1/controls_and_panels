@@ -35,7 +35,7 @@ class ComboBox extends Control{
 
   ComboBox(GetBaseList getList, ProcessSelectedBase selectionProcessor){
 
-    _insertComboBoxStyleElement();
+    _insertStyle(_comboBoxStyle);
 
     getBaseList = getList;
 
@@ -98,3 +98,14 @@ class ComboBox extends Control{
   }
 
 }
+
+
+
+final Style _comboBoxStyle = new Style('''
+
+  .$BASE.$CONTROL.$COMBO_BOX
+  {
+    
+  }
+
+''');
