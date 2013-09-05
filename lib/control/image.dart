@@ -51,7 +51,7 @@ class Image extends Control{
 
 final Style _imageStyle = new Style('''
 
-  .$IMAGE > img
+  .$BASE.$CONTROL.$IMAGE > img
   {
     display: block;
   }
