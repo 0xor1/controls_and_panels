@@ -43,7 +43,7 @@ class TextBox extends Control{
 
   TextBox([String ph]){
 
-    _insertTextBoxStyleElement();
+    _insertStyle(_textBoxStyle);
 
     _html
       ..children.add(_inputElement)
@@ -58,3 +58,16 @@ class TextBox extends Control{
 
 
 }
+
+
+
+final Style _textBoxStyle = new Style('''
+
+  .$BASE.$CONTROL.$TEXT_BOX > input
+  {
+    margin: 0;
+    border: 1px solid #888;
+    padding: 5px;
+  }
+
+''');

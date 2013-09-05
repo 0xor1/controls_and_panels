@@ -15,6 +15,27 @@ abstract class Panel extends Base{
   List<Base> children = new List<Base>();
 
 
+  void set width(String width){
+
+    html.style.width = width;
+
+  }
+
+
+  void set height(String height){
+
+    html.style.height = height;
+
+  }
+
+
+  void set overflow(String overflow){
+
+    html.style.overflow = overflow;
+
+  }
+
+
   Panel(){
 
     html.classes.add(PANEL);

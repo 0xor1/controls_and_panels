@@ -37,9 +37,23 @@ class StackPanel extends Panel{
   }
 
 
+  void set width(String width){
+
+    html.style.width = width;
+
+  }
+
+
+  void set height(String height){
+
+    html.style.height = height;
+
+  }
+
+
   StackPanel._internal(String orientation, List<Base> bases){
 
-    _insertStackPanelStyleElement();
+    _insertStyle(_stackPanelStyle);
 
     if(bases != null){
 
@@ -119,3 +133,29 @@ class StackPanel extends Panel{
 
 
 }
+
+
+
+final Style _stackPanelStyle = new Style('''
+
+  .$BASE.$PANEL.$STACK_PANEL.$VERTICAL > .$BASE
+  {
+    clear: left;
+    float: left;
+  }
+
+  
+  .$BASE.$PANEL.$STACK_PANEL.$HORIZONTAL
+  {
+    white-space: nowrap;
+    font-size: 0;
+  }
+
+  .$BASE.$PANEL.$STACK_PANEL.$HORIZONTAL > .$BASE
+  {
+    word-spacing: normal;
+    vertical-align: middle;
+    font-size: 16px;
+  }
+
+''');

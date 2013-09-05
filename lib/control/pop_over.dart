@@ -11,7 +11,7 @@ class PopOver extends Control{
   PopOver(Base base):
     super(){
 
-    _insertPopOverStyleElement();
+    _insertStyle(_popOverStyle);
 
     html.children.add(base.html);
 
@@ -41,3 +41,14 @@ class PopOver extends Control{
   }
 
 }
+
+
+
+final Style _popOverStyle = new Style('''
+
+  .$BASE.$CONTROL.$POP_OVER
+  {
+    position: absolute;
+  }
+
+''');

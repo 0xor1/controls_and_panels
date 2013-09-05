@@ -53,7 +53,7 @@ class TextArea extends Control{
 
   TextArea({ int rows: 4, int cols: 50, String placeholder: ''}){
 
-    _insertTextAreaStyleElement();
+    _insertStyle(_textAreaStyle);
 
     _html
       ..children.add(_textAreaElement)
@@ -69,3 +69,16 @@ class TextArea extends Control{
   }
 
 }
+
+
+
+final Style _textAreaStyle = new Style('''
+
+  .$BASE.$CONTROL.$TEXT_AREA > textarea
+  {
+    margin: 0;
+    border: 1px solid #888;
+    padding: 5px;
+  }
+
+''');

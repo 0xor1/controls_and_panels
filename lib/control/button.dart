@@ -4,9 +4,35 @@
 
 part of controls_and_panels;
 
-final StyleElement buttonStyleElement = new Element.html('''
+const String BUTTON = 'button';
 
-<style>
+class Button extends Control{
+
+
+  Stream<MouseEvent> get onClick => html.onClick;
+
+
+  Base content;
+
+
+  Button(Base base){
+
+    _insertStyle(_buttonStyle);
+
+    content = base;
+
+    html.children.add(base.html);
+
+    html.classes.add(BUTTON);
+
+  }
+
+
+}
+
+
+
+final Style _buttonStyle = new Style('''
 
   .$BASE.$CONTROL.$BUTTON
   {
@@ -33,17 +59,4 @@ final StyleElement buttonStyleElement = new Element.html('''
     background: #eee;
   }
 
-</style>
-
 ''');
-
-
-void _insertButtonStyleElement(){
-
-  if(buttonStyleElement.parent != document.head){
-
-    document.head.children.add(buttonStyleElement);
-
-  }
-
-}

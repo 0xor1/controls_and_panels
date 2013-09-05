@@ -4,7 +4,9 @@
 
 part of controls_and_panels;
 
+
 const String BASE = 'base';
+
 
 abstract class Base{
 
@@ -17,7 +19,7 @@ abstract class Base{
 
   Base(){
 
-    _insertBaseStyleElement();
+    _insertStyle(_baseStyle);
 
     html.classes.add(BASE);
 
@@ -46,3 +48,20 @@ abstract class Base{
 
 
 }
+
+
+
+final Style _baseStyle = new Style('''
+
+  .$BASE
+  {
+    display: inline-block;
+    position: relative;
+    font-family: verdana, arial, sans-serif;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    overflow: visible; /*for popups eg. tooltips and combobox drop downs*/
+  }
+
+''');
