@@ -73,10 +73,10 @@ abstract class Control extends Base{
   String get id => _html.id;
 
 
-  PopOver tooltip;
+  Func_Control_PopOver createContextMenu;
 
 
-  PopOver contextMenu;
+  Func_Control_PopOver getTooltip;
 
 
   void set id(String id){
@@ -94,6 +94,11 @@ abstract class Control extends Base{
   StreamController _blurController = new StreamController();
   Stream _blurStream;
   Stream get onBlur => (_blurStream != null) ? _blurStream : _blurStream = _blurController.stream.asBroadcastStream();
+
+
+  StreamController _contextMenuController = new StreamController();
+  Stream _contextMenuStream;
+  Stream get onContextMenu => (_contextMenuStream != null) ? _contextMenuStream : _contextMenuStream = _contextMenuController.stream.asBroadcastStream();
 
 
   Control()
@@ -135,9 +140,20 @@ abstract class Control extends Base{
 
     });
 
-
+    //TODO consider moving focus functionality into a mixin
     html.onClick.listen((MouseEvent event){
       focus(event);
+    });
+
+    //TODO !!!!! Move context menu and tooltip stuff into a mixin that requires subclasses to call the mixins initialise method to hook up event listeners etc.
+    //TODO !!!!! Make all PopOvers inject into a special PopOver Anchor (0px x 0px) element at top left of page, make anchor ensure it is last child of body element every time a PopOver shows
+    html.onContextMenu.listen((MouseEvent event){
+      if(createContextMenu != null){
+        event.preventDefault();
+        event.stopPropagation();
+        var contextMenu = createContextMenu(this); //todo get screen quadrant and display menu appropriately
+        contextMenu.show(document.body, left: event.pageX , top: event.pageY);
+      }
     });
   }
 

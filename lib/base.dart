@@ -56,7 +56,6 @@ final Style _baseStyle = new Style('''
   .$BASE
   {
     display: inline-block;
-    position: relative;
     font-family: verdana, arial, sans-serif;
     margin: 0;
     border: 0;

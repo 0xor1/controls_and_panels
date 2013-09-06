@@ -29,14 +29,14 @@ class PopOver extends Control{
 
   }
 
-  void show(Base base, { int left: null, int top: null, int right: null, int bottom: null }){
+  void show(Element container, { int left: null, int top: null, int right: null, int bottom: null }){
 
     html.style.left = left != null? '${left}px' : '';
     html.style.top = top != null? '${top}px' : '';
     html.style.right = right != null? '${right}px' : '';
     html.style.bottom = bottom != null? '${bottom}px' : '';
 
-    base.html.children.add(html);
+    container.children.add(html);
 
   }
 
@@ -49,6 +49,8 @@ final Style _popOverStyle = new Style('''
   .$BASE.$CONTROL.$POP_OVER
   {
     position: absolute;
+    background: #fff;
+    border: 1px solid #00f;
   }
 
 ''');
