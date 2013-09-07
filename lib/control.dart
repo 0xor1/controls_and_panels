@@ -7,7 +7,7 @@ part of controls_and_panels;
 
 //string constants used for html classes and attributes
 const String CONTROL = 'control';
-
+const String _POP_OVER_LAYOUT_ASSISTANT = 'pop-over-layout-assistant';
 
 const String CONTROL_ID = 'control-id';
 
@@ -72,6 +72,9 @@ abstract class Control extends Base{
 
   String get id => _html.id;
 
+  final DivElement _popOverLayoutAssistant = new DivElement()
+  ..classes.add(_POP_OVER_LAYOUT_ASSISTANT);
+
 
   Func_Control_PopOver createContextMenu;
 
@@ -101,10 +104,14 @@ abstract class Control extends Base{
   Stream get onContextMenu => (_contextMenuStream != null) ? _contextMenuStream : _contextMenuStream = _contextMenuController.stream.asBroadcastStream();
 
 
-  Control()
+  Control({Func_Control_PopOver createContextMenu: null})
     : _id = _idSource++{
 
-    html.classes.add(CONTROL);
+    _insertStyle(_controlStyle);
+
+    html
+    ..classes.add(CONTROL)
+    ..children.add(_popOverLayoutAssistant);
 
     if(_namespace != null){
 
@@ -140,21 +147,20 @@ abstract class Control extends Base{
 
     });
 
-    //TODO consider moving focus functionality into a mixin
     html.onClick.listen((MouseEvent event){
       focus(event);
     });
 
-    //TODO !!!!! Move context menu and tooltip stuff into a mixin that requires subclasses to call the mixins initialise method to hook up event listeners etc.
-    //TODO !!!!! Make all PopOvers inject into a special PopOver Anchor (0px x 0px) element at top left of page, make anchor ensure it is last child of body element every time a PopOver shows
-    html.onContextMenu.listen((MouseEvent event){
-      if(createContextMenu != null){
-        event.preventDefault();
-        event.stopPropagation();
-        var contextMenu = createContextMenu(this); //todo get screen quadrant and display menu appropriately
-        contextMenu.show(document.body, left: event.pageX , top: event.pageY);
-      }
-    });
+    if(createContextMenu != null){
+      html.onContextMenu.listen((MouseEvent event){
+        if(createContextMenu != null){
+          event.preventDefault();
+          event.stopPropagation();
+          var contextMenu = createContextMenu(this); //todo get screen quadrant and display menu appropriately
+          contextMenu.show(this, left: event.offsetX - 3 , top: event.offsetY - 3);
+        }
+      });
+    }
   }
 
 
@@ -176,3 +182,20 @@ abstract class Control extends Base{
 
 
 }
+
+
+
+final Style _controlStyle = new Style('''
+
+  .$BASE.$CONTROL > .$_POP_OVER_LAYOUT_ASSISTANT
+  {
+    position: relative;
+    width: 0;
+    height: 0;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+''');

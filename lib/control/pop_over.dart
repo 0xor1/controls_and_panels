@@ -29,14 +29,13 @@ class PopOver extends Control{
 
   }
 
-  void show(Element container, { int left: null, int top: null, int right: null, int bottom: null }){
+  void show(Control owner, { int left: null, int top: null}){
 
-    html.style.left = left != null? '${left}px' : '';
-    html.style.top = top != null? '${top}px' : '';
-    html.style.right = right != null? '${right}px' : '';
-    html.style.bottom = bottom != null? '${bottom}px' : '';
+    html.style.top = '${top}px';
 
-    container.children.add(html);
+    html.style.left = '${left}px';
+
+    owner._popOverLayoutAssistant.children.add(html);
 
   }
 

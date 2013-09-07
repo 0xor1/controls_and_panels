@@ -8,11 +8,16 @@ part of controls_and_panels;
 
 const String LABEL = 'label';
 
+const String TEXT = 'text';
+
 
 class Label extends Control{
 
+  final SpanElement _textElement = new SpanElement()
+  ..classes.add(TEXT);
 
-  static final Func_Control_PopOver _getContextMenu = (Control control){
+
+  static final Func_Control_PopOver _createContextMenu = (Control control){
     return new ContextMenu(
         control,
         new StackPanel.vertical([
@@ -21,18 +26,18 @@ class Label extends Control{
   };
 
 
-  String get text => html.text;
+  String get text => _textElement.text;
 
 
-  void set text (String text){html.text = text;}
+  void set text (String text){_textElement.text = text;}
 
 
   Label(String text):
-    super(){
+    super(createContextMenu: Label._createContextMenu){
 
     _insertStyle(_labelStyle);
 
-    createContextMenu = Label._getContextMenu;
+    html.children.add(_textElement);
 
     this.text = text;
 
