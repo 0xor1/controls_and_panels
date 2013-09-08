@@ -13,7 +13,7 @@ class PopOver extends Control{
 
     _insertStyle(_popOverStyle);
 
-    html.children.add(base.html);
+    controlContentElement.children.add(base.html);
 
     html.classes.add(POP_OVER);
 
@@ -29,14 +29,26 @@ class PopOver extends Control{
 
   }
 
-  void show(Control owner, { int left: null, int top: null}){
-
-    html.style.top = '${top}px';
-
-    html.style.left = '${left}px';
-
-    owner._popOverLayoutAssistant.children.add(html);
-
+  void show(Control owner, { int left: null, int top: null, int right: null, int bottom: null}){
+    if(top != null){
+      html.style.top = '${top}px';
+      if(left != null){
+        html.style.left = '${left}px';
+        owner._topLeftPopOverLayoutAssistant.children.add(html);
+      }else{
+        html.style.right = '${right}px';
+        owner._topRightPopOverLayoutAssistant.children.add(html);
+      }
+    }else{
+      html.style.bottom = '${bottom}px';
+      if(left != null){
+        html.style.left = '${left}px';
+        owner._bottomLeftPopOverLayoutAssistant.children.add(html);
+      }else{
+        html.style.right = '${right}px';
+        owner._bottomRightPopOverLayoutAssistant.children.add(html);
+      }
+    }
   }
 
 }
@@ -48,6 +60,7 @@ final Style _popOverStyle = new Style('''
   .$BASE.$CONTROL.$POP_OVER
   {
     position: absolute;
+    white-space: nowrap;
     background: #fff;
     border: 1px solid #00f;
   }

@@ -12,26 +12,21 @@ const String CONTEXT_MENU = 'context-menu';
 class ContextMenu extends PopOver{
 
 
-  Control control;
+  Control target;
 
-
-  ContextMenu(Control owner, Base content):
+  ContextMenu(Control target, Base content):
     super(content){
 
-    control = owner;
+    this.target = target;
 
     html.classes.add(CONTEXT_MENU);
 
     html.onMouseLeave.listen((MouseEvent event){
-      if(event.target == html){
-        hide();
-      }/*else if(
-          event.offsetX > html.clientWidth ||
-          event.offsetY > html.clientHeight ||
-          event.offsetX < 0 ||
-          event.offsetY < 0 ){
-        hide();
-      }*/
+      hide();
+    });
+
+    html.onClick.listen((MouseEvent event){
+      hide();
     });
 
   }

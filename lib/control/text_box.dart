@@ -45,9 +45,10 @@ class TextBox extends Control{
 
     _insertStyle(_textBoxStyle);
 
-    _html
-      ..children.add(_inputElement)
-      ..classes.add(TEXT_BOX);
+    html.classes.add(TEXT_BOX);
+
+    controlContentElement.children.add(_inputElement);
+
     _inputElement
       ..onBlur.listen(blur)
       ..onFocus.listen(focus);
@@ -63,7 +64,7 @@ class TextBox extends Control{
 
 final Style _textBoxStyle = new Style('''
 
-  .$BASE.$CONTROL.$TEXT_BOX > input
+  .$BASE.$CONTROL.$TEXT_BOX > .$CONTROL_CONTENT_ELEMENT > input
   {
     margin: 0;
     border: 1px solid #888;

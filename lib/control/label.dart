@@ -35,9 +35,9 @@ class Label extends Control{
   Label(String text):
     super(createContextMenu: Label._createContextMenu){
 
-    _insertStyle(_labelStyle);
+    //_insertStyle(_labelStyle);
 
-    html.children.add(_textElement);
+    controlContentElement.children.add(_textElement);
 
     this.text = text;
 
@@ -52,7 +52,7 @@ class Label extends Control{
 
 final Style _labelStyle = new Style('''
 
-  .$BASE.$LABEL
+  .$BASE.$CONTROL.$LABEL 
   {
     white-space: nowrap;
   }

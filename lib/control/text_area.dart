@@ -55,9 +55,10 @@ class TextArea extends Control{
 
     _insertStyle(_textAreaStyle);
 
-    _html
-      ..children.add(_textAreaElement)
-      ..classes.add(TEXT_AREA);
+    html.classes.add(TEXT_AREA);
+
+    controlContentElement.children.add(_textAreaElement);
+
     _textAreaElement
       ..onBlur.listen(blur)
       ..onFocus.listen(focus);
@@ -74,7 +75,7 @@ class TextArea extends Control{
 
 final Style _textAreaStyle = new Style('''
 
-  .$BASE.$CONTROL.$TEXT_AREA > textarea
+  .$BASE.$CONTROL.$TEXT_AREA > .$CONTROL_CONTENT_ELEMENT > textarea
   {
     margin: 0;
     border: 1px solid #888;

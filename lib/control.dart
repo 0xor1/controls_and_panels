@@ -8,6 +8,8 @@ part of controls_and_panels;
 //string constants used for html classes and attributes
 const String CONTROL = 'control';
 const String _POP_OVER_LAYOUT_ASSISTANT = 'pop-over-layout-assistant';
+const String _RIGHT = 'right';
+const String CONTROL_CONTENT_ELEMENT = 'control-content-element';
 
 const String CONTROL_ID = 'control-id';
 
@@ -70,11 +72,18 @@ abstract class Control extends Base{
   int get controlId => _id;
 
 
-  String get id => _html.id;
+  String get id => html.id;
 
-  final DivElement _popOverLayoutAssistant = new DivElement()
+  final DivElement _topLeftPopOverLayoutAssistant = new DivElement()
   ..classes.add(_POP_OVER_LAYOUT_ASSISTANT);
-
+  final DivElement _topRightPopOverLayoutAssistant = new DivElement()
+  ..classes.addAll([_RIGHT, _POP_OVER_LAYOUT_ASSISTANT]);
+  final DivElement _bottomLeftPopOverLayoutAssistant = new DivElement()
+  ..classes.add(_POP_OVER_LAYOUT_ASSISTANT);
+  final DivElement _bottomRightPopOverLayoutAssistant = new DivElement()
+  ..classes.addAll([_RIGHT, _POP_OVER_LAYOUT_ASSISTANT]);
+  final DivElement controlContentElement = new DivElement()
+  ..classes.add(CONTROL_CONTENT_ELEMENT);
 
   Func_Control_PopOver createContextMenu;
 
@@ -84,7 +93,7 @@ abstract class Control extends Base{
 
   void set id(String id){
 
-    _html.id = id;
+    html.id = id;
 
   }
 
@@ -111,7 +120,11 @@ abstract class Control extends Base{
 
     html
     ..classes.add(CONTROL)
-    ..children.add(_popOverLayoutAssistant);
+    ..children.add(_topLeftPopOverLayoutAssistant)
+    ..children.add(_topRightPopOverLayoutAssistant)
+    ..children.add(controlContentElement)
+    ..children.add(_bottomLeftPopOverLayoutAssistant)
+    ..children.add(_bottomRightPopOverLayoutAssistant);
 
     if(_namespace != null){
 
@@ -157,7 +170,7 @@ abstract class Control extends Base{
           event.preventDefault();
           event.stopPropagation();
           var contextMenu = createContextMenu(this); //todo get screen quadrant and display menu appropriately
-          contextMenu.show(this, left: event.offsetX - 3 , top: event.offsetY - 3);
+          contextMenu.show(this, left: event.offsetX , top: event.offsetY);
         }
       });
     }
@@ -187,15 +200,26 @@ abstract class Control extends Base{
 
 final Style _controlStyle = new Style('''
 
-  .$BASE.$CONTROL > .$_POP_OVER_LAYOUT_ASSISTANT
+  .$BASE.$CONTROL > *
   {
-    position: relative;
-    width: 0;
-    height: 0;
+    display: block;
     margin: 0;
     border: 0;
     padding: 0;
     overflow: visible;
   }
+
+  .$BASE.$CONTROL > .$_POP_OVER_LAYOUT_ASSISTANT
+  {
+    position: relative;
+    width: 0;
+    height: 0;
+  }
+
+  .$BASE.$CONTROL > .$_POP_OVER_LAYOUT_ASSISTANT.$_RIGHT
+  {
+    left: 100%;
+  }
+
 
 ''');

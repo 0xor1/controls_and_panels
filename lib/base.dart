@@ -11,10 +11,7 @@ const String BASE = 'base';
 abstract class Base{
 
 
-  final Element _html = new DivElement();
-
-
-  Element get html => _html;
+  final Element html = new DivElement();
 
 
   Base(){

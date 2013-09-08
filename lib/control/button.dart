@@ -21,7 +21,7 @@ class Button extends Control{
 
     content = base;
 
-    html.children.add(base.html);
+    controlContentElement.children.add(base.html);
 
     html.classes.add(BUTTON);
 

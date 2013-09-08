@@ -39,7 +39,7 @@ class Image extends Control{
 
     }
 
-    html.children.add(_imageElement);
+    controlContentElement.children.add(_imageElement);
 
     html.classes.add(IMAGE);
 
@@ -51,7 +51,7 @@ class Image extends Control{
 
 final Style _imageStyle = new Style('''
 
-  .$BASE.$CONTROL.$IMAGE > img
+  .$BASE.$CONTROL.$IMAGE > .$CONTROL_CONTENT_ELEMENT > img
   {
     display: block;
   }
