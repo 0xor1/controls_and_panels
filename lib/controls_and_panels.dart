@@ -9,6 +9,7 @@ library controls_and_panels;
 import 'dart:html';
 import 'dart:async';
 
+part 'lorem_ipsum.dart';
 
 part 'base.dart';
 part 'control.dart';

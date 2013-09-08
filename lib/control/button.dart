@@ -36,6 +36,8 @@ final Style _buttonStyle = new Style('''
 
   .$BASE.$CONTROL.$BUTTON
   {
+    white-space: nowrap;
+    font-size: 0;
     transition: background 0.3s;
     background: #999;
     border-radius: 3px;
@@ -57,6 +59,12 @@ final Style _buttonStyle = new Style('''
   .$BASE.$CONTROL.$BUTTON:active
   {
     background: #eee;
+  }
+
+  .$BASE.$CONTROL.$BUTTON > .$BASE
+  {
+    word-spacing: normal;
+    font-size: 16px;
   }
 
 ''');

@@ -17,6 +17,8 @@ class ContextMenu extends PopOver{
   ContextMenu(Control target, Base content):
     super(content){
 
+    _insertStyle(_contextMenuStyle);
+
     this.target = target;
 
     html.classes.add(CONTEXT_MENU);
@@ -33,3 +35,14 @@ class ContextMenu extends PopOver{
 
 
 }
+
+
+
+final Style _contextMenuStyle = new Style('''
+
+  .$BASE.$CONTROL.$POP_OVER.$CONTEXT_MENU
+  {
+    border: 1px solid #999;
+  }
+
+''');

@@ -1,0 +1,14 @@
+part of controls_and_panels;
+
+const String LOREM = 'lorem';
+const String IPSUM = 'ipsum';
+const String LOREM_IPSUM = '''
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh ante, semper at congue at, ullamcorper ut massa. Curabitur a luctus libero. Cras vestibulum elit lacus, quis molestie nisi elementum ac. Mauris consectetur est non turpis cursus, quis rhoncus nunc elementum. Donec sagittis, enim vitae pretium suscipit, risus sem facilisis nunc, sed rutrum sapien tellus sit amet dui. Aliquam erat volutpat. Pellentesque vitae tincidunt orci. Duis in luctus neque. Nullam vel urna bibendum, fringilla felis vel, iaculis turpis. Vivamus semper bibendum neque, auctor aliquet turpis scelerisque in. Ut cursus id massa ut ornare. Phasellus a ligula nisl.
+
+Donec rutrum, mi laoreet imperdiet dictum, elit libero pellentesque leo, vel vulputate neque nulla ut nibh. Quisque eget arcu lobortis, semper nulla eu, scelerisque orci. Proin venenatis feugiat neque, in dictum odio malesuada sit amet. Aliquam erat volutpat. Sed non fermentum diam. Integer sit amet leo tortor. Suspendisse at diam dictum, ullamcorper felis pretium, volutpat mauris. Phasellus consectetur, nulla id posuere malesuada, urna lorem volutpat mauris, vitae porta odio dolor non enim. Duis aliquet velit justo, sit amet pellentesque nisi viverra vitae.
+
+Vestibulum pellentesque purus non augue sagittis consequat. Quisque nulla neque, laoreet vel mattis nec, blandit quis odio. Praesent sollicitudin vestibulum porta. Pellentesque eleifend nec ante sit amet pretium. Morbi eget mauris a est porttitor consectetur nec ac purus. Sed volutpat hendrerit magna, eget viverra tortor vehicula vitae. Vivamus sit amet tristique metus, at gravida nisl. Duis vitae dolor nunc. Etiam faucibus consectetur lacus euismod fermentum. Suspendisse ultricies lorem vel malesuada dapibus.
+
+Fusce condimentum sed turpis eget vulputate. Donec gravida enim eget sapien sodales varius. Donec congue eros cursus dui elementum vehicula. Sed ut rutrum turpis. Vestibulum dolor purus, dapibus sit amet odio sit amet, luctus suscipit nunc. Duis ut arcu auctor, scelerisque magna at, congue metus. Suspendisse at sodales neque. Curabitur laoreet tincidunt lacus. Aliquam erat volutpat. Nulla facilisi.
+
+Nunc eu neque in nisl tincidunt condimentum. Nunc sit amet neque quis ligula sollicitudin facilisis ut et ipsum. Nullam venenatis tellus vitae ligula interdum, eget elementum enim tincidunt. Vivamus neque purus, tempus id felis a, mattis suscipit nisl. Maecenas at sollicitudin justo. Praesent quis elementum nunc, id feugiat lorem. Suspendisse faucibus nunc a pellentesque cursus. Maecenas sed lacus at ipsum eleifend placerat. Maecenas condimentum urna in ornare rutrum. Mauris consequat sed tellus non condimentum. Proin scelerisque lectus quis tortor ornare hendrerit. Aenean pulvinar accumsan dui, eu lobortis lorem tempor dictum. Suspendisse cursus tristique sodales.''';
