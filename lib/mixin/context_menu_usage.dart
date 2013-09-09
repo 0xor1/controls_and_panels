@@ -60,6 +60,8 @@ class ContextMenuUsage{
 
           _currentContextMenu.hide();
 
+          _currentContextMenu = null;
+
         }
 
       };
