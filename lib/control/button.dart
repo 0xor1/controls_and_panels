@@ -12,7 +12,7 @@ const String ICON_TEXT_BUTTON = 'icon-text-button';
 const String CONTEXT_MENU_BUTTON = 'context-menu-button';
 
 
-class Button extends Control{
+class Button extends Control with ContextMenuUsage{
 
 
   Stream<MouseEvent> get onClick => html.onClick;
@@ -21,9 +21,22 @@ class Button extends Control{
   Base content;
 
 
+  static final Func_Control_List_t_Button_t _createContextMenuButtons = (Control control){
+    var lorem = LOREM_IPSUM.split(' ');
+    var loremLength = lorem.length;
+    return new List<Button>()
+    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', lorem[0], iconWidth: 20 , iconHeight: 20)
+      ..onClick.listen((MouseEvent event){print(control.controlId);}))
+    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', lorem[1], iconWidth: 20 , iconHeight: 20)
+      ..onClick.listen((MouseEvent event){window.alert(control.controlId.toString());}));
+  };
+
+
   Button(Base base){
 
     _insertStyle(_buttonStyle);
+
+    initialiseContextMenuUsage(_createContextMenuButtons);
 
     content = base;
 
@@ -110,7 +123,35 @@ final Style _buttonStyle = new Style('''
 
   .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON
   {
-    
+    background: rgba(0,0,0,0);
+    padding: 0;
+  }
+
+  .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON:hover
+  {
+    background: rgba(0,0,0,0.15);
+  }
+
+  .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON:active
+  {
+    background: rgba(0,0,0,0.3);
+  }
+
+  .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON
+    > .$CONTROL_CONTENT_ELEMENT
+      > .$BASE.$PANEL.$STACK_PANEL
+        > .$BASE.$CONTROL.$IMAGE
+  {
+    padding: 4px;
+    border-right: 1px solid #999;
+  }
+
+  .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON
+    > .$CONTROL_CONTENT_ELEMENT
+      > .$BASE.$PANEL.$STACK_PANEL
+        > .$BASE.$CONTROL.$LABEL
+  {
+    padding: 4px 10px;
   }
 
 ''');

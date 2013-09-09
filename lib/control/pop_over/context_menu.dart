@@ -12,7 +12,7 @@ const String CONTEXT_MENU = 'context-menu';
 class ContextMenu extends PopOver{
 
   ContextMenu(List<List<Button>> buttonGroups):
-    super(content:new StackPanel<Button>.vertical(buttonGroups.first)){
+    super(content:new StackPanel<StackPanel<Button>>.vertical(buttonGroups.map((o)=> new StackPanel<Button>.vertical(o)).toList())){
 
     _insertStyle(_contextMenuStyle);
 
@@ -34,6 +34,11 @@ final Style _contextMenuStyle = new Style('''
   .$BASE.$CONTROL.$POP_OVER.$CONTEXT_MENU
   {
     border: 1px solid #999;
+  }
+
+  .$BASE.$CONTROL.$POP_OVER.$CONTEXT_MENU > .$CONTROL_CONTENT_ELEMENT > .$BASE
+  {
+    display: block;
   }
 
 ''');
