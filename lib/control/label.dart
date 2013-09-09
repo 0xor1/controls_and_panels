@@ -25,6 +25,12 @@ class Label extends Control{
           new Label('context-item-2')]));
   };
 
+  static final Func_Control_PopOver _createTooltip = (Control control){
+    return new Tooltip(
+        control,
+        new Label('a sweet tool tip.'));
+  };
+
 
   String get text => _textElement.text;
 
@@ -33,9 +39,10 @@ class Label extends Control{
 
 
   Label(String text):
-    super(createContextMenu: Label._createContextMenu){
+    super(createContextMenu: Label._createContextMenu,
+        createTooltip: Label._createTooltip){
 
-    //_insertStyle(_labelStyle);
+    _insertStyle(_labelStyle);
 
     controlContentElement.children.add(_textElement);
 

@@ -90,6 +90,8 @@ abstract class Control extends Base{
 
   Func_Control_PopOver getTooltip;
 
+  Timer _tooltipTimer;
+
 
   void set id(String id){
 
@@ -113,7 +115,7 @@ abstract class Control extends Base{
   Stream get onContextMenu => (_contextMenuStream != null) ? _contextMenuStream : _contextMenuStream = _contextMenuController.stream.asBroadcastStream();
 
 
-  Control({Func_Control_PopOver createContextMenu: null})
+  Control({Func_Control_PopOver createContextMenu: null, Func_Control_PopOver createTooltip: null})
     : _id = _idSource++{
 
     _insertStyle(_controlStyle);
@@ -171,6 +173,25 @@ abstract class Control extends Base{
           event.stopPropagation();
           var contextMenu = createContextMenu(this); //todo get screen quadrant and display menu appropriately
           contextMenu.show(this, left: event.offsetX , top: event.offsetY);
+        }
+      });
+    }
+    if(createTooltip != null){
+      html.onMouseMove.listen((MouseEvent event){
+        if(_tooltipTimer != null){
+          _tooltipTimer.cancel();
+        }
+        _tooltipTimer = new Timer(new Duration(seconds: 2),(){
+          if(createTooltip != null){
+            var tooltip = createTooltip(this);
+            tooltip.show(this, left: event.offsetX , top: event.offsetY);
+          }
+        });
+      });
+      html.onMouseLeave.listen((MouseEvent event){
+        if(_tooltipTimer != null){
+          _tooltipTimer.cancel();
+          _tooltipTimer = null;
         }
       });
     }

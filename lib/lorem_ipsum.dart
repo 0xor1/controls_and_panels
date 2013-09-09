@@ -2,6 +2,7 @@ part of controls_and_panels;
 
 const String LOREM = 'lorem';
 const String IPSUM = 'ipsum';
+const String PEACE = 'peace';
 const String LOREM_IPSUM = '''
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh ante, semper at congue at, ullamcorper ut massa. Curabitur a luctus libero. Cras vestibulum elit lacus, quis molestie nisi elementum ac. Mauris consectetur est non turpis cursus, quis rhoncus nunc elementum. Donec sagittis, enim vitae pretium suscipit, risus sem facilisis nunc, sed rutrum sapien tellus sit amet dui. Aliquam erat volutpat. Pellentesque vitae tincidunt orci. Duis in luctus neque. Nullam vel urna bibendum, fringilla felis vel, iaculis turpis. Vivamus semper bibendum neque, auctor aliquet turpis scelerisque in. Ut cursus id massa ut ornare. Phasellus a ligula nisl.
 
