@@ -16,7 +16,7 @@ const String SIZER_INNER_LAYOUT_ASSISTANT = 'sizer-inner-layout-assistant';
 const String SIZER_OUTER_LAYOUT_ASSISTANT = 'sizer-outer-layout-assistant';
 
 
-class SizerPanel extends Panel{
+class SizerPanel<TBase extends Base> extends Panel<TBase>{
 
   DivElement _outerLayoutAssistant = new DivElement()
   ..classes.add(SIZER_OUTER_LAYOUT_ASSISTANT);
@@ -97,7 +97,7 @@ class SizerPanel extends Panel{
   }
 
 
-  void add(Base base){
+  void add(TBase base){
 
     if(children.length == 0){
 
@@ -110,7 +110,7 @@ class SizerPanel extends Panel{
   }
 
 
-  void insert(int index, Base base){
+  void insert(int index, TBase base){
 
     if(index == 0){
 
@@ -121,7 +121,7 @@ class SizerPanel extends Panel{
   }
 
 
-  bool remove(Base base){
+  bool remove(TBase base){
 
     _innerLayoutAssistant.children.remove(base.html);
 
@@ -130,7 +130,7 @@ class SizerPanel extends Panel{
   }
 
 
-  Base removeAt(int index){
+  TBase removeAt(int index){
 
     if(index == 0 && children.length == 1){
 

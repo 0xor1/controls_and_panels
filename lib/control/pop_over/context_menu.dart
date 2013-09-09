@@ -11,21 +11,12 @@ const String CONTEXT_MENU = 'context-menu';
 
 class ContextMenu extends PopOver{
 
-
-  Control target;
-
-  ContextMenu(Control target, Base content):
-    super(content){
+  ContextMenu(List<List<Button>> buttonGroups):
+    super(content:new StackPanel<Button>.vertical(buttonGroups.first)){
 
     _insertStyle(_contextMenuStyle);
 
-    this.target = target;
-
     html.classes.add(CONTEXT_MENU);
-
-    html.onMouseLeave.listen((MouseEvent event){
-      hide();
-    });
 
     html.onClick.listen((MouseEvent event){
       hide();

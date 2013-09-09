@@ -9,10 +9,10 @@ part of controls_and_panels;
 const String PANEL = 'panel';
 
 
-abstract class Panel extends Base{
+abstract class Panel<TBase extends Base> extends Base{
 
 
-  List<Base> children = new List<Base>();
+  List<TBase> children = new List<TBase>();
 
 
   void set width(String width){
@@ -43,13 +43,13 @@ abstract class Panel extends Base{
   }
 
 
-  void add(Base base);
+  void add(TBase base);
 
 
-  void insert(int index, Base base);
+  void insert(int index, TBase base);
 
 
-  bool remove(Base base);
+  bool remove(TBase base);
 
 
   Base removeAt(int index);

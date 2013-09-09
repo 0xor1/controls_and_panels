@@ -8,12 +8,16 @@ const String POP_OVER = 'pop-over';
 
 class PopOver extends Control{
 
-  PopOver(Base base):
+  PopOver({Base content: null}):
     super(){
 
     _insertStyle(_popOverStyle);
 
-    controlContentElement.children.add(base.html);
+    if(content != null){
+
+      controlContentElement.children.add(content.html);
+
+    }
 
     html.classes.add(POP_OVER);
 
@@ -62,7 +66,7 @@ final Style _popOverStyle = new Style('''
     position: absolute;
     white-space: nowrap;
     background: #fff;
-    box-shadow: 10px 10px 5px #888;
+    box-shadow: 5px 5px 5px #888;
   }
 
 ''');

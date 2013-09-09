@@ -4,6 +4,8 @@ import 'dart:async';
 
 void main() {
 
+  var imgPath = 'resource/image/peace_dove_icon.svg';
+
   var stackPanels = new List<StackPanel>();
   var stackPanel1 = new StackPanel.vertical();
   document.body.children.add(stackPanel1.html);
@@ -36,11 +38,11 @@ void main() {
   for(var stackPanel in stackPanels){
     //Future<List<Base>>
     var controls = new List<Base>();
-    controls.add(new Image('resource/image/peace_dove_icon.svg', alt: 'Yomma!', width:95, height:95));
+    controls.add(new Image(imgPath, alt: 'Yomma!', width:95, height:95));
     controls.add(new TextBox('Please enter first name'));
     controls.add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'));
     controls.add(new Label("Yomma!"));
-    controls.add(new Button.iconText('resource/image/peace_dove_icon.svg', 'Peace', iconWidth:25, iconHeight:25));
+    controls.add(new Button.iconText(imgPath, 'Peace', iconWidth:25, iconHeight:25));
     for(var base in controls){
       stackPanel.add(
         new SizerPanel('200px','100px')

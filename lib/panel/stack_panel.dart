@@ -9,7 +9,7 @@ const String STACK_SLOT = 'stack-slot';
 const String HORIZONTAL = 'horizontal';
 const String VERTICAL = 'vertical';
 
-class StackPanel extends Panel{
+class StackPanel<TBase extends Base> extends Panel<TBase>{
 
 
   String _orientation;
@@ -37,21 +37,7 @@ class StackPanel extends Panel{
   }
 
 
-  void set width(String width){
-
-    html.style.width = width;
-
-  }
-
-
-  void set height(String height){
-
-    html.style.height = height;
-
-  }
-
-
-  StackPanel._internal(String orientation, List<Base> bases){
+  StackPanel._internal(String orientation, List<TBase> bases){
 
     _insertStyle(_stackPanelStyle);
 
@@ -70,21 +56,21 @@ class StackPanel extends Panel{
   }
 
 
-  factory StackPanel.vertical([List<Base> bases]){
+  factory StackPanel.vertical([List<TBase> bases]){
 
     return new StackPanel._internal(VERTICAL, bases);
 
   }
 
 
-  factory StackPanel.horizontal([List<Base> bases]){
+  factory StackPanel.horizontal([List<TBase> bases]){
 
     return new StackPanel._internal(HORIZONTAL, bases);
 
   }
 
 
-  void add(Base base){
+  void add(TBase base){
 
     children.add(base);
 
@@ -93,7 +79,7 @@ class StackPanel extends Panel{
   }
 
 
-  void insert(int index, Base base){
+  void insert(int index, TBase base){
 
     children.insert(index, base);
 
@@ -102,7 +88,7 @@ class StackPanel extends Panel{
   }
 
 
-  bool remove(Base base){
+  bool remove(TBase base){
 
     bool removed = children.remove(base);
 
@@ -117,9 +103,9 @@ class StackPanel extends Panel{
   }
 
 
-  Base removeAt(int index){
+  TBase removeAt(int index){
 
-    Base base = children.removeAt(index);
+    TBase base = children.removeAt(index);
 
     if(base != null){
 

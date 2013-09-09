@@ -10,11 +10,10 @@ const String CONTROL = 'control';
 const String _POP_OVER_LAYOUT_ASSISTANT = 'pop-over-layout-assistant';
 const String _RIGHT = 'right';
 const String CONTROL_CONTENT_ELEMENT = 'control-content-element';
+const String FOCUS = 'focus';
+
 
 const String CONTROL_ID = 'control-id';
-
-
-const String FOCUS = 'focus';
 
 
 final Map<int, Control> _controls = new Map<int, Control>();
@@ -85,10 +84,6 @@ abstract class Control extends Base{
   final DivElement controlContentElement = new DivElement()
   ..classes.add(CONTROL_CONTENT_ELEMENT);
 
-  Func_Control_PopOver createContextMenu;
-
-
-  Func_Control_PopOver getTooltip;
 
   Timer _tooltipTimer;
 
@@ -115,7 +110,7 @@ abstract class Control extends Base{
   Stream get onContextMenu => (_contextMenuStream != null) ? _contextMenuStream : _contextMenuStream = _contextMenuController.stream.asBroadcastStream();
 
 
-  Control({Func_Control_PopOver createContextMenu: null, Func_Control_PopOver createTooltip: null})
+  Control()
     : _id = _idSource++{
 
     _insertStyle(_controlStyle);
@@ -166,35 +161,6 @@ abstract class Control extends Base{
       focus(event);
     });
 
-    if(createContextMenu != null){
-      html.onContextMenu.listen((MouseEvent event){
-        if(createContextMenu != null){
-          event.preventDefault();
-          event.stopPropagation();
-          var contextMenu = createContextMenu(this); //todo get screen quadrant and display menu appropriately
-          contextMenu.show(this, left: event.offsetX , top: event.offsetY);
-        }
-      });
-    }
-    if(createTooltip != null){
-      html.onMouseMove.listen((MouseEvent event){
-        if(_tooltipTimer != null){
-          _tooltipTimer.cancel();
-        }
-        _tooltipTimer = new Timer(new Duration(seconds: 2),(){
-          if(createTooltip != null){
-            var tooltip = createTooltip(this);
-            tooltip.show(this, left: event.offsetX , top: event.offsetY);
-          }
-        });
-      });
-      html.onMouseLeave.listen((MouseEvent event){
-        if(_tooltipTimer != null){
-          _tooltipTimer.cancel();
-          _tooltipTimer = null;
-        }
-      });
-    }
   }
 
 

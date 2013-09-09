@@ -11,24 +11,20 @@ const String LABEL = 'label';
 const String TEXT = 'text';
 
 
-class Label extends Control{
+class Label extends Control with ContextMenuUsage{
 
   final SpanElement _textElement = new SpanElement()
   ..classes.add(TEXT);
 
 
-  static final Func_Control_PopOver _createContextMenu = (Control control){
-    return new ContextMenu(
-        control,
-        new StackPanel.vertical([
-          new Label('context-item-1'),
-          new Label('context-item-2')]));
-  };
-
-  static final Func_Control_PopOver _createTooltip = (Control control){
-    return new Tooltip(
-        control,
-        new Label('a sweet tool tip.'));
+  static final Func_Control_List_t_Button_t _createContextMenuButtons = (Control control){
+    var lorem = LOREM_IPSUM.split(' ');
+    var loremLength = lorem.length;
+    return new List<Button>()
+    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', lorem[0], iconWidth: 20 , iconHeight: 20)
+      ..onClick.listen((MouseEvent event){print(control.controlId);}))
+    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', lorem[1], iconWidth: 20 , iconHeight: 20)
+      ..onClick.listen((MouseEvent event){window.alert(control.controlId.toString());}));
   };
 
 
@@ -39,10 +35,11 @@ class Label extends Control{
 
 
   Label(String text):
-    super(createContextMenu: Label._createContextMenu,
-        createTooltip: Label._createTooltip){
+    super(){
 
     _insertStyle(_labelStyle);
+
+    initialiseContextMenuUsage(_createContextMenuButtons);
 
     controlContentElement.children.add(_textElement);
 

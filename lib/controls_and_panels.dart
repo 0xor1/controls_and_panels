@@ -23,18 +23,16 @@ part 'control/text_box.dart';
 part 'control/text_area.dart';
 part 'control/pop_over.dart';
 part 'control/pop_over/context_menu.dart';
-part 'control/pop_over/tooltip.dart';
 
 
 part 'panel/sizer_panel.dart';
 part 'panel/stack_panel.dart';
 
 
-part 'mixin/context_menu_mixin.dart';
+part 'mixin/context_menu_usage.dart';
 
 
-typedef PopOver Func_Control_PopOver(Control control);
-
+typedef List<Button> Func_Control_List_t_Button_t(Control control);
 
 const String CONTROLS_AND_PANELS_STYLE_ELEMENT_ID = 'controls-and-panels-style-element-id';
 
