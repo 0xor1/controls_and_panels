@@ -39,7 +39,7 @@ void main() {
     //Future<List<Base>>
     var controls = new List<Base>();
     controls.add(new Image(imgPath, alt: 'Yomma!', width:95, height:95));
-    controls.add(new TextBox('Please enter first name'));
+    controls.add(new TextBox(placeholder:'Please enter first name'));
     controls.add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'));
     controls.add(new Label("Yomma!"));
     controls.add(new Button.iconText(imgPath, 'Peace', iconWidth:25, iconHeight:25));

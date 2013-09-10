@@ -8,22 +8,23 @@ part of controls_and_panels;
 
 const String LABEL = 'label';
 
+
 const String TEXT = 'text';
 
 
 class Label extends Control with ContextMenuUsage{
+
 
   final SpanElement _textElement = new SpanElement()
   ..classes.add(TEXT);
 
 
   static final Func_Control_List_t_Button_t _createContextMenuButtons = (Control control){
-    var lorem = LOREM_IPSUM.split(' ');
-    var loremLength = lorem.length;
+
     return new List<Button>()
-    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', lorem[0], iconWidth: 20 , iconHeight: 20)
+    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'lorem', iconWidth: 20 , iconHeight: 20)
       ..onClick.listen((MouseEvent event){print(control.controlId);}))
-    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', lorem[1], iconWidth: 20 , iconHeight: 20)
+    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'ipsum yumy bumy!', iconWidth: 20 , iconHeight: 20)
       ..onClick.listen((MouseEvent event){window.alert(control.controlId.toString());}));
   };
 
@@ -35,7 +36,7 @@ class Label extends Control with ContextMenuUsage{
 
 
   Label(String text):
-    super(){
+  super(){
 
     _insertStyle(_labelStyle);
 
@@ -56,9 +57,9 @@ class Label extends Control with ContextMenuUsage{
 
 final Style _labelStyle = new Style('''
 
-  .$BASE.$CONTROL.$LABEL 
+  $LABEL 
   {
-    white-space: nowrap;
+    white-space: nowrap; /* I think this is unnecessary */
   }
 
 ''');

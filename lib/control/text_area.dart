@@ -11,31 +11,32 @@ const String TEXT_AREA = 'text-area';
 
 class TextArea extends Control{
 
+
   TextAreaElement _textAreaElement = new TextAreaElement();
+
 
   String get value => _textAreaElement.value;
 
+
   void set value (String str){
 
-    _textAreaElement.value = str;
+    _textAreaElement.value = str == null? '': str;
 
   }
+
 
   String get placeholder => _textAreaElement.placeholder;
 
+
   void set placeholder (String str){
 
-    if(str == null){
-
-      str = '';
-
-    }
-
-    _textAreaElement.placeholder = str;
+    _textAreaElement.placeholder = str == null? '': str;
 
   }
 
+
   int get rows => _textAreaElement.rows;
+
 
   void set rows(int num){
 
@@ -43,13 +44,16 @@ class TextArea extends Control{
 
   }
 
+
   int get cols => _textAreaElement.cols;
+
 
   void set cols(int num){
 
     _textAreaElement.cols = num;
 
   }
+
 
   TextArea({ int rows: 4, int cols: 50, String placeholder: ''}){
 
@@ -64,7 +68,9 @@ class TextArea extends Control{
       ..onFocus.listen(focus);
 
     this.placeholder = placeholder;
+
     this.rows = rows;
+
     this.cols = cols;
 
   }
@@ -75,7 +81,7 @@ class TextArea extends Control{
 
 final Style _textAreaStyle = new Style('''
 
-  .$BASE.$CONTROL.$TEXT_AREA > .$CONTROL_CONTENT_ELEMENT > textarea
+  $TEXT_AREA > .$CONTROL_CONTENT_ELEMENT > textarea
   {
     margin: 0;
     border: 1px solid #888;

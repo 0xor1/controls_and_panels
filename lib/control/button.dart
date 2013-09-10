@@ -7,8 +7,14 @@ part of controls_and_panels;
 
 
 const String BUTTON = 'button';
+
+
 const String TEXT_BUTTON = 'text-button';
+
+
 const String ICON_TEXT_BUTTON = 'icon-text-button';
+
+
 const String CONTEXT_MENU_BUTTON = 'context-menu-button';
 
 
@@ -22,12 +28,10 @@ class Button extends Control with ContextMenuUsage{
 
 
   static final Func_Control_List_t_Button_t _createContextMenuButtons = (Control control){
-    var lorem = LOREM_IPSUM.split(' ');
-    var loremLength = lorem.length;
     return new List<Button>()
-    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', lorem[0], iconWidth: 20 , iconHeight: 20)
+    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'lorem', iconWidth: 20 , iconHeight: 20)
       ..onClick.listen((MouseEvent event){print(control.controlId);}))
-    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', lorem[1], iconWidth: 20 , iconHeight: 20)
+    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'ipsum', iconWidth: 20 , iconHeight: 20)
       ..onClick.listen((MouseEvent event){window.alert(control.controlId.toString());}));
   };
 
@@ -87,7 +91,7 @@ class Button extends Control with ContextMenuUsage{
 
 final Style _buttonStyle = new Style('''
 
-  .$BASE.$CONTROL.$BUTTON
+  .$BUTTON
   {
     white-space: nowrap;
     font-size: 0;
@@ -104,51 +108,53 @@ final Style _buttonStyle = new Style('''
     user-select: none;
   }
 
-  .$BASE.$CONTROL.$BUTTON:hover
+  .$BUTTON:hover
   {
     background: #ddd;
   }
 
-  .$BASE.$CONTROL.$BUTTON:active
+  .$BUTTON:active
   {
     background: #fff;
   }
 
-  .$BASE.$CONTROL.$BUTTON > .$BASE
+  .$BUTTON > .$BASE
   {
     word-spacing: normal;
     font-size: 16px;
   }
 
 
-  .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON
+  .$CONTEXT_MENU_BUTTON
   {
     background: rgba(0,0,0,0);
     padding: 0;
+    width: 100%;
+    border-radius: 0;
   }
 
-  .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON:hover
+  .$CONTEXT_MENU_BUTTON:hover
   {
     background: rgba(0,0,0,0.15);
   }
 
-  .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON:active
+  .$CONTEXT_MENU_BUTTON:active
   {
     background: rgba(0,0,0,0.3);
   }
 
-  .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON
+  .$CONTEXT_MENU_BUTTON
     > .$CONTROL_CONTENT_ELEMENT
-      > .$BASE.$PANEL.$STACK_PANEL
-        > .$BASE.$CONTROL.$IMAGE
+      > .$STACK_PANEL
+        > .$IMAGE
   {
     padding: 4px;
     border-right: 1px solid #999;
   }
 
-  .$BASE.$CONTROL.$BUTTON.$CONTEXT_MENU_BUTTON
+  .$CONTEXT_MENU_BUTTON
     > .$CONTROL_CONTENT_ELEMENT
-      > .$BASE.$PANEL.$STACK_PANEL
+      > .$STACK_PANEL
         > .$BASE.$CONTROL.$LABEL
   {
     padding: 4px 10px;

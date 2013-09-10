@@ -16,7 +16,11 @@ class ContextMenuUsage{
 
 
   static Control _currentTarget;
+
+
   static int _targetMouseOffsetX;
+
+
   static int _targetMouseOffsetY;
 
 
@@ -35,18 +39,31 @@ class ContextMenuUsage{
 
     //only add the event listener once
     if(contextMenuButtonCreators.length == 1){
+
       (this as Control).html.onContextMenu.listen((MouseEvent event){
+
         if(_currentTarget == null){
+
           _currentTarget = this as Control;
+
           _targetMouseOffsetX = event.offsetX;
+
           _targetMouseOffsetY = event.offsetY;
+
         }
+
         for(var buttonListCreator in contextMenuButtonCreators){
+
           _buttonGroups.add(buttonListCreator(this));
+
         }
+
       });
+
     }
+
   }
+
 
   static void _initialise(){
 

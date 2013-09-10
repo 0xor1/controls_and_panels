@@ -9,7 +9,6 @@ library controls_and_panels;
 import 'dart:html';
 import 'dart:async';
 
-part 'lorem_ipsum.dart';
 
 part 'base.dart';
 part 'control.dart';
@@ -34,13 +33,25 @@ part 'mixin/context_menu_usage.dart';
 
 typedef List<Button> Func_Control_List_t_Button_t(Control control);
 
+
 const String CONTROLS_AND_PANELS_STYLE_ELEMENT_ID = 'controls-and-panels-style-element-id';
 
 
+final StyleElement _controlsAndPanelsStyleElement = new StyleElement()..id = CONTROLS_AND_PANELS_STYLE_ELEMENT_ID;
+
+
 class Style{
+
+
   bool hasBeenInserted = false;
+
+
   String text;
+
+
   Style(String this.text);
+
+
 }
 
 
@@ -61,6 +72,3 @@ void _insertStyle(Style style){
   }
 
 }
-
-
-final StyleElement _controlsAndPanelsStyleElement = new StyleElement()..id = CONTROLS_AND_PANELS_STYLE_ELEMENT_ID;

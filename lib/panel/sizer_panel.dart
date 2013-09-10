@@ -2,27 +2,50 @@
  * 0xor1  http://github.com/0xor1
  */
 
+
 part of controls_and_panels;
 
+
 const String SIZER_PANEL = 'sizer-panel';
+
+
 const String LEFT = 'left';
+
+
 const String RIGHT = 'right';
+
+
 const String TOP = 'top';
+
+
 const String BOTTOM = 'bottom';
+
+
 const String H_CENTER = 'h-center';
+
+
 const String V_CENTER = 'v-center';
+
+
 const String CENTER = 'center';
+
+
 const String SIZER_INNER_LAYOUT_ASSISTANT = 'sizer-inner-layout-assistant';
+
+
 const String SIZER_OUTER_LAYOUT_ASSISTANT = 'sizer-outer-layout-assistant';
 
 
 class SizerPanel<TBase extends Base> extends Panel<TBase>{
 
+
   DivElement _outerLayoutAssistant = new DivElement()
   ..classes.add(SIZER_OUTER_LAYOUT_ASSISTANT);
 
+
   DivElement _innerLayoutAssistant = new DivElement()
     ..classes.add(SIZER_INNER_LAYOUT_ASSISTANT);
+
 
   SizerPanel(String widthStyle, String heightStyle){
 
@@ -56,14 +79,23 @@ class SizerPanel<TBase extends Base> extends Panel<TBase>{
     html.classes.remove(_horizontalAlignment);
 
     switch(alignment){
+
       case LEFT:
+
         _horizontalAlignment = LEFT;
+
         break;
+
       case RIGHT:
+
         _horizontalAlignment = RIGHT;
+
         break;
+
       default:
+
         _horizontalAlignment = H_CENTER;
+
     }
 
     html.classes.add(_horizontalAlignment);
@@ -82,14 +114,23 @@ class SizerPanel<TBase extends Base> extends Panel<TBase>{
     html.classes.remove(_verticalAlignment);
 
     switch(alignment){
+
       case TOP:
+
         _verticalAlignment = TOP;
+
         break;
+
       case BOTTOM:
+
         _verticalAlignment = BOTTOM;
+
         break;
+
       default:
+
         _verticalAlignment = V_CENTER;
+
     }
 
     html.classes.add(_verticalAlignment);
@@ -153,7 +194,7 @@ class SizerPanel<TBase extends Base> extends Panel<TBase>{
 
 final Style _sizerPanelStyle = new Style('''
 
-  .$BASE.$PANEL.$SIZER_PANEL
+  .$SIZER_PANEL
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
   {
     display: table;
@@ -164,49 +205,49 @@ final Style _sizerPanelStyle = new Style('''
     padding: 0;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL
+  .$SIZER_PANEL
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
       > .$SIZER_INNER_LAYOUT_ASSISTANT
   {
     display: table-cell;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$LEFT
+  .$SIZER_PANEL.$LEFT
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
       > .$SIZER_INNER_LAYOUT_ASSISTANT
   {
     text-align: left;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$RIGHT
+  .$SIZER_PANEL.$RIGHT
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
       > .$SIZER_INNER_LAYOUT_ASSISTANT
   {
     text-align: right;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$H_CENTER
+  .$SIZER_PANEL.$H_CENTER
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
       > .$SIZER_INNER_LAYOUT_ASSISTANT
   {
     text-align: center;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$TOP
+  .$SIZER_PANEL.$TOP
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
       > .$SIZER_INNER_LAYOUT_ASSISTANT
   {
     vertical-align: top;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$BOTTOM
+  .$SIZER_PANEL.$BOTTOM
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
       > .$SIZER_INNER_LAYOUT_ASSISTANT
   {
     vertical-align: bottom;
   }
 
-  .$BASE.$PANEL.$SIZER_PANEL.$V_CENTER
+  .$SIZER_PANEL.$V_CENTER
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
       > .$SIZER_INNER_LAYOUT_ASSISTANT
   {

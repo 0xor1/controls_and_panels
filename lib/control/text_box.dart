@@ -20,7 +20,7 @@ class TextBox extends Control{
 
   void set value (String str){
 
-    _inputElement.value = str;
+    _inputElement.value = str == null? '': str;
 
   }
 
@@ -30,18 +30,12 @@ class TextBox extends Control{
 
   void set placeholder (String str){
 
-    if(str == null){
-
-      str = '';
-
-    }
-
-    _inputElement.placeholder = str;
+    _inputElement.placeholder = str == null? '': str;
 
   }
 
 
-  TextBox([String ph]){
+  TextBox({String value: null, String placeholder: null}){
 
     _insertStyle(_textBoxStyle);
 
@@ -53,7 +47,9 @@ class TextBox extends Control{
       ..onBlur.listen(blur)
       ..onFocus.listen(focus);
 
-    placeholder = ph;
+    this.placeholder = placeholder;
+
+    this.value = value;
 
   }
 
@@ -64,7 +60,7 @@ class TextBox extends Control{
 
 final Style _textBoxStyle = new Style('''
 
-  .$BASE.$CONTROL.$TEXT_BOX > .$CONTROL_CONTENT_ELEMENT > input
+  .$TEXT_BOX > .$CONTROL_CONTENT_ELEMENT > input
   {
     margin: 0;
     border: 1px solid #888;

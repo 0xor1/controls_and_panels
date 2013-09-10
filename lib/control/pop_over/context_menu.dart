@@ -12,14 +12,16 @@ const String CONTEXT_MENU = 'context-menu';
 class ContextMenu extends PopOver{
 
   ContextMenu(List<List<Button>> buttonGroups):
-    super(content:new StackPanel<StackPanel<Button>>.vertical(buttonGroups.map((o)=> new StackPanel<Button>.vertical(o)).toList())){
+  super(content:new StackPanel<StackPanel<Button>>.vertical(buttonGroups.map((o)=> new StackPanel<Button>.vertical(o)).toList())){
 
     _insertStyle(_contextMenuStyle);
 
     html.classes.add(CONTEXT_MENU);
 
     html.onClick.listen((MouseEvent event){
+
       hide();
+
     });
 
   }
@@ -31,12 +33,12 @@ class ContextMenu extends PopOver{
 
 final Style _contextMenuStyle = new Style('''
 
-  .$BASE.$CONTROL.$POP_OVER.$CONTEXT_MENU
+  .$CONTEXT_MENU
   {
     border: 1px solid #999;
   }
 
-  .$BASE.$CONTROL.$POP_OVER.$CONTEXT_MENU > .$CONTROL_CONTENT_ELEMENT > .$BASE
+  .$CONTEXT_MENU > .$CONTROL_CONTENT_ELEMENT > .$BASE
   {
     display: block;
   }

@@ -14,6 +14,55 @@ abstract class Base{
   final Element html = new DivElement();
 
 
+  void set width(String width){
+
+    html.style.width = width;
+
+  }
+
+
+  void set maxWidth(String width){
+
+    html.style.maxWidth = width;
+
+  }
+
+
+  void set minWidth(String width){
+
+    html.style.minWidth = width;
+
+  }
+
+
+  void set height(String height){
+
+    html.style.height = height;
+
+  }
+
+
+  void set maxHeight(String height){
+
+    html.style.maxHeight = height;
+
+  }
+
+
+  void set minHeight(String height){
+
+    html.style.minHeight = height;
+
+  }
+
+
+  void set overflow(String overflow){
+
+    html.style.overflow = overflow;
+
+  }
+
+
   Base(){
 
     _insertStyle(_baseStyle);

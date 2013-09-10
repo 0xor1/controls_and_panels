@@ -2,18 +2,31 @@
  * 0xor1  http://github.com/0xor1
  */
 
+
 part of controls_and_panels;
 
+
 const String STACK_PANEL = 'stack-panel';
+
+
 const String STACK_SLOT = 'stack-slot';
+
+
 const String HORIZONTAL = 'horizontal';
+
+
 const String VERTICAL = 'vertical';
+
 
 class StackPanel<TBase extends Base> extends Panel<TBase>{
 
 
   String _orientation;
+
+
   String get orientation => _orientation;
+
+
   void set orientation (String ori){
 
     if(ori != orientation){
@@ -124,20 +137,20 @@ class StackPanel<TBase extends Base> extends Panel<TBase>{
 
 final Style _stackPanelStyle = new Style('''
 
-  .$BASE.$PANEL.$STACK_PANEL.$VERTICAL > .$BASE
+  .$STACK_PANEL.$VERTICAL > .$BASE
   {
     clear: left;
     float: left;
   }
 
   
-  .$BASE.$PANEL.$STACK_PANEL.$HORIZONTAL
+  .$STACK_PANEL.$HORIZONTAL
   {
     white-space: nowrap;
     font-size: 0;
   }
 
-  .$BASE.$PANEL.$STACK_PANEL.$HORIZONTAL > .$BASE
+  .$STACK_PANEL.$HORIZONTAL > .$BASE
   {
     word-spacing: normal;
     vertical-align: middle;

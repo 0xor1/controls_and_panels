@@ -51,7 +51,6 @@ class ComboBox extends Control{
   _selectItem(Base base){
 
 
-
   }
 
 
@@ -97,13 +96,14 @@ class ComboBox extends Control{
 
   }
 
+
 }
 
 
 
 final Style _comboBoxStyle = new Style('''
 
-  .$BASE.$CONTROL.$COMBO_BOX
+  .$COMBO_BOX
   {
     
   }
