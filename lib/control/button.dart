@@ -155,7 +155,7 @@ final Style _buttonStyle = new Style('''
   .$CONTEXT_MENU_BUTTON
     > .$CONTROL_CONTENT_ELEMENT
       > .$STACK_PANEL
-        > .$BASE.$CONTROL.$LABEL
+        > .$LABEL
   {
     padding: 4px 10px;
   }

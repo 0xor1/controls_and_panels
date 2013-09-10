@@ -233,6 +233,14 @@ final Style _sizerPanelStyle = new Style('''
     text-align: center;
   }
 
+  .$SIZER_PANEL.$H_CENTER
+    > .$SIZER_OUTER_LAYOUT_ASSISTANT
+      > .$SIZER_INNER_LAYOUT_ASSISTANT
+        > *
+  {
+    text-align: left; /*undo the style above*/
+  }
+
   .$SIZER_PANEL.$TOP
     > .$SIZER_OUTER_LAYOUT_ASSISTANT
       > .$SIZER_INNER_LAYOUT_ASSISTANT

@@ -12,9 +12,25 @@ const String CONTEXT_MENU = 'context-menu';
 class ContextMenu extends PopOver{
 
   ContextMenu(List<List<Button>> buttonGroups):
-  super(content:new StackPanel<StackPanel<Button>>.vertical(buttonGroups.map((o)=> new StackPanel<Button>.vertical(o)).toList())){
+  super(){
 
     _insertStyle(_contextMenuStyle);
+
+    var contextStack = new StackPanel<Button>.vertical();
+
+    for(var buttonList in buttonGroups){
+
+      for(var button in buttonList){
+
+        contextStack.add(button);
+
+      }
+
+      //add in a region splitter here
+
+    }
+
+    controlContentElement.children.add(contextStack.html);
 
     html.classes.add(CONTEXT_MENU);
 
