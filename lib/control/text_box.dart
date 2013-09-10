@@ -62,6 +62,7 @@ final Style _textBoxStyle = new Style('''
 
   .$TEXT_BOX > .$CONTROL_CONTENT_ELEMENT > input
   {
+    width: 100%;
     margin: 0;
     border: 1px solid #888;
     padding: 5px;
