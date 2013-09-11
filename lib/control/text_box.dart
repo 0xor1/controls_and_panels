@@ -15,6 +15,13 @@ class TextBox extends Control{
   InputElement _inputElement = new InputElement(type:'text');
 
 
+  void set width(String width){
+
+    _inputElement.style.width = width;
+
+  }
+
+
   String get value => _inputElement.value;
 
 
@@ -62,7 +69,6 @@ final Style _textBoxStyle = new Style('''
 
   .$TEXT_BOX > .$CONTROL_CONTENT_ELEMENT > input
   {
-    width: 100%;
     margin: 0;
     border: 1px solid #888;
     padding: 5px;

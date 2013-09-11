@@ -9,9 +9,6 @@ part of controls_and_panels;
 const String STACK_PANEL = 'stack-panel';
 
 
-const String STACK_SLOT = 'stack-slot';
-
-
 const String HORIZONTAL = 'horizontal';
 
 

@@ -217,7 +217,7 @@ final Style _controlStyle = new Style('''
     height: 0;
   }
 
-  $CONTROL > .$_POP_OVER_LAYOUT_ASSISTANT.$_RIGHT
+  .$CONTROL > .$_POP_OVER_LAYOUT_ASSISTANT.$_RIGHT
   {
     left: 100%;
   }

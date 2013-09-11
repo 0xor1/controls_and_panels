@@ -24,7 +24,7 @@ class Label extends Control with ContextMenuUsage{
     return new List<Button>()
     ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'lorem', iconWidth: 20 , iconHeight: 20)
       ..onClick.listen((MouseEvent event){print(control.controlId);}))
-    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'ipsum yumy bumy!', iconWidth: 20 , iconHeight: 20)
+    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'ipsum', iconWidth: 20 , iconHeight: 20)
       ..onClick.listen((MouseEvent event){window.alert(control.controlId.toString());}));
   };
 
