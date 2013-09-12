@@ -122,7 +122,22 @@ abstract class Control extends Base{
 
   void focus(Event event){
 
-    _focusController.add(event);
+    if(currentFocus != this){
+
+      if(currentFocus != null){
+
+        currentFocus.blur(event);
+
+      }
+
+      currentFocus = this;
+
+      html.classes.add(FOCUS);
+
+      _focusController.add(event);
+
+    }
+
 
   }
 
@@ -138,7 +153,15 @@ abstract class Control extends Base{
 
   void blur(Event event){
 
-    _blurController.add(event);
+    if(currentFocus == this){
+
+      currentFocus = null;
+
+      html.classes.remove(FOCUS);
+
+      _blurController.add(event);
+
+    }
 
   }
 
