@@ -21,17 +21,24 @@ part 'control/combo_box.dart';
 part 'control/text_box.dart';
 part 'control/text_area.dart';
 part 'control/pop_over.dart';
-part 'control/pop_over/context_menu.dart';
 
 
 part 'panel/sizer_panel.dart';
 part 'panel/stack_panel.dart';
 
 
-part 'mixin/context_menu_usage.dart';
+part 'mixin/context_menu/context_menu.dart';
+part 'mixin/context_menu/simple_context_menu.dart';
+part 'mixin/context_menu/simple_context_menu_button.dart';
 
 
-typedef List<Button> Func_Control_List_t_Button_t(Control control);
+typedef List<Control> Func_Control_List$Control$(Control control);
+
+
+typedef Control Func_List$List$Control$$_Control(List<List<Control>> controlGroups);
+
+
+typedef void Func_Control_void(Control control);
 
 
 const String CONTROLS_AND_PANELS_STYLE_ELEMENT_ID = 'controls-and-panels-style-element-id';
@@ -71,4 +78,18 @@ void _insertStyle(Style style){
 
   }
 
+}
+
+
+bool mouseIsOnLeftHalfOfWindow(MouseEvent event){
+  
+  return event.screenX <= window.innerWidth * 0.5;
+  
+}
+
+
+bool mouseIsOnTopHalfOfWindow(MouseEvent event){
+  
+  return event.screenY <= window.innerHeight * 0.5;
+  
 }

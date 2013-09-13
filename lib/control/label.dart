@@ -12,14 +12,14 @@ const String LABEL = 'label';
 const String TEXT = 'text';
 
 
-class Label extends Control with ContextMenuUsage{
+class Label extends Control with ContextMenu{
 
 
   final SpanElement _textElement = new SpanElement()
   ..classes.add(TEXT);
 
 
-  static final Func_Control_List_t_Button_t _createContextMenuButtons = (Control control){
+  static final Func_Control_List$Control$ _createContextMenuButtons = (Control control){
 
     return new List<Button>()
     ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'lorem', iconWidth: 20 , iconHeight: 20)
@@ -40,7 +40,7 @@ class Label extends Control with ContextMenuUsage{
 
     _insertStyle(_labelStyle);
 
-    initialiseContextMenuUsage(_createContextMenuButtons);
+    initialiseStandardContextMenu(_createContextMenuButtons);
 
     controlContentElement.children.add(_textElement);
 

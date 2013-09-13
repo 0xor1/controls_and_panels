@@ -90,9 +90,7 @@ final Style _popOverStyle = new Style('''
   .$POP_OVER
   {
     position: absolute;
-    white-space: nowrap;
-    background: #fff;
-    box-shadow: 5px 5px 5px #888;
+    background: transparent;
   }
 
 ''');
