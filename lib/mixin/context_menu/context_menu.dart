@@ -27,11 +27,14 @@ class ContextMenu{
   static bool holdOpen = false;
   
   
-  static final Func_List$List$Control$$_Control _defaultContextMenuCreator = (List<List<Control>> controlGroups){
+  static final Func_List$List$Control$$_Control _simpleContainerCreator = (List<List<Control>> controlGroups){
     
+    return new SimpleContextMenu(controlGroups);
     
-    
-  }; 
+  };
+  
+  
+  static Func_List$List$Control$$_Control _containerCreator = _simpleContainerCreator;
   
 
   //for nested parent child controls to add creators to
@@ -57,15 +60,21 @@ class ContextMenu{
   }
   
 
-  void initialiseCustomContextMenu(Func_Control_List$Control$ itemCreators, Func_List$List$Control$$_Control menuContainerCreator){
+  void initialiseCustomContextMenu(Func_Control_List$Control$ itemCreators, Func_List$List$Control$$_Control containerCreator){
 
     _initialise();
 
     contextMenuControlCreators.add(itemCreators);
-
+    
     //only add the event listener once
     if(contextMenuControlCreators.length == 1){
 
+      if(containerCreator != null){
+        
+        _containerCreator = containerCreator;
+        
+      }
+      
       (this as Control).html.onContextMenu.listen((MouseEvent event){
 
         if(_target == null){
@@ -91,7 +100,7 @@ class ContextMenu{
   }
   
   
-  void initialiseSimpleContextMenu(Func_Control_List$Control$ itemCreators, Func_List$List$Control$$_Control menuContainerCreator){
+  void initialiseSimpleContextMenu(Func_Control_List$Control$ itemCreators){
 
     _initialise();
 
@@ -100,6 +109,8 @@ class ContextMenu{
     //only add the event listener once
     if(contextMenuControlCreators.length == 1){
 
+      _containerCreator = _simpleContainerCreator;
+      
       (this as Control).html.onContextMenu.listen((MouseEvent event){
 
         if(_target == null){
@@ -139,7 +150,7 @@ class ContextMenu{
 
           event.preventDefault();
 
-          _current = new ContextMenu(_controlGroups);
+          _current = new PopOver(content: _containerCreator(_controlGroups));
           
           _displayMenuOrientatedWithMostAvailableSpace(event);
           
@@ -190,11 +201,11 @@ class ContextMenu{
       
       if(mouseIsOnTopHalfOfWindow(event)){
         
-        _current.show(_target, left: targetWidth - _targetMouseOffsetX, top: _targetMouseOffsetY );
+        _current.show(_target, right: targetWidth - _targetMouseOffsetX, top: _targetMouseOffsetY );
         
       }else{
         
-        _current.show(_target, left: targetWidth - _targetMouseOffsetX, bottom: targetHeight - _targetMouseOffsetY );
+        _current.show(_target, right: targetWidth - _targetMouseOffsetX, bottom: targetHeight - _targetMouseOffsetY );
         
       }
       

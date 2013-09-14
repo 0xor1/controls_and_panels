@@ -21,27 +21,42 @@ class Button extends Control with ContextMenu{
   Stream<MouseEvent> get onClick => html.onClick;
 
 
-  Base content;
+  Base _content;
+  
+  
+  Base get content => _content;
+  
+  
+  void set content(Base base){
+    
+    if(base != null){
+    
+      controlContentElement.children.add(base.html);
+    
+    }
+  
+  }
 
 
   static final Func_Control_List$Control$ _createContextMenuButtons = (Control control){
-    return new List<Button>()
-    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'lorem', iconWidth: 20 , iconHeight: 20)
-      ..onClick.listen((MouseEvent event){print(control.controlId);}))
-    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'ipsum', iconWidth: 20 , iconHeight: 20)
-      ..onClick.listen((MouseEvent event){window.alert(control.controlId.toString());}));
+
+    return new List<SimpleContextMenuButton>()
+    ..add(new SimpleContextMenuButton('resource/image/peace_dove_icon.svg', 'lorem', (MouseEvent event){
+      window.alert('Button - lorem - ${control.controlId.toString()}');
+    }))
+    ..add(new SimpleContextMenuButton('resource/image/peace_dove_icon.svg', 'ipsum', (MouseEvent event){
+      window.alert('Button - ipsum - ${control.controlId.toString()}');
+    }));
   };
 
 
-  Button(Base base){
+  Button({Base content: null}){
 
     _insertStyle(_buttonStyle);
 
     initialiseSimpleContextMenu(_createContextMenuButtons);
 
-    content = base;
-
-    controlContentElement.children.add(base.html);
+    this.content = content;
 
     html.classes.add(BUTTON);
 
@@ -50,7 +65,7 @@ class Button extends Control with ContextMenu{
 
   factory Button.text(String text){
 
-    return  new Button(new Label(text))
+    return  new Button(content: new Label(text))
     ..html.classes.add(TEXT_BUTTON);
 
   }
@@ -58,7 +73,7 @@ class Button extends Control with ContextMenu{
 
   factory Button.icon(String iconPath, {int iconWidth: null, int iconHeight: null}){
 
-    return  new Button(new Image(iconPath, width: iconWidth, height: iconHeight))
+    return  new Button(content: new Image(iconPath, width: iconWidth, height: iconHeight))
     ..html.classes.add(TEXT_BUTTON);
 
   }
@@ -66,7 +81,7 @@ class Button extends Control with ContextMenu{
 
   factory Button.iconText(String iconPath, String text, {int iconWidth: null, int iconHeight: null}){
 
-    return new Button(new StackPanel.horizontal([
+    return new Button(content: new StackPanel.horizontal([
       new Image(iconPath, width: iconWidth, height: iconHeight),
       new Label(text)]))
       ..html.classes.add(ICON_TEXT_BUTTON);

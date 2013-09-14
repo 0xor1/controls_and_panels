@@ -21,6 +21,9 @@ part 'control/combo_box.dart';
 part 'control/text_box.dart';
 part 'control/text_area.dart';
 part 'control/pop_over.dart';
+part 'control/splitter.dart';
+part 'control/simple_context_menu.dart';
+part 'control/button/simple_context_menu_button.dart';
 
 
 part 'panel/sizer_panel.dart';
@@ -28,8 +31,6 @@ part 'panel/stack_panel.dart';
 
 
 part 'mixin/context_menu/context_menu.dart';
-part 'mixin/context_menu/simple_context_menu.dart';
-part 'mixin/context_menu/simple_context_menu_button.dart';
 
 
 typedef List<Control> Func_Control_List$Control$(Control control);
@@ -39,6 +40,9 @@ typedef Control Func_List$List$Control$$_Control(List<List<Control>> controlGrou
 
 
 typedef void Func_Control_void(Control control);
+
+
+typedef void Func_MouseEvent_void(MouseEvent event);
 
 
 const String CONTROLS_AND_PANELS_STYLE_ELEMENT_ID = 'controls-and-panels-style-element-id';
@@ -81,15 +85,15 @@ void _insertStyle(Style style){
 }
 
 
-bool mouseIsOnLeftHalfOfWindow(MouseEvent event){
+bool mouseIsOnLeftHalfOfWindow(MouseEvent event){ 
   
-  return event.screenX <= window.innerWidth * 0.5;
+  return event.screenX - window.screenX <= window.innerWidth * 0.5;
   
 }
 
 
 bool mouseIsOnTopHalfOfWindow(MouseEvent event){
   
-  return event.screenY <= window.innerHeight * 0.5;
+  return event.screenY - window.screenY <= window.innerHeight * 0.5;
   
 }

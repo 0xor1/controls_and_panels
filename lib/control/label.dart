@@ -21,11 +21,13 @@ class Label extends Control with ContextMenu{
 
   static final Func_Control_List$Control$ _createContextMenuButtons = (Control control){
 
-    return new List<Button>()
-    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'lorem', iconWidth: 20 , iconHeight: 20)
-      ..onClick.listen((MouseEvent event){print(control.controlId);}))
-    ..add(new Button.contextMenu('resource/image/peace_dove_icon.svg', 'ipsum', iconWidth: 20 , iconHeight: 20)
-      ..onClick.listen((MouseEvent event){window.alert(control.controlId.toString());}));
+    return new List<SimpleContextMenuButton>()
+    ..add(new SimpleContextMenuButton('resource/image/peace_dove_icon.svg', 'lorem', (MouseEvent event){
+      window.alert('Label - lorem - ${control.controlId.toString()}');
+    }))
+    ..add(new SimpleContextMenuButton('resource/image/peace_dove_icon.svg', 'ipsum', (MouseEvent event){
+      window.alert('Label - ipsum - ${control.controlId.toString()}');
+    }));
   };
 
 
@@ -40,7 +42,7 @@ class Label extends Control with ContextMenu{
 
     _insertStyle(_labelStyle);
 
-    initialiseStandardContextMenu(_createContextMenuButtons);
+    initialiseSimpleContextMenu(_createContextMenuButtons);
 
     controlContentElement.children.add(_textElement);
 

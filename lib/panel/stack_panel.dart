@@ -24,29 +24,6 @@ class StackPanel<TBase extends Base> extends Panel<TBase>{
   String get orientation => _orientation;
 
 
-  void set orientation (String ori){
-
-    if(ori != orientation){
-
-      html.classes.remove(_orientation);
-
-      switch(ori){
-
-        case HORIZONTAL:
-          _orientation = HORIZONTAL;
-          break;
-        default:
-          _orientation = VERTICAL;
-          break;
-      }
-
-      html.classes.add(_orientation);
-
-    }
-
-  }
-
-
   StackPanel._internal(String orientation, List<TBase> bases){
 
     _insertStyle(_stackPanelStyle);
@@ -59,7 +36,9 @@ class StackPanel<TBase extends Base> extends Panel<TBase>{
 
     }
 
-    this.orientation = orientation;
+    _orientation = orientation;
+    
+    html.classes.add(orientation);
 
     html.classes.add(STACK_PANEL);
 
@@ -79,6 +58,26 @@ class StackPanel<TBase extends Base> extends Panel<TBase>{
 
   }
 
+  
+  Splitter addSplitter({String lineColor: '#000', String lineStyle: 'solid', int lineThickness: 1, int beforeMargin: 0, int afterMargin: 0}){
+    
+    Splitter splitter;
+    
+    if(_orientation == HORIZONTAL){
+      
+      splitter = new Splitter.vertical(lineColor: lineColor, lineStyle: lineStyle, lineThickness: lineThickness, beforeMargin: beforeMargin, afterMargin: afterMargin);
+      
+    }else{
+      
+      splitter = new Splitter.horizontal(lineColor: lineColor, lineStyle: lineStyle, lineThickness: lineThickness, beforeMargin: beforeMargin, afterMargin: afterMargin);
+            
+    }
+    
+    add(splitter);
+    
+    return splitter;
+    
+  }
 
   void add(TBase base){
 

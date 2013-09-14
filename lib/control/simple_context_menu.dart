@@ -11,24 +11,29 @@ const String SIMPLE_CONTEXT_MENU = 'simple-context-menu';
 
 class SimpleContextMenu extends Control{
 
-  SimpleContextMenu(List<List<Button>> buttonGroups):
+  
+  SimpleContextMenu(List<List<Control>> buttonGroups):
   super(){
 
     _insertStyle(_simpleContextMenuStyle);
 
-    var contextStack = new StackPanel<Button>.vertical();
+    StackPanel contextStack = new StackPanel<Button>.vertical();
+    
+    Splitter lastSplitter;
 
     for(var buttonList in buttonGroups){
 
       for(var button in buttonList){
 
-        contextStack.add(button);
+        contextStack.add(button as SimpleContextMenuButton);
 
       }
 
-      //add in a region splitter here
+      lastSplitter = contextStack.addSplitter(lineColor: '#eee');
 
     }
+    
+    contextStack.remove(lastSplitter);
 
     controlContentElement.children.add(contextStack.html);
 
@@ -45,7 +50,7 @@ final Style _simpleContextMenuStyle = new Style('''
 
   .$SIMPLE_CONTEXT_MENU
   {
-    border: 1px solid #999;
+    border: 1px solid #eee;
     background: #fff;
     box-shadow: 5px 5px 5px #888;
   }
