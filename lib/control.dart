@@ -177,17 +177,16 @@ abstract class Control extends Base{
     ..children.add(_topRightPopOverLayoutAssistant)
     ..children.add(controlContentElement)
     ..children.add(_bottomLeftPopOverLayoutAssistant)
-    ..children.add(_bottomRightPopOverLayoutAssistant);
+    ..children.add(_bottomRightPopOverLayoutAssistant)
+    ..dataset[CONTROL_ID] = _id.toString();
 
+    _controls[_id] = this;
+    
     if(_namespace != null){
 
       html.classes.add(_namespace);
 
     }
-
-    html.dataset[CONTROL_ID] = _id.toString();
-
-    _controls[_id] = this;
 
     onFocus.listen((Event event){
 

@@ -43,6 +43,7 @@ final Style _simpleContextMenuButtonStyle = new Style('''
 
   .$SIMPLE_CONTEXT_MENU_BUTTON
   {
+    border: none;
     background: rgba(0,0,0,0);
     padding: 0;
     width: 100%;

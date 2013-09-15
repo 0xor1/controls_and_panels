@@ -9,91 +9,64 @@ part of controls_and_panels;
 const String COMBO_BOX = 'combo-box';
 
 
-const String CLOSED = 'closed';
+class ComboBox extends Button{
 
 
-const String OPEN = 'open';
+  Func_String_Future$List$Control$$ ControlListGetter;
 
 
-typedef Future<List<Base>> GetBaseList(String filter);
+  List<Control> _controlList;
+  
+  
+  int selectedIndex;
+  
+  
+  Control selectedControl;
+  
+  
+  Control noSelection;
+  
+  
+  StreamController _dropDownOpenController = new StreamController();
 
 
-typedef void ProcessSelectedBase(Base base);
+  Stream _dropDownOpenStream;
 
 
-class ComboBox extends Control{
+  Stream get onDropDownOpen => (_dropDownOpenStream != null) ? _dropDownOpenStream : _dropDownOpenStream = _dropDownOpenController.stream.asBroadcastStream();
+
+  
+  StreamController _dropDownCloseController = new StreamController();
 
 
-  GetBaseList getBaseList;
+  Stream _dropDownCloseStream;
 
 
-  ProcessSelectedBase processSelection;
+  Stream get onDropDownClose => (_dropDownCloseStream != null) ? _dropDownCloseStream : _dropDownCloseStream = _dropDownCloseController.stream.asBroadcastStream();
+
+  
+  StreamController _selectionChangeController = new StreamController();
 
 
-  List<Base> _baseList;
+  Stream _selectionChangeStream;
 
 
-  ComboBox(GetBaseList getList, ProcessSelectedBase selectionProcessor){
+  Stream get onSelectionChange => (_selectionChangeStream != null) ? _selectionChangeStream : _selectionChangeStream = _selectionChangeController.stream.asBroadcastStream();
+
+
+  ComboBox(Func_String_Future$List$Control$$ listGetter, Control initialSelection, Image arrowIcon, {Control noSelection: null}):
+  super(){
 
     _insertStyle(_comboBoxStyle);
 
-    getBaseList = getList;
+    ControlListGetter = listGetter;
 
-    processSelection = selectionProcessor;
-
-    html.classes.addAll([COMBO_BOX, CLOSED]);
-
-    _attachEventListeners();
-
-  }
-
-
-  _selectItem(Base base){
-
-
-  }
-
-
-  bool get isOpen => html.classes.contains(OPEN);
-
-
-  void toggleOpenClose(){
-
-    if(isOpen){
-
-      close();
-
-    }else{
-
-      open();
-
-    }
-
-  }
-
-
-  void open(){
-
-    html.classes.remove(CLOSED);
-
-    html.classes.add(OPEN);
-
-  }
-
-
-  void close(){
-
-    html.classes.remove(OPEN);
-
-    html.classes.add(CLOSED);
-
-  }
-
-
-  void _attachEventListeners(){
-
-
-
+    content = new StackPanel.horizontal()
+    ..add(initialSelection)
+    ..add(arrowIcon);
+    
+    html.classes.add(COMBO_BOX);
+    
   }
 
 

@@ -45,10 +45,25 @@ typedef void Func_Control_void(Control control);
 typedef void Func_MouseEvent_void(MouseEvent event);
 
 
+typedef Future<List<Control>> Func_String_Future$List$Control$$(String text);
+
+
 const String CONTROLS_AND_PANELS_STYLE_ELEMENT_ID = 'controls-and-panels-style-element-id';
 
 
-final StyleElement _controlsAndPanelsStyleElement = new StyleElement()..id = CONTROLS_AND_PANELS_STYLE_ELEMENT_ID;
+const String CONTROLS_AND_PANELS_STAGING_ELEMENT_ID = 'controls-and-panels-staging-element-id';
+
+
+final StyleElement _controlsAndPanelsStyleElement = new StyleElement()
+..id = CONTROLS_AND_PANELS_STYLE_ELEMENT_ID;
+
+
+final DivElement _controlsAndPanelsStagingElement = new DivElement()
+..id = CONTROLS_AND_PANELS_STAGING_ELEMENT_ID
+..style.position = 'absolute'
+..style.width = '0'
+..style.height = '0'
+..style.overflow = 'hidden';
 
 
 class Style{
@@ -81,6 +96,19 @@ void _insertStyle(Style style){
     style.hasBeenInserted = true;
 
   }
+
+}
+
+
+void stageBase(Base base){
+
+  if(_controlsAndPanelsStagingElement.parent != document.head){
+
+    document.body.children.add(_controlsAndPanelsStagingElement);
+
+  }
+
+  _controlsAndPanelsStagingElement.children.add(base.html);
 
 }
 

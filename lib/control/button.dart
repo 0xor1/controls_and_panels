@@ -71,9 +71,9 @@ class Button extends Control with ContextMenu{
   }
 
 
-  factory Button.icon(String iconPath, {int iconWidth: null, int iconHeight: null}){
+  factory Button.icon(Image icon){
 
-    return  new Button(content: new Image(iconPath, width: iconWidth, height: iconHeight))
+    return  new Button(content: icon)
     ..html.classes.add(TEXT_BUTTON);
 
   }
@@ -101,6 +101,7 @@ final Style _buttonStyle = new Style('''
     font-size: 0;
     transition: background 0.3s;
     background: #aaa;
+    border: 1px solid #888;
     border-radius: 3px;
     padding: 2px 4px;
     cursor: pointer;
@@ -126,6 +127,13 @@ final Style _buttonStyle = new Style('''
   {
     word-spacing: normal;
     font-size: 16px;
+  }
+
+  .$BUTTON
+    > .$CONTROL_CONTENT_ELEMENT
+  {
+    white-space: nowrap;
+    font-size: 0;
   }
 
 ''');

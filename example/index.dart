@@ -4,7 +4,8 @@ import 'dart:async';
 
 void main() {
 
-  var imgPath = 'resource/image/peace_dove_icon.svg';
+  var peaceImgPath = 'resource/image/peace_dove_icon.svg';
+  var arrowImgPath = 'resource/image/green_down_arrow_icon.png';
 
   var stackPanels = new List<StackPanel>();
   var stackPanel1 = new StackPanel.vertical();
@@ -20,12 +21,12 @@ void main() {
   document.body.children.add(stackPanel3.html);
   stackPanels.add(stackPanel3);
 
-  var comboList = new List<Base>()
+  var comboList = new List<Control>()
       ..add(new Label('one')..html.attributes['data-value'] = 'one')
       ..add(new Label('two')..html.attributes['data-value'] = 'two')
       ..add(new Label('three')..html.attributes['data-value'] = 'three');
 
-  var getItemList = (){
+  var getItemList = (String str){
     var completer = new Completer();
     completer.complete(comboList);
     return completer.future;
@@ -37,12 +38,14 @@ void main() {
 
   for(var stackPanel in stackPanels){
     //Future<List<Base>>
-    var controls = new List<Base>();
-    controls.add(new Image(imgPath, alt: 'Yomma!', width:95, height:95));
-    controls.add(new TextBox(placeholder:'Please enter first name'));
-    controls.add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'));
-    controls.add(new Label("Yomma!"));
-    controls.add(new Button.iconText(imgPath, 'Peace', iconWidth:25, iconHeight:25));
+    var controls = new List<Base>()
+    ..add(new Image(peaceImgPath, alt: 'Yomma!', width:95, height:95))
+    ..add(new TextBox(placeholder:'Please enter first name'))
+    ..add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'))
+    ..add(new Label("Yomma!"))
+    ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25))
+    ..add(new ComboBox(getItemList, new Label('--please select one--'), new Image(arrowImgPath, width: 25, height: 25 )));
+    
     for(var base in controls){
       stackPanel.add(
         new SizerPanel('200px','100px')
