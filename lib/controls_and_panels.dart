@@ -85,15 +85,15 @@ void _insertStyle(Style style){
 }
 
 
-bool mouseIsOnLeftHalfOfWindow(MouseEvent event){ 
+bool xIsOnLeftHalfOfWindowViewport(int x){ 
   
-  return event.screenX - window.screenX <= window.innerWidth * 0.5;
+  return x - window.screenX - window.pageXOffset <= window.innerWidth * 0.5;
   
 }
 
 
-bool mouseIsOnTopHalfOfWindow(MouseEvent event){
+bool yIsOnTopHalfOfWindowViewport(int y){
   
-  return event.screenY - window.screenY <= window.innerHeight * 0.5;
+  return y - window.screenY - window.pageYOffset <= window.innerHeight * 0.5;
   
 }

@@ -185,9 +185,9 @@ class ContextMenu{
     
     int targetHeight = _target.html.clientHeight;
     
-    if(mouseIsOnLeftHalfOfWindow(event)){
+    if(xIsOnLeftHalfOfWindowViewport(event.screenX)){
       
-      if(mouseIsOnTopHalfOfWindow(event)){
+      if(yIsOnTopHalfOfWindowViewport(event.screenY)){
         
         _current.show(_target, left: _targetMouseOffsetX, top: _targetMouseOffsetY );
         
@@ -199,7 +199,7 @@ class ContextMenu{
       
     }else{
       
-      if(mouseIsOnTopHalfOfWindow(event)){
+      if(yIsOnTopHalfOfWindowViewport(event.screenY)){
         
         _current.show(_target, right: targetWidth - _targetMouseOffsetX, top: _targetMouseOffsetY );
         
