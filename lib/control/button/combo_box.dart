@@ -16,17 +16,17 @@ class ComboBox extends Button{
 
 
   List<Control> _controlList;
-  
-  
+
+
   int selectedIndex;
-  
-  
+
+
   Control selectedControl;
-  
-  
+
+
   Control noSelection;
-  
-  
+
+
   StreamController _dropDownOpenController = new StreamController();
 
 
@@ -35,7 +35,7 @@ class ComboBox extends Button{
 
   Stream get onDropDownOpen => (_dropDownOpenStream != null) ? _dropDownOpenStream : _dropDownOpenStream = _dropDownOpenController.stream.asBroadcastStream();
 
-  
+
   StreamController _dropDownCloseController = new StreamController();
 
 
@@ -44,7 +44,7 @@ class ComboBox extends Button{
 
   Stream get onDropDownClose => (_dropDownCloseStream != null) ? _dropDownCloseStream : _dropDownCloseStream = _dropDownCloseController.stream.asBroadcastStream();
 
-  
+
   StreamController _selectionChangeController = new StreamController();
 
 
@@ -64,9 +64,9 @@ class ComboBox extends Button{
     content = new StackPanel.horizontal()
     ..add(initialSelection)
     ..add(arrowIcon);
-    
+
     html.classes.add(COMBO_BOX);
-    
+
   }
 
 
@@ -78,7 +78,7 @@ final Style _comboBoxStyle = new Style('''
 
   .$COMBO_BOX
   {
-    
+    background: #fff;
   }
 
 ''');

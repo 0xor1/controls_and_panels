@@ -45,10 +45,10 @@ void main() {
     ..add(new Label("Yomma!"))
     ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25))
     ..add(new ComboBox(getItemList, new Label('--please select one--'), new Image(arrowImgPath, width: 25, height: 25 )));
-    
+
     for(var base in controls){
       stackPanel.add(
-        new SizerPanel('200px','100px')
+        new SizerPanel('250px','100px')
           ..horizontalAlignment = 'center'
           ..verticalAlignment = 'center'
           ..add(base));

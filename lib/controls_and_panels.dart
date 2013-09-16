@@ -17,7 +17,7 @@ part 'panel.dart';
 part 'control/label.dart';
 part 'control/image.dart';
 part 'control/button.dart';
-part 'control/combo_box.dart';
+part 'control/button/combo_box.dart';
 part 'control/text_box.dart';
 part 'control/text_area.dart';
 part 'control/pop_over.dart';
