@@ -22,6 +22,7 @@ part 'control/text_box.dart';
 part 'control/text_area.dart';
 part 'control/pop_over.dart';
 part 'control/splitter.dart';
+part 'control/simple_drop_down.dart';
 part 'control/simple_context_menu.dart';
 part 'control/button/simple_context_menu_button.dart';
 

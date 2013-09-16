@@ -32,12 +32,7 @@ void main() {
     return completer.future;
   };
 
-  var processSelection = (Base base){
-    print('you selected ${base.html.dataset['value']}');
-  };
-
   for(var stackPanel in stackPanels){
-    //Future<List<Base>>
     var controls = new List<Base>()
     ..add(new Image(peaceImgPath, alt: 'Yomma!', width:95, height:95))
     ..add(new TextBox(placeholder:'Please enter first name'))
