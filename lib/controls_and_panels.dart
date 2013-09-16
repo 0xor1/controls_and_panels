@@ -30,7 +30,7 @@ part 'panel/sizer_panel.dart';
 part 'panel/stack_panel.dart';
 
 
-part 'mixin/context_menu/context_menu.dart';
+part 'mixin/context_menu.dart';
 
 
 typedef List<Control> Func_Control_List$Control$(Control control);
