@@ -1,10 +1,10 @@
 name: controls_and_panels
-author: Daniel Robinson
 version: 0.0.0
+author: "Daniel Robinson\r\n<daniel.robinson.dart@gmail.com>"
 description: controls and panels for developing a UI programmatically.
 environment:
   sdk: any
 dependencies:
-  browser: any
+  browser: '>=0.9.1 <1.0.0'
 dev_dependencies:
   unittest: any

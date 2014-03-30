@@ -20,17 +20,6 @@ void main() {
   document.body.children.add(stackPanel3.html);
   stackPanels.add(stackPanel3);
 
-  var comboList = new List<Control>()
-      ..add(new Label('one')..html.attributes['data-value'] = 'one')
-      ..add(new Label('two')..html.attributes['data-value'] = 'two')
-      ..add(new Label('three')..html.attributes['data-value'] = 'three');
-
-  var getItemList = (String str){
-    var completer = new Completer();
-    completer.complete(comboList);
-    return completer.future;
-  };
-
   for(var stackPanel in stackPanels){
     var controls = new List<Base>()
     ..add(new Image(peaceImgPath, alt: 'Yomma!', width:95, height:95))
