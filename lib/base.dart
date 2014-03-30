@@ -21,11 +21,9 @@ abstract class Base{
   ..classes.add(CLASS);
   CssStyleDeclaration get style => html.style;
 
-  Base({bool stage: true}){
+  Base(){
     _baseStyle.insert();
-    if(stage){
-      this.stage();
-    }
+    stage();
   }
 
   bool isOnPage(){
