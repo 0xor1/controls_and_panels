@@ -1,48 +1,40 @@
 /*
- * 0xor1 http://github.com/0xor1
+ * author: Daniel Robinson  http://github.com/0xor1
  */
-
 
 part of controls_and_panels;
 
-
-const String PANEL = 'panel';
-
+const String PANEL = 'cnp-panel';
 
 abstract class Panel<TBase extends Base> extends Base{
 
-
-  List<TBase> children = new List<TBase>();
-
+  List<TBase> items = new List<TBase>();
 
   Panel(){
-
+    _panelStyle.insert();
     html.classes.add(PANEL);
-
   }
-
 
   void add(TBase base);
 
-
   void insert(int index, TBase base);
-
 
   bool remove(TBase base);
 
-
   Base removeAt(int index);
 
-
   void clear(){
-
-    children.forEach((child){
-
-      remove(child);
-
+    items.forEach((item){
+      remove(item);
     });
 
   }
 
+  static final Style _panelStyle = new Style('''
 
+    .$PANEL
+    {
+    }
+
+  ''');
 }

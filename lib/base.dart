@@ -1,112 +1,69 @@
 /*
- * 0xor1 http://github.com/0xor1
+ * author: Daniel Robinson  http://github.com/0xor1
  */
 
 part of controls_and_panels;
 
-
-const String BASE = 'base';
-
-
 abstract class Base{
+  static const String CLASS = 'cnp-base';
+  static const String CONTROLS_AND_PANELS_STAGING_ELEMENT_ID = 'controls-and-panels-staging-element-id';
+  static final DivElement _controlsAndPanelsStagingElement = new DivElement()
+  ..id = CONTROLS_AND_PANELS_STAGING_ELEMENT_ID
+  ..style.position = 'absolute'
+  ..style.width = '0'
+  ..style.height = '0'
+  ..style.margin = '0'
+  ..style.border = '0'
+  ..style.padding = '0'
+  ..style.overflow = 'hidden';
 
+  final DivElement html = new DivElement()
+  ..classes.add(CLASS);
+  CssStyleDeclaration get style => html.style;
 
-  final Element html = new DivElement();
-
-
-  void set width(String width){
-
-    html.style.width = width;
-
+  Base({bool stage: true}){
+    _baseStyle.insert();
+    if(stage){
+      this.stage();
+    }
   }
-
-
-  void set maxWidth(String width){
-
-    html.style.maxWidth = width;
-
-  }
-
-
-  void set minWidth(String width){
-
-    html.style.minWidth = width;
-
-  }
-
-
-  void set height(String height){
-
-    html.style.height = height;
-
-  }
-
-
-  void set maxHeight(String height){
-
-    html.style.maxHeight = height;
-
-  }
-
-
-  void set minHeight(String height){
-
-    html.style.minHeight = height;
-
-  }
-
-
-  void set overflow(String overflow){
-
-    html.style.overflow = overflow;
-
-  }
-
-
-  Base(){
-
-    _insertStyle(_baseStyle);
-
-    html.classes.add(BASE);
-
-  }
-
 
   bool isOnPage(){
-
+    if(isStaged){
+      return false;
+    }
     Element el = html;
-
     while(el.parent != null){
-
       el = el.parent;
-
       if(el == document.body){
-
         return true;
-
       }
+    }
+    return false;
+  }
 
+  bool get isStaged => html.parent == _controlsAndPanelsStagingElement;
+
+  void stage(){
+    if(_controlsAndPanelsStagingElement.parent != document.body){
+      document.body.children.add(_controlsAndPanelsStagingElement);
+    }
+    _controlsAndPanelsStagingElement.children.add(html);
+  }
+
+  static final Style _baseStyle = new Style('''
+
+    .$CLASS
+    {
+      position: relative;
+      display: inline-block;
+      font-family: verdana, arial, sans-serif;
+      margin: 0;
+      border: 0;
+      padding: 0;
+      overflow: hidden;
     }
 
-    return false;
-
-  }
-
-
+  ''');
 }
 
-
-
-final Style _baseStyle = new Style('''
-
-  .$BASE
-  {
-    display: inline-block;
-    font-family: verdana, arial, sans-serif;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    overflow: visible; /*for popups eg. tooltips and combobox drop downs*/
-  }
-
-''');

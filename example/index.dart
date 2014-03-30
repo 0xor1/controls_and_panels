@@ -16,7 +16,6 @@ void main() {
   document.body.children.add(stackPanel2.html);
   stackPanels.add(stackPanel2);
 
-
   var stackPanel3 = new StackPanel.vertical();
   document.body.children.add(stackPanel3.html);
   stackPanels.add(stackPanel3);
@@ -38,8 +37,7 @@ void main() {
     ..add(new TextBox(placeholder:'Please enter first name'))
     ..add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'))
     ..add(new Label("Yomma!"))
-    ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25))
-    ..add(new ComboBox(getItemList, new Label('--please select one--'), new Image(arrowImgPath, width: 25, height: 25 )));
+    ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25));
 
     for(var base in controls){
       stackPanel.add(
