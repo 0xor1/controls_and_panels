@@ -26,7 +26,8 @@ void main() {
     ..add(new TextBox(placeholder:'Please enter first name'))
     ..add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'))
     ..add(new Label("Yomma!"))
-    ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25));
+    ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25))
+    ..add(new ResizerPanel(50, 50));
 
     for(var base in controls){
       stackPanel.add(

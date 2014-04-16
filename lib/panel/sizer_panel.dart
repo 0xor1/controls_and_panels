@@ -69,13 +69,17 @@ class SizerPanel<TBase extends Base> extends Panel<TBase>{
     if(items.length == 0){
       items.add(item);
       _innerLayoutAssistant.children.add(item.html);
+      return;
     }
+    throw 'sizer panel already has one child and cannot accept anymore';
   }
 
   void insert(int index, TBase item){
     if(index == 0){
       add(item);
+      return;
     }
+    throw 'can only insert at index 0 on a sizer panel as it only accepts one child';
   }
 
   bool remove(TBase item){

@@ -14,8 +14,9 @@ part 'base.dart';
 part 'control.dart';
 part 'panel.dart';
 
-part 'panel/sizer_panel.dart';
 part 'panel/stack_panel.dart';
+part 'panel/sizer_panel.dart';
+part 'panel/resizer_panel.dart';
 
 part 'control/label.dart';
 part 'control/image.dart';

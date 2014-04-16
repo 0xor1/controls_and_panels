@@ -26,7 +26,7 @@ abstract class Base{
     stage();
   }
 
-  bool isOnPage(){
+  bool get isOnPage{
     if(isStaged){
       return false;
     }
