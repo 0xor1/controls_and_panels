@@ -5,8 +5,8 @@
 
 part of controls_and_panels;
 
-class ResizerPanel<TBase extends Base> extends Panel<TBase> implements SizerPanel<TBase>{
-  static const String CLASS = 'cnp-resizer-panel';
+class FloatPanel<TBase extends Base> extends Panel<TBase> implements SizerPanel<TBase>{
+  static const String CLASS = 'cnp-float-panel';
   static const int BAR_THICKNESS = 6;
   final SizerPanel<TBase> _sizer = new SizerPanel<TBase>('100%', '100%');
   final DivElement _topLeftResizer =
@@ -34,7 +34,7 @@ class ResizerPanel<TBase extends Base> extends Panel<TBase> implements SizerPane
     new DivElement()
     ..classes.add(SizerPanel.LEFT);
 
-  ResizerPanel(int width, int height){
+  FloatPanel(FloatContainerPanel fcp, int width, int height, [bool isResizable = true]){
     _resizerPanelStyle.insert();
     html.classes.add(CLASS);
     html.style.border = '1px solid black'; //For dev testing, delete after
