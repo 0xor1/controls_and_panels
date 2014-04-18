@@ -16,8 +16,6 @@ part 'panel.dart';
 
 part 'panel/stack_panel.dart';
 part 'panel/sizer_panel.dart';
-part 'panel/float_panel.dart';
-part 'panel/float_container_panel.dart';
 
 part 'control/label.dart';
 part 'control/image.dart';
