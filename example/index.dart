@@ -2,7 +2,7 @@ import 'package:controls_and_panels/controls_and_panels.dart';
 import 'dart:html';
 import 'dart:async';
 
-void main() {
+void main(){
 
   var peaceImgPath = 'resource/image/peace_dove_icon.svg';
   var arrowImgPath = 'resource/image/green_down_arrow_icon.png';
