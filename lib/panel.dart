@@ -1,69 +1,40 @@
 /*
- * 0xor1 http://github.com/0xor1
+ * author: Daniel Robinson  http://github.com/0xor1
  */
-
 
 part of controls_and_panels;
 
+const String PANEL = 'cnp-panel';
 
-const String PANEL = 'panel';
+abstract class Panel<TBase extends Base> extends Base{
 
-
-abstract class Panel extends Base{
-
-
-  List<Base> children = new List<Base>();
-
-
-  void set width(String width){
-
-    html.style.width = width;
-
-  }
-
-
-  void set height(String height){
-
-    html.style.height = height;
-
-  }
-
-
-  void set overflow(String overflow){
-
-    html.style.overflow = overflow;
-
-  }
-
+  List<TBase> items = new List<TBase>();
 
   Panel(){
-
+    _panelStyle.insert();
     html.classes.add(PANEL);
-
   }
 
+  void add(TBase base);
 
-  void add(Base base);
+  void insert(int index, TBase base);
 
-
-  void insert(int index, Base base);
-
-
-  bool remove(Base base);
-
+  bool remove(TBase base);
 
   Base removeAt(int index);
 
-
   void clear(){
-
-    children.forEach((child){
-
-      remove(child);
-
+    items.forEach((item){
+      remove(item);
     });
 
   }
 
+  static final Style _panelStyle = new Style('''
 
+    .$PANEL
+    {
+    }
+
+  ''');
 }

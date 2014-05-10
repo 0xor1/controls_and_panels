@@ -2,23 +2,27 @@
  * 0xor1  http://github.com/0xor1
  */
 
-part of controls_and_panels;
 
-const String LABEL = 'label';
+part of controls_and_panels;
 
 class Label extends Control{
 
+  static const String CLASS = 'cnp-label';
   String get text => html.text;
-
   void set text (String text){html.text = text;}
 
-  Label(String text):
-    super(){
-
+  Label(String text){
+    _labelStyle.insert();
+    html.classes.add(CLASS);
     this.text = text;
-
-    html.classes.add(LABEL);
-
   }
 
+  static final Style _labelStyle = new Style('''
+
+    .$CLASS 
+    {
+      white-space: nowrap;
+    }
+
+  ''');
 }

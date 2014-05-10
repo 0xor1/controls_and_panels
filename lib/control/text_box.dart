@@ -6,68 +6,56 @@
 part of controls_and_panels;
 
 
-const String TEXT_BOX = 'text-box';
-
 
 class TextBox extends Control{
 
-
+  static const String CLASS = 'text-box';
   InputElement _inputElement = new InputElement(type:'text');
-
-
   String get value => _inputElement.value;
-
-
   void set value (String str){
-
-    _inputElement.value = str;
-
+    _inputElement.value = str == null? '': str;
   }
-
 
   String get placeholder => _inputElement.placeholder;
-
-
   void set placeholder (String str){
+    _inputElement.placeholder = str == null? '': str;
+  }
 
-    if(str == null){
+  TextBox({String value: null, String placeholder: null}){
+    _textBoxStyle.insert();
+    html.classes.add(CLASS);
+    html.children.add(_inputElement);
+    _inputElement
+      ..onBlur.listen((_) => blur())
+      ..onFocus.listen((_) => focus());
+    this.placeholder = placeholder;
+    this.value = value;
+  }
 
-      str = '';
+  static final Style _textBoxStyle = new Style('''
 
+    .$CLASS
+    {
+      background: #fff;
+      border: 1px solid #888;
     }
 
-    _inputElement.placeholder = str;
+    .$CLASS.${Control.FOCUS}
+    {
+      outline: 1px solid #fa3;
+    }
 
-  }
+    .$CLASS > input
+    {
+      width: calc(100% - 10px);
+      padding: 5px;
+      border: none;
+    }
 
+    .$CLASS > input:focus
+    {
+      outline: none;
+    }
 
-  TextBox([String ph]){
-
-    _insertStyle(_textBoxStyle);
-
-    _html
-      ..children.add(_inputElement)
-      ..classes.add(TEXT_BOX);
-    _inputElement
-      ..onBlur.listen(blur)
-      ..onFocus.listen(focus);
-
-    placeholder = ph;
-
-  }
-
-
+  ''');
 }
-
-
-
-final Style _textBoxStyle = new Style('''
-
-  .$BASE.$CONTROL.$TEXT_BOX > input
-  {
-    margin: 0;
-    border: 1px solid #888;
-    padding: 5px;
-  }
-
-''');
