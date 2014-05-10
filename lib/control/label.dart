@@ -19,7 +19,7 @@ class Label extends Control{
 
   static final Style _labelStyle = new Style('''
 
-    $CLASS 
+    .$CLASS 
     {
       white-space: nowrap;
     }

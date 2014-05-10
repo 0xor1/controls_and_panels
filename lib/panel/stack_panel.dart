@@ -64,14 +64,7 @@ class StackPanel<TBase extends Base> extends Panel<TBase>{
     return base;
   }
 
-  static final Style _stackPanelStyle = new Style('''
-
-    .$CLASS.$VERTICAL > .${Base.CLASS}
-    {
-      clear: left;
-      float: left;
-    }
-  
+  static final Style _stackPanelStyle = new Style('''  
     
     .$CLASS.$HORIZONTAL
     {
@@ -84,6 +77,17 @@ class StackPanel<TBase extends Base> extends Panel<TBase>{
       word-spacing: normal;
       vertical-align: middle;
       font-size: 16px;
+    }
+
+    .$CLASS.$VERTICAL > .${Base.CLASS}
+    {
+      clear: left;
+      float: left;
+    }
+
+    .$CLASS.$VERTICAL
+    {
+      white-space: normal;
     }
 
   ''');
