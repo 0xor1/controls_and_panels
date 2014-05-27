@@ -1,5 +1,5 @@
 /*
- * author: Daniel Robinson  http://github.com/0xor1
+ * author:  Daniel Robinson http://github.com/0xor1
  */
 
 library controls_and_panels;
@@ -13,9 +13,13 @@ part 'style.dart';
 part 'base.dart';
 part 'control.dart';
 part 'panel.dart';
+part 'orientation.dart';
+part 'direction.dart';
+part 'alignment.dart';
 
 part 'panel/stack_panel.dart';
-part 'panel/sizer_panel.dart';
+part 'panel/flow_panel.dart';
+part 'panel/alignment_panel.dart';
 
 part 'control/label.dart';
 part 'control/image.dart';

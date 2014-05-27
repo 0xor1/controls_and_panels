@@ -4,13 +4,15 @@
 
 part of controls_and_panels;
 
-class StackPanel<TBase extends Base> extends Panel<TBase>{
-  static const String CLASS = 'cnp-stack-panel';
+class FlowPanel<TBase extends Base> extends Panel<TBase>{
+  
+  static const String CLASS = 'cnp-flow-panel';
 
-  String _orientation;
+
+  String _fromHorizontal;
   String get orientation => _orientation;
 
-  StackPanel._internal(Orientation orientation, [List<TBase> items = null]){
+  FlowPanel._internal(String orientation, [List<TBase> items = null]){
     _stackPanelStyle.insert();
     if(items != null){
       this.items.addAll(items);
@@ -21,8 +23,8 @@ class StackPanel<TBase extends Base> extends Panel<TBase>{
     html.classes.add(orientation);
   }
 
-  factory StackPanel.vertical([List<TBase> bases]) => new StackPanel._internal(VERTICAL, bases);
-  factory StackPanel.horizontal([List<TBase> bases]) => new StackPanel._internal(HORIZONTAL, bases);
+  factory FlowPanel.vertical([List<TBase> bases]) => new FlowPanel._internal(VERTICAL, bases);
+  factory FlowPanel.horizontal([List<TBase> bases]) => new FlowPanel._internal(HORIZONTAL, bases);
 
   Splitter addSplitter({String lineColor: '#000', String lineStyle: 'solid', int lineThickness: 1, int beforeMargin: 0, int afterMargin: 0}){
     Splitter splitter;

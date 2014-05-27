@@ -1,12 +1,12 @@
 /*
- * author: Daniel Robinson  http://github.com/0xor1
+ * author:  Daniel Robinson http://github.com/0xor1
  */
 
 part of controls_and_panels;
 
 class Style{
   static final StyleElement _controlsAndPanelsStyleElement = new StyleElement()
-  ..id = 'controls-and-panels-style-element-id';
+  ..id = 'cnp-style-element-id';
   bool _hasBeenInserted = false;
   final String text;
 

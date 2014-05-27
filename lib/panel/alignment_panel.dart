@@ -1,12 +1,13 @@
 /*
- * 0xor1  http://github.com/0xor1
+ * author:  Daniel Robinson http://github.com/0xor1
  */
 
 
 part of controls_and_panels;
 
-class SizerPanel<TBase extends Base> extends Panel<TBase>{
-  static const String CLASS = 'cnp-sizer-panel';
+class AlignmentPanel<TBase extends Base> extends Panel<TBase>{
+  
+  static const String CLASS = 'cnp-alignment-panel';
   static const String LEFT = 'left';
   static const String RIGHT = 'right';
   static const String TOP = 'top';
@@ -14,12 +15,14 @@ class SizerPanel<TBase extends Base> extends Panel<TBase>{
   static const String H_CENTER = 'h-center';
   static const String V_CENTER = 'v-center';
   static const String CENTER = 'center';
-  static const String SIZER_INNER_LAYOUT_ASSISTANT = 'sizer-inner-layout-assistant';
-  static const String SIZER_OUTER_LAYOUT_ASSISTANT = 'sizer-outer-layout-assistant';
+  static const String ALIGNMENT_INNER_LAYOUT_ASSISTANT = 'alignment-inner-layout-assistant';
+  static const String ALIGNMENT_OUTER_LAYOUT_ASSISTANT = 'alignment-outer-layout-assistant';
+  
   DivElement _outerLayoutAssistant = new DivElement()
-  ..classes.add(SIZER_OUTER_LAYOUT_ASSISTANT);
+  ..classes.add(ALIGNMENT_OUTER_LAYOUT_ASSISTANT);
   DivElement _innerLayoutAssistant = new DivElement()
-    ..classes.add(SIZER_INNER_LAYOUT_ASSISTANT);
+  ..classes.add(ALIGNMENT_INNER_LAYOUT_ASSISTANT);
+  
   String _horizontalAlignment;
   String get horizontalAlignment => _horizontalAlignment != H_CENTER ? _horizontalAlignment : CENTER;
   void set horizontalAlignment(String alignment){
@@ -36,6 +39,7 @@ class SizerPanel<TBase extends Base> extends Panel<TBase>{
     }
     html.classes.add(_horizontalAlignment);
   }
+  
   String _verticalAlignment;
   String get verticalAlignment => _verticalAlignment != V_CENTER ? _verticalAlignment : CENTER;
   void set verticalAlignment(String alignment){
@@ -53,10 +57,8 @@ class SizerPanel<TBase extends Base> extends Panel<TBase>{
     html.classes.add(_verticalAlignment);
   }
 
-  SizerPanel(String widthStyle, String heightStyle){
+  AlignmentPanel(){
     _sizerPanelStyle.insert();
-    html.style.width = widthStyle;
-    html.style.height = heightStyle;
     horizontalAlignment = CENTER;
     verticalAlignment = CENTER;
     html.children.add(
@@ -99,7 +101,7 @@ class SizerPanel<TBase extends Base> extends Panel<TBase>{
   static final Style _sizerPanelStyle = new Style('''
 
     .$CLASS
-      > .$SIZER_OUTER_LAYOUT_ASSISTANT
+      > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
     {
       display: table;
       width: 100%;
@@ -110,58 +112,58 @@ class SizerPanel<TBase extends Base> extends Panel<TBase>{
     }
 
     .$CLASS
-      > .$SIZER_OUTER_LAYOUT_ASSISTANT
-        > .$SIZER_INNER_LAYOUT_ASSISTANT
+      > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
+        > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       display: table-cell;
     }
 
     .$CLASS.$LEFT
-      > .$SIZER_OUTER_LAYOUT_ASSISTANT
-        > .$SIZER_INNER_LAYOUT_ASSISTANT
+      > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
+        > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       text-align: left;
     }
 
     .$CLASS.$RIGHT
-      > .$SIZER_OUTER_LAYOUT_ASSISTANT
-        > .$SIZER_INNER_LAYOUT_ASSISTANT
+      > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
+        > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       text-align: right;
     }
 
     .$CLASS.$H_CENTER
-      > .$SIZER_OUTER_LAYOUT_ASSISTANT
-        > .$SIZER_INNER_LAYOUT_ASSISTANT
+      > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
+        > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       text-align: center;
     }
 
     .$CLASS.$H_CENTER
-      > .$SIZER_OUTER_LAYOUT_ASSISTANT
-        > .$SIZER_INNER_LAYOUT_ASSISTANT
+      > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
+        > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
           > *
     {
       text-align: left; /*undo the style above*/
     }
 
     .$CLASS.$TOP
-      > .$SIZER_OUTER_LAYOUT_ASSISTANT
-        > .$SIZER_INNER_LAYOUT_ASSISTANT
+      > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
+        > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       vertical-align: top;
     }
 
     .$CLASS.$BOTTOM
-      > .$SIZER_OUTER_LAYOUT_ASSISTANT
-        > .$SIZER_INNER_LAYOUT_ASSISTANT
+      > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
+        > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       vertical-align: bottom;
     }
 
     .$CLASS.$V_CENTER
-      > .$SIZER_OUTER_LAYOUT_ASSISTANT
-        > .$SIZER_INNER_LAYOUT_ASSISTANT
+      > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
+        > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       vertical-align: middle;
     }

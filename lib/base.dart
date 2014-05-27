@@ -1,14 +1,17 @@
 /*
- * author: Daniel Robinson  http://github.com/0xor1
+ * author:  Daniel Robinson http://github.com/0xor1
  */
 
 part of controls_and_panels;
 
 abstract class Base{
+  
   static const String CLASS = 'cnp-base';
-  static const String CONTROLS_AND_PANELS_STAGING_ELEMENT_ID = 'controls-and-panels-staging-element-id';
+  static const String FILL = 'fill';
+  static const String CNP_STAGING_ELEMENT_ID = 'cnp-staging-element-id';
+  
   static final DivElement _controlsAndPanelsStagingElement = new DivElement()
-  ..id = CONTROLS_AND_PANELS_STAGING_ELEMENT_ID
+  ..id = CNP_STAGING_ELEMENT_ID
   ..style.position = 'absolute'
   ..style.width = '0'
   ..style.height = '0'
@@ -16,6 +19,16 @@ abstract class Base{
   ..style.border = '0'
   ..style.padding = '0'
   ..style.overflow = 'hidden';
+  
+  static bool _fillByDefault = false;
+  
+  static void setFillByDefault(){
+    _fillByDefault = true;
+  }
+  
+  static void setUnfillByDefault(){
+    _fillByDefault = false;
+  }
 
   final DivElement html = new DivElement()
   ..classes.add(CLASS);
@@ -24,6 +37,27 @@ abstract class Base{
   Base(){
     _baseStyle.insert();
     stage();
+    if(_fillByDefault){
+      fill();
+    }
+  }
+
+  void fill(){
+    html.classes.add(FILL);
+  }
+  
+  void unfill(){
+    html.classes.remove(FILL);
+  }
+  
+  void setSize(String width, String minWidth, String maxWidth, String height, String minHeight, String maxHeight){
+    html.style
+    ..width = width
+    ..minWidth = minWidth
+    ..maxWidth = maxWidth
+    ..height = height
+    ..minHeight = minHeight
+    ..maxHeight = maxHeight;
   }
 
   bool get isOnPage{
@@ -60,6 +94,12 @@ abstract class Base{
       border: 0;
       padding: 0;
       overflow: hidden;
+    }
+
+    .$CLASS.$FILL
+    {
+      width: 100%;
+      height: 100%;
     }
 
   ''');

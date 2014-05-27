@@ -1,5 +1,5 @@
 /*
- * 0xor1  http://github.com/0xor1
+ * author:  Daniel Robinson http://github.com/0xor1
  */
 
 
@@ -9,7 +9,7 @@ part of controls_and_panels;
 
 class TextBox extends Control{
 
-  static const String CLASS = 'text-box';
+  static const String CLASS = 'cnp-text-box';
   InputElement _inputElement = new InputElement(type:'text');
   String get value => _inputElement.value;
   void set value (String str){
