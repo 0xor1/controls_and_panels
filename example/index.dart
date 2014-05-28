@@ -34,7 +34,8 @@ void main(){
     ..add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'))
     ..add(new Label("Label!"))
     ..add(new Paragraph("A paragraph is like a label, only the text wraps. Just like this, but it's not very interesting"))
-    ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25));
+    ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25))
+    ..add(new Wrapper(new DivElement()..style.width = '50px' ..style.height = '50px' ..style.background = '#36c'));
 
     for(var base in controls){
       stackPanel.add(
