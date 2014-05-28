@@ -13,7 +13,7 @@ class Label extends Control{
 
   Label(String text){
     _labelStyle.insert();
-    html.classes.add(CLASS);
+    addClass(CLASS);
     this.text = text;
   }
 

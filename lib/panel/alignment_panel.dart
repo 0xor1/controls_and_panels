@@ -8,13 +8,6 @@ part of controls_and_panels;
 class AlignmentPanel<TBase extends Base> extends Panel<TBase>{
   
   static const String CLASS = 'cnp-alignment-panel';
-  static const String LEFT = 'left';
-  static const String RIGHT = 'right';
-  static const String TOP = 'top';
-  static const String BOTTOM = 'bottom';
-  static const String H_CENTER = 'h-center';
-  static const String V_CENTER = 'v-center';
-  static const String CENTER = 'center';
   static const String ALIGNMENT_INNER_LAYOUT_ASSISTANT = 'alignment-inner-layout-assistant';
   static const String ALIGNMENT_OUTER_LAYOUT_ASSISTANT = 'alignment-outer-layout-assistant';
   
@@ -23,48 +16,36 @@ class AlignmentPanel<TBase extends Base> extends Panel<TBase>{
   DivElement _innerLayoutAssistant = new DivElement()
   ..classes.add(ALIGNMENT_INNER_LAYOUT_ASSISTANT);
   
-  String _horizontalAlignment;
-  String get horizontalAlignment => _horizontalAlignment != H_CENTER ? _horizontalAlignment : CENTER;
-  void set horizontalAlignment(String alignment){
-    html.classes.remove(_horizontalAlignment);
-    switch(alignment){
-      case LEFT:
-        _horizontalAlignment = LEFT;
-        break;
-      case RIGHT:
-        _horizontalAlignment = RIGHT;
-        break;
-      default:
-        _horizontalAlignment = H_CENTER;
+  Alignment _horizontal;
+  Alignment get horizontal => _horizontal == Alignment._H_CENTER? Alignment.CENTER: _horizontal;
+  void set horizontal(Alignment ali){
+    removeClass(_horizontal);
+    if(ali != Alignment.LEFT && ali != Alignment.RIGHT){
+      ali = Alignment._H_CENTER;
     }
-    html.classes.add(_horizontalAlignment);
+    _horizontal = ali;
+    addClass(_horizontal);
   }
   
-  String _verticalAlignment;
-  String get verticalAlignment => _verticalAlignment != V_CENTER ? _verticalAlignment : CENTER;
-  void set verticalAlignment(String alignment){
-    html.classes.remove(_verticalAlignment);
-    switch(alignment){
-      case TOP:
-        _verticalAlignment = TOP;
-        break;
-      case BOTTOM:
-        _verticalAlignment = BOTTOM;
-        break;
-      default:
-        _verticalAlignment = V_CENTER;
+  Alignment _vertical;
+  Alignment get vertical => _vertical == Alignment._V_CENTER? Alignment.CENTER: _vertical;
+  void set vertical(Alignment ali){
+    removeClass(_vertical);
+    if(ali != Alignment.TOP && ali != Alignment.BOTTOM){
+      ali = Alignment._V_CENTER;
     }
-    html.classes.add(_verticalAlignment);
+    _vertical = ali;
+    addClass(_vertical);
   }
 
-  AlignmentPanel(){
+  AlignmentPanel({Alignment horizontal: Alignment.CENTER, Alignment vertical: Alignment.CENTER}){
     _sizerPanelStyle.insert();
-    horizontalAlignment = CENTER;
-    verticalAlignment = CENTER;
+    this.horizontal = horizontal;
+    this.vertical = vertical;
     html.children.add(
-        _outerLayoutAssistant
-          ..children.add(_innerLayoutAssistant));
-    html.classes.add(CLASS);
+      _outerLayoutAssistant
+      ..children.add(_innerLayoutAssistant));
+    addClass(CLASS);
   }
 
   void add(TBase item){
@@ -115,31 +96,33 @@ class AlignmentPanel<TBase extends Base> extends Panel<TBase>{
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
+      width: 100%;
+      height: 100%;
       display: table-cell;
     }
 
-    .$CLASS.$LEFT
+    .$CLASS.${Alignment.LEFT}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       text-align: left;
     }
 
-    .$CLASS.$RIGHT
+    .$CLASS.${Alignment.RIGHT}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       text-align: right;
     }
 
-    .$CLASS.$H_CENTER
+    .$CLASS.${Alignment._H_CENTER}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       text-align: center;
     }
 
-    .$CLASS.$H_CENTER
+    .$CLASS.${Alignment._H_CENTER}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
           > *
@@ -147,21 +130,21 @@ class AlignmentPanel<TBase extends Base> extends Panel<TBase>{
       text-align: left; /*undo the style above*/
     }
 
-    .$CLASS.$TOP
+    .$CLASS.${Alignment.TOP}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       vertical-align: top;
     }
 
-    .$CLASS.$BOTTOM
+    .$CLASS.${Alignment.BOTTOM}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       vertical-align: bottom;
     }
 
-    .$CLASS.$V_CENTER
+    .$CLASS.${Alignment._V_CENTER}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {

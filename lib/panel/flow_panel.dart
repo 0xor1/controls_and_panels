@@ -8,33 +8,25 @@ class FlowPanel<TBase extends Base> extends Panel<TBase>{
   
   static const String CLASS = 'cnp-flow-panel';
 
+  Direction _to;
+  Direction get to => _to;
+  void set to(Direction dir){
+    removeClass(_to);
+    if(dir != Direction.RIGHT){
+      dir = Direction.LEFT;
+    }
+    _to = dir;
+    addClass(_to);
+  }
 
-  String _fromHorizontal;
-  String get orientation => _orientation;
-
-  FlowPanel._internal(String orientation, [List<TBase> items = null]){
-    _stackPanelStyle.insert();
+  FlowPanel(Direction toDir, [List<TBase> items = null]){
+    _flowPanelStyle.insert();
     if(items != null){
       this.items.addAll(items);
       html.children.addAll(items.map((o) => o.html));
     }
-    html.classes.add(CLASS);
-    _orientation = orientation;
-    html.classes.add(orientation);
-  }
-
-  factory FlowPanel.vertical([List<TBase> bases]) => new FlowPanel._internal(VERTICAL, bases);
-  factory FlowPanel.horizontal([List<TBase> bases]) => new FlowPanel._internal(HORIZONTAL, bases);
-
-  Splitter addSplitter({String lineColor: '#000', String lineStyle: 'solid', int lineThickness: 1, int beforeMargin: 0, int afterMargin: 0}){
-    Splitter splitter;
-    if(_orientation == HORIZONTAL){
-      splitter = new Splitter.vertical(lineColor: lineColor, lineStyle: lineStyle, lineThickness: lineThickness, beforeMargin: beforeMargin, afterMargin: afterMargin);
-    }else{
-      splitter = new Splitter.horizontal(lineColor: lineColor, lineStyle: lineStyle, lineThickness: lineThickness, beforeMargin: beforeMargin, afterMargin: afterMargin);
-    }
-    add(splitter);
-    return splitter;
+    addClass(CLASS);
+    to = toDir;
   }
 
   void add(TBase item){
@@ -64,30 +56,16 @@ class FlowPanel<TBase extends Base> extends Panel<TBase>{
     return base;
   }
 
-  static final Style _stackPanelStyle = new Style('''  
-    
-    .$CLASS.$HORIZONTAL
+  static final Style _flowPanelStyle = new Style('''  
+
+    .$CLASS.${Direction.LEFT} > .${Base.CLASS}
     {
-      white-space: nowrap;
-      font-size: 0;
-    }
-  
-    .$CLASS.$HORIZONTAL > .${Base.CLASS}
-    {
-      word-spacing: normal;
-      vertical-align: middle;
-      font-size: 16px;
+      float: right;
     }
 
-    .$CLASS.$VERTICAL > .${Base.CLASS}
+    .$CLASS.${Direction.RIGHT} > .${Base.CLASS}
     {
-      clear: left;
       float: left;
-    }
-
-    .$CLASS.$VERTICAL
-    {
-      white-space: normal;
     }
 
   ''');

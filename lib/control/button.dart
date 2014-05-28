@@ -34,7 +34,7 @@ class Button extends Control{
   }
 
   factory Button.iconText(String iconPath, String text, {int iconWidth: null, int iconHeight: null}){
-    return new Button(new StackPanel.horizontal([
+    return new Button(new StackPanel(Orientation.HORIZONTAL ,[
       new Image(iconPath, width: iconWidth, height: iconHeight),
       new Label(text)]));
   }
