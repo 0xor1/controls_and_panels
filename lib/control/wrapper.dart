@@ -4,6 +4,8 @@
 
 part of controls_and_panels;
 
-class SimpleWrapper extends Control{
-  SimpleWrapper(Element el);
+class Wrapper extends Control{
+  Wrapper(Element el){
+    html.children.add(el);
+  }
 }

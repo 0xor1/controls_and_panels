@@ -21,17 +21,6 @@ class StackPanel<TBase extends Base> extends Panel<TBase>{
     addClasses([CLASS, ori]);
   }
 
-  Splitter addSplitter({String lineColor: '#000', String lineStyle: 'solid', int lineThickness: 1, int beforeMargin: 0, int afterMargin: 0}){
-    Splitter splitter;
-    if(_orientation == Orientation.HORIZONTAL){
-      splitter = new Splitter.vertical(lineColor: lineColor, lineStyle: lineStyle, lineThickness: lineThickness, beforeMargin: beforeMargin, afterMargin: afterMargin);
-    }else{
-      splitter = new Splitter.horizontal(lineColor: lineColor, lineStyle: lineStyle, lineThickness: lineThickness, beforeMargin: beforeMargin, afterMargin: afterMargin);
-    }
-    add(splitter);
-    return splitter;
-  }
-
   void add(TBase item){
     items.add(item);
     html.children.add(item.html);

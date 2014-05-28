@@ -1,11 +1,12 @@
+/*
+ * author:  Daniel Robinson http://github.com/0xor1
+ */
+
 import 'package:controls_and_panels/controls_and_panels.dart';
-import 'dart:html';
-import 'dart:async';
 
 void main(){
 
   var peaceImgPath = 'resource/image/peace_dove_icon.svg';
-  var arrowImgPath = 'resource/image/green_down_arrow_icon.png';
 
   var sizerPanel = new AlignmentPanel()
   ..setSize('100%', '100%');
@@ -31,7 +32,8 @@ void main(){
     ..add(new Image(peaceImgPath, alt: 'Yomma!', width:95, height:95))
     ..add(new TextBox(placeholder:'Please enter first name'))
     ..add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'))
-    ..add(new Label("Yomma!"))
+    ..add(new Label("Label!"))
+    ..add(new Paragraph("A paragraph is like a label, only the text wraps. Just like this, but it's not very interesting"))
     ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25));
 
     for(var base in controls){
