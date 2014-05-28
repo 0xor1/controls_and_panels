@@ -1,5 +1,5 @@
 /*
- * 0xor1  http://github.com/0xor1
+ * author:  Daniel Robinson http://github.com/0xor1
  */
 
 
@@ -13,7 +13,7 @@ class Label extends Control{
 
   Label(String text){
     _labelStyle.insert();
-    html.classes.add(CLASS);
+    addClass(CLASS);
     this.text = text;
   }
 

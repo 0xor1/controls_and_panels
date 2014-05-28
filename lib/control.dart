@@ -1,10 +1,11 @@
 /*
- * author: Daniel Robinson  http://github.com/0xor1
+ * author:  Daniel Robinson http://github.com/0xor1
  */
 
 part of controls_and_panels;
 
 abstract class Control extends Base{
+  
   static int _idSource = 0;
   static const String CLASS = 'cnp-control';
   static const String FOCUS = 'cnp-focus';

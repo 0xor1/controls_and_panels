@@ -1,4 +1,5 @@
 .idea
 packages/
+build/
 pubspec.lock
 *.js
