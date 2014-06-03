@@ -16,7 +16,8 @@ part 'panel.dart';
 part 'enum_value.dart';
 part 'orientation.dart';
 part 'direction.dart';
-part 'alignment.dart';
+part 'h_align.dart';
+part 'v_align.dart';
 
 part 'panel/stack_panel.dart';
 part 'panel/flow_panel.dart';

@@ -6,39 +6,39 @@
 part of controls_and_panels;
 
 class AlignmentPanel<TBase extends Base> extends Panel<TBase>{
-  
+
   static const String CLASS = 'cnp-alignment-panel';
-  static const String ALIGNMENT_INNER_LAYOUT_ASSISTANT = 'alignment-inner-layout-assistant';
-  static const String ALIGNMENT_OUTER_LAYOUT_ASSISTANT = 'alignment-outer-layout-assistant';
-  
+  static const String ALIGNMENT_OUTER_LAYOUT_ASSISTANT = 'cnp-alignment-outer-layout-assistant';
+  static const String ALIGNMENT_INNER_LAYOUT_ASSISTANT = 'cnp-alignment-inner-layout-assistant';
+
   DivElement _outerLayoutAssistant = new DivElement()
   ..classes.add(ALIGNMENT_OUTER_LAYOUT_ASSISTANT);
   DivElement _innerLayoutAssistant = new DivElement()
   ..classes.add(ALIGNMENT_INNER_LAYOUT_ASSISTANT);
-  
-  Alignment _horizontal;
-  Alignment get horizontal => _horizontal == Alignment._H_CENTER? Alignment.CENTER: _horizontal;
-  void set horizontal(Alignment ali){
+
+  HAlign _horizontal;
+  HAlign get horizontal => _horizontal == HAlign._H_CENTER? HAlign.CENTER: _horizontal;
+  void set horizontal(HAlign ali){
     removeClass(_horizontal);
-    if(ali != Alignment.LEFT && ali != Alignment.RIGHT){
-      ali = Alignment._H_CENTER;
+    if(ali != HAlign.LEFT && ali != HAlign.RIGHT){
+      ali = HAlign._H_CENTER;
     }
     _horizontal = ali;
     addClass(_horizontal);
   }
-  
-  Alignment _vertical;
-  Alignment get vertical => _vertical == Alignment._V_CENTER? Alignment.CENTER: _vertical;
-  void set vertical(Alignment ali){
+
+  VAlign _vertical;
+  VAlign get vertical => _vertical == VAlign._V_CENTER? VAlign.CENTER: _vertical;
+  void set vertical(VAlign ali){
     removeClass(_vertical);
-    if(ali != Alignment.TOP && ali != Alignment.BOTTOM){
-      ali = Alignment._V_CENTER;
+    if(ali != VAlign.TOP && ali != VAlign.BOTTOM){
+      ali = VAlign._V_CENTER;
     }
     _vertical = ali;
     addClass(_vertical);
   }
 
-  AlignmentPanel({Alignment horizontal: Alignment.CENTER, Alignment vertical: Alignment.CENTER}){
+  AlignmentPanel({HAlign horizontal: HAlign.CENTER, VAlign vertical: VAlign.CENTER}){
     _sizerPanelStyle.insert();
     this.horizontal = horizontal;
     this.vertical = vertical;
@@ -101,28 +101,28 @@ class AlignmentPanel<TBase extends Base> extends Panel<TBase>{
       display: table-cell;
     }
 
-    .$CLASS.${Alignment.LEFT}
+    .$CLASS.${HAlign.LEFT}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       text-align: left;
     }
 
-    .$CLASS.${Alignment.RIGHT}
+    .$CLASS.${HAlign.RIGHT}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       text-align: right;
     }
 
-    .$CLASS.${Alignment._H_CENTER}
+    .$CLASS.${HAlign._H_CENTER}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       text-align: center;
     }
 
-    .$CLASS.${Alignment._H_CENTER}
+    .$CLASS.${HAlign._H_CENTER}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
           > *
@@ -130,21 +130,21 @@ class AlignmentPanel<TBase extends Base> extends Panel<TBase>{
       text-align: left; /*undo the style above*/
     }
 
-    .$CLASS.${Alignment.TOP}
+    .$CLASS.${VAlign.TOP}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       vertical-align: top;
     }
 
-    .$CLASS.${Alignment.BOTTOM}
+    .$CLASS.${VAlign.BOTTOM}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
       vertical-align: bottom;
     }
 
-    .$CLASS.${Alignment._V_CENTER}
+    .$CLASS.${VAlign._V_CENTER}
       > .$ALIGNMENT_OUTER_LAYOUT_ASSISTANT
         > .$ALIGNMENT_INNER_LAYOUT_ASSISTANT
     {
