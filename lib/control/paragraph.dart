@@ -8,13 +8,13 @@ class Paragraph extends Control{
 
   static const String CLASS = 'cnp-paragraph';
 
-  final ParagraphElement _pEle = new ParagraphElement();
-  String get text => _pEle.text;
-  void set text (String text){_pEle.text = text;}
+  final ParagraphElement _paraEle = new ParagraphElement();
+  String get text => _paraEle.text;
+  void set text (String text){_paraEle.text = text;}
 
   Paragraph(String text){
     _paragraphStyle.insert();
-    addClass(_pEle);
+    addClass(_paraEle);
     addClass(CLASS);
     this.text = text;
   }
