@@ -31,7 +31,7 @@ class TextArea extends Control{
 
   TextArea({ int rows: 4, int cols: 50, String placeholder: ''}){
     _textAreaStyle.insert();
-    html.classes.add(CLASS);
+    addClass(CLASS);
     html.children.add(_textAreaElement);
     _textAreaElement
       ..onBlur.listen((_) => blur())

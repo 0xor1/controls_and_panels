@@ -21,7 +21,7 @@ class Button extends Control{
 
   Button(Base content){
     _buttonStyle.insert();
-    html.classes.add(CLASS);
+    addClass(CLASS);
     this.content = content;
   }
 

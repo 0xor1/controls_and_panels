@@ -23,7 +23,7 @@ class TextBox extends Control{
 
   TextBox({String value: null, String placeholder: null}){
     _textBoxStyle.insert();
-    html.classes.add(CLASS);
+    addClass(CLASS);
     html.children.add(_inputElement);
     _inputElement
       ..onBlur.listen((_) => blur())

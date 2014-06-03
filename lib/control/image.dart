@@ -18,6 +18,7 @@ class Image extends Control{
 
   Image(String src, {String alt:'', int width: null, int height: null}){
     _imageStyle.insert();
+    addClass(CLASS);
     _imageElement
       ..src = src
       ..alt = alt;
@@ -28,7 +29,6 @@ class Image extends Control{
       this.imgHeight = height;
     }
     html.children.add(_imageElement);
-    html.classes.add(CLASS);
   }
 
   static final Style _imageStyle = new Style('''
