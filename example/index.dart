@@ -8,12 +8,12 @@ void main(){
 
   var peaceImgPath = 'resource/image/peace_dove_icon.svg';
 
-  var sizerPanel = new AlignmentPanel()
+  var sizerPanel = new AlignPanel()
   ..setSize('100%', '100%');
   var rootStack = new StackPanel(Orientation.HORIZONTAL);
   sizerPanel.add(rootStack);
   document.body.append(sizerPanel.html);
-  
+
   var stackPanels = new List<StackPanel>();
   var stackPanel1 = new StackPanel(Orientation.VERTICAL);
   rootStack.add(stackPanel1);
@@ -39,7 +39,7 @@ void main(){
 
     for(var base in controls){
       stackPanel.add(
-        new AlignmentPanel()
+        new AlignPanel()
           ..add(base)
           ..setSize('250px', '100px'));
     }

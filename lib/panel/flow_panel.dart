@@ -5,7 +5,7 @@
 part of controls_and_panels;
 
 class FlowPanel<TBase extends Base> extends Panel<TBase>{
-  
+
   static const String CLASS = 'cnp-flow-panel';
 
   Direction _to;
@@ -21,11 +21,11 @@ class FlowPanel<TBase extends Base> extends Panel<TBase>{
 
   FlowPanel(Direction toDir, [List<TBase> items = null]){
     _flowPanelStyle.insert();
+    addClass(CLASS);
     if(items != null){
       this.items.addAll(items);
       html.children.addAll(items.map((o) => o.html));
     }
-    addClass(CLASS);
     to = toDir;
   }
 

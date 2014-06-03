@@ -21,7 +21,7 @@ part 'v_align.dart';
 
 part 'panel/stack_panel.dart';
 part 'panel/flow_panel.dart';
-part 'panel/alignment_panel.dart';
+part 'panel/align_panel.dart';
 
 part 'control/paragraph.dart';
 part 'control/label.dart';
