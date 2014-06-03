@@ -10,12 +10,12 @@ class Paragraph extends Control{
 
   final ParagraphElement _paraEle = new ParagraphElement();
   String get text => _paraEle.text;
-  void set text (String text){_paraEle.text = text;}
+  void set text (String text){ _paraEle.text = text; }
 
   Paragraph(String text){
     _paragraphStyle.insert();
-    addClass(_paraEle);
     addClass(CLASS);
+    html.append(_paraEle);
     this.text = text;
   }
 
