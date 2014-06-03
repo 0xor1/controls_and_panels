@@ -5,7 +5,7 @@
 part of controls_and_panels;
 
 abstract class Control extends Base{
-  
+
   static int _idSource = 0;
   static const String CLASS = 'cnp-control';
   static const String FOCUS = 'cnp-focus';
@@ -22,8 +22,6 @@ abstract class Control extends Base{
   }
   final int _id;
   int get controlId => _id;
-  String get htmlId => html.id;
-  void set htmlId(String id){ html.id = id; }
   static String _namespace;
   static String get namespace => _namespace;
   static void set namespace (String ns){

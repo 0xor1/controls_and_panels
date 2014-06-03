@@ -32,6 +32,9 @@ abstract class Base{
 
   final DivElement html = new DivElement();
 
+  String get id => html.id;
+  void set id(String id){ html.id = id; }
+
   CssStyleDeclaration get style => html.style;
 
   Base(){
