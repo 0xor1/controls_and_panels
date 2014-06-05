@@ -1,11 +1,14 @@
 /*
- * author:  Daniel Robinson http://github.com/0xor1
+ * Author:  Daniel Robinson http://github.com/0xor1
  */
 
 part of controls_and_panels;
 
 class FlowPanel<TBase extends Base> extends Panel<TBase>{
 
+  /**
+   * TODO this class is not fleshed out and needs to fully utilise the new flexbox display type if support is sufficient
+   */
   static const String CLASS = 'cnp-flow-panel';
 
   Direction _to;
@@ -57,6 +60,12 @@ class FlowPanel<TBase extends Base> extends Panel<TBase>{
   }
 
   static final Style _flowPanelStyle = new Style('''  
+
+    .$CLASS
+    {
+      display: inline-flex;
+    }
+
 
     .$CLASS.${Direction.LEFT} > .${Base.CLASS}
     {

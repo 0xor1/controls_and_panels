@@ -1,11 +1,11 @@
 /*
- * author:  Daniel Robinson http://github.com/0xor1
+ * Author:  Daniel Robinson http://github.com/0xor1
  */
 
 part of controls_and_panels;
 
 class StackPanel<TBase extends Base> extends Panel<TBase>{
-  
+
   static const String CLASS = 'cnp-stack-panel';
 
   Orientation _orientation;
@@ -30,7 +30,7 @@ class StackPanel<TBase extends Base> extends Panel<TBase>{
     items.insert(index, item);
     html.children.insert(index, item.html);
   }
-  
+
   bool remove(TBase base){
     bool removed = items.remove(base);
     if(removed){

@@ -1,5 +1,5 @@
 /*
- * author:  Daniel Robinson http://github.com/0xor1
+ * Author:  Daniel Robinson http://github.com/0xor1
  */
 
 part of controls_and_panels;
@@ -27,6 +27,7 @@ abstract class Control extends Base{
       }
     });
   }
+
   final int _id;
   int get controlId => _id;
 
@@ -63,7 +64,7 @@ abstract class Control extends Base{
     html.dataset[CONTROL_ID] = _id.toString();
 
     if(_namespace != null){
-      html.classes.add(_namespace);
+      addClass(_namespace);
     }
 
     html.onClick.listen((event) => focus());
