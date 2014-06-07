@@ -22,7 +22,9 @@ class Paragraph extends Control{
   static final Style _paragraphStyle = new Style('''
 
     .$CLASS
+      > p
     {
+      margin: 0;
     }
 
   ''');

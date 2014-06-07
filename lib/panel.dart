@@ -17,9 +17,17 @@ abstract class Panel<TBase extends Base> extends Base{
 
   void add(TBase base);
 
+  void addAll(Iterable<Base> items){
+    items.forEach((item) => add(item));
+  }
+
   void insert(int index, TBase base);
 
   bool remove(TBase base);
+
+  void removeAll(Iterable<Base> items){
+    items.forEach((item) => remove(item));
+  }
 
   Base removeAt(int index);
 

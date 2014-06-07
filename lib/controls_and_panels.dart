@@ -30,3 +30,4 @@ part 'control/button.dart';
 part 'control/text_box.dart';
 part 'control/text_area.dart';
 part 'control/wrapper.dart';
+part 'control/command_line.dart';

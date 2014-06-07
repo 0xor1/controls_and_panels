@@ -119,7 +119,6 @@ abstract class Base{
     {
       position: relative;
       display: inline-block;
-      font-family: verdana, arial, sans-serif;
       margin: 0;
       border: 0;
       padding: 0;

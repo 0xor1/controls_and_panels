@@ -6,7 +6,7 @@ part of controls_and_panels;
 
 class Style{
   static final StyleElement _cnpStyleElement = new StyleElement()
-  ..id = 'cnp-style-element-id';
+  ..id = 'cnp-style-element';
   bool _hasBeenInserted = false;
   final String text;
 

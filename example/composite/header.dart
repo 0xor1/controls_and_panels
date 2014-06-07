@@ -4,7 +4,7 @@
 
 part of cnp.example;
 
-class Header extends Control{
+class _Header extends Control{
 
   static const String CLASS = 'cnp-example-header';
   static const String TITLE = 'cnp-example-title';
@@ -14,7 +14,7 @@ class Header extends Control{
   final StackPanel brandingPlaceholder = new StackPanel(Orientation.HORIZONTAL)
   ..addClass(BRANDING_PLACEHOLDER);
 
-  Header(Base branding, String title){
+  _Header(Base branding, String title){
     _headerStyle.insert();
     addClass(CLASS);
     rootLayout
@@ -34,8 +34,8 @@ class Header extends Control{
     {
       width: 100%;
       height: 60px;
-      font-size: 20px;
       background: #a5d5f5;
+      font-family: 'Roboto',arial,sans-serif;
     }
 
     .$CLASS
@@ -50,15 +50,25 @@ class Header extends Control{
       > .${StackPanel.CLASS}
         > .$BRANDING_PLACEHOLDER
     {
-      width: 110px;
+      width: 170px;
       height: 50px;
+    }
+
+    .$CLASS
+      > .${StackPanel.CLASS}
+        > .$BRANDING_PLACEHOLDER
+          > .${StackPanel.CLASS}
+            > .${Label.CLASS}
+    {
+      font-size: 32px;
     }
 
     .$CLASS
       > .${StackPanel.CLASS}
         > .$TITLE
     {
-      margin-left: 95px;
+      margin-left: 35px;
+      font-size: 20px;
     }
 
   ''');
