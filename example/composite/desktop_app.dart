@@ -17,6 +17,10 @@ class DesktopApp extends Control{
     html.append(rootLayout.html);
   }
 
+  void registerModule(Base menuEntry, Base ribbon, Base mainContent){
+    //add menu entry to app menu and hook up event to insert ribbon to action bar and main content on click
+  }
+
   static Style _desktopAppStyle = new Style('''
     
     .$CLASS

@@ -9,6 +9,7 @@ class _Header extends Control{
   static const String CLASS = 'cnp-example-header';
   static const String TITLE = 'cnp-example-title';
   static const String BRANDING_PLACEHOLDER = 'cnp-example-branding-placeholder';
+  static const int height = 60;
 
   final StackPanel rootLayout = new StackPanel(Orientation.HORIZONTAL);
   final StackPanel brandingPlaceholder = new StackPanel(Orientation.HORIZONTAL)
@@ -33,7 +34,7 @@ class _Header extends Control{
     .$CLASS
     {
       width: 100%;
-      height: 60px;
+      height: ${height}px;
       background: #a5d5f5;
       font-family: 'Roboto',arial,sans-serif;
     }
@@ -42,7 +43,7 @@ class _Header extends Control{
       > .${StackPanel.CLASS}
     {
       width: calc(100% - 70px);
-      height: 50px;
+      height: ${height - 10}px;
       margin: 5px 35px;
     }
 
@@ -51,7 +52,7 @@ class _Header extends Control{
         > .$BRANDING_PLACEHOLDER
     {
       width: 170px;
-      height: 50px;
+      height: 100%;
     }
 
     .$CLASS
