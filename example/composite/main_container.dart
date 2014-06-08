@@ -8,7 +8,7 @@ class _MainContainer extends Control{
 
   static const String CLASS = 'cnp-example-main-container';
 
-  final StackPanel _rootLayout = new StackPanel(Orientation.HORIZONTAL)
+  final StackPanel _rootLayout = new StackPanel(Orientation.VERTICAL)
   ..fill();
 
   _MainContainer(){

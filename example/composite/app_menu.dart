@@ -7,10 +7,8 @@ part of cnp.example;
 class _AppMenu extends Control{
 
   static const String CLASS = 'cnp-example-app-menu';
-  static const int width = 220;
-  static const String background = '#444';
 
-  final StackPanel _rootLayout = new StackPanel(Orientation.HORIZONTAL);
+  final StackPanel _rootLayout = new StackPanel(Orientation.VERTICAL);
 
   _AppMenu(){
     _appMenuStyle.insert();
@@ -18,14 +16,16 @@ class _AppMenu extends Control{
     html.append(_rootLayout.html);
   }
 
+  void add(_AppMenuEntry entry){
+    _rootLayout.add(entry);
+  }
+
   static final Style _appMenuStyle = new Style('''
     
     .$CLASS
     {
       position: absolute;
-      width: ${width}px;
-      height: 100%;
-      background: $background;
+      max-height: 100%;
       overflow-y: auto;
     }
 

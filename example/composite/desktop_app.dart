@@ -23,7 +23,7 @@ class DesktopApp extends Control{
 
   void _initialiseComponents(Base branding, String title){
     _header = new _Header(branding, title);
-    _actionBar = new _ActionBar();
+    _actionBar = new _ActionBar(showMenu);
     _mainContainer = new _MainContainer();
     _appMenu = new _AppMenu();
     _rootLayout.addAll([_header, _actionBar, _mainContainer]);
