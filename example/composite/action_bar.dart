@@ -11,7 +11,7 @@ class _ActionBar extends Control{
 
   final StackPanel _rootLayout = new StackPanel(Orientation.HORIZONTAL);
 
-  _ActionBar(Base branding, String title){
+  _ActionBar(){
     _actionBarStyle.insert();
     addClass(CLASS);
     _arrangeHtml();
@@ -27,10 +27,12 @@ class _ActionBar extends Control{
 
   }
 
-  static Style _actionBarStyle = new Style('''
+  static final Style _actionBarStyle = new Style('''
     
     .$CLASS
     {
+      width: 100%;
+      height: ${height}px;
       background: #eee;
     }
 

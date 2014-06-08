@@ -8,6 +8,7 @@ class _AppMenu extends Control{
 
   static const String CLASS = 'cnp-example-app-menu';
   static const int width = 220;
+  static const String background = '#444';
 
   final StackPanel _rootLayout = new StackPanel(Orientation.HORIZONTAL);
 
@@ -17,11 +18,15 @@ class _AppMenu extends Control{
     html.append(_rootLayout.html);
   }
 
-  static Style _appMenuStyle = new Style('''
+  static final Style _appMenuStyle = new Style('''
     
     .$CLASS
     {
-      background: #444;
+      position: absolute;
+      width: ${width}px;
+      height: 100%;
+      background: $background;
+      overflow-y: auto;
     }
 
   ''');

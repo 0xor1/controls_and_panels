@@ -8,7 +8,8 @@ class _MainContainer extends Control{
 
   static const String CLASS = 'cnp-example-main-container';
 
-  final StackPanel _rootLayout = new StackPanel(Orientation.HORIZONTAL);
+  final StackPanel _rootLayout = new StackPanel(Orientation.HORIZONTAL)
+  ..fill();
 
   _MainContainer(){
     _mainContainerStyle.insert();
@@ -16,7 +17,7 @@ class _MainContainer extends Control{
     html.append(_rootLayout.html);
   }
 
-  static Style _mainContainerStyle = new Style('''
+  static final Style _mainContainerStyle = new Style('''
     
     .$CLASS
     {

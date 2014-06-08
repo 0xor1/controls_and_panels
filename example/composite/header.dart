@@ -29,7 +29,7 @@ class _Header extends Control{
     html.append(rootLayout.html);
   }
 
-  static Style _headerStyle = new Style('''
+  static final Style _headerStyle = new Style('''
     
     .$CLASS
     {
