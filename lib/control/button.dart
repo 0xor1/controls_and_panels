@@ -51,6 +51,7 @@ class Button extends Control{
       border-radius: 3px;
       padding: 2px 4px;
       cursor: pointer;
+      line-height: 1;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       -khtml-user-select: none;

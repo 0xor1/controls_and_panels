@@ -17,6 +17,10 @@ class _MainContainer extends Control{
     html.append(_rootLayout.html);
   }
 
+  void setMainContent(Base content){
+    _rootLayout..clear()..add(content);
+  }
+
   static final Style _mainContainerStyle = new Style('''
     
     .$CLASS

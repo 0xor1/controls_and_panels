@@ -23,10 +23,21 @@ class _Header extends Control{
       brandingPlaceholder
       ..add(
         branding))
-    ..add(
+    ..addAll([
       new Label(title)
-      ..addClass(TITLE));
+      ..addClass(TITLE),
+      generateGithubButton()
+      ]);
     html.append(rootLayout.html);
+  }
+
+  Base generateGithubButton(){
+    return new AlignPanel()
+    ..add(
+      new Button.iconText('../resource/image/github.png', 'Github', iconWidth: 20, iconHeight: 20)
+      ..onClick.listen((_){window.location.href = 'http://github.com/0xor1/controls_and_panels';}))
+    ..style.float = 'right'
+    ..style.height = '100%';
   }
 
   static final Style _headerStyle = new Style('''

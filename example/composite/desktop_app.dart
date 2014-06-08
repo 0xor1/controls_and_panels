@@ -18,7 +18,6 @@ class DesktopApp extends Control{
     _desktopAppStyle.insert();
     addClass(CLASS);
     _initialiseComponents(branding, title);
-    showMenu();
   }
 
   void _initialiseComponents(Base branding, String title){
@@ -30,17 +29,27 @@ class DesktopApp extends Control{
     html.append(_rootLayout.html);
   }
 
-  void registerModule(Base menuEntry, Base ribbon, Base mainContent){
-    //add menu entry to app menu and hook up event to insert ribbon to action bar and main content on click
+  void registerModule(String name, Base ribbon, Base mainContent){
+    var _appMenuEntry = new _AppMenuEntry(name);
+    _appMenuEntry.html.onClick.listen((_){
+      loadModule(name, ribbon, mainContent);
+    });
+    _appMenu.add(_appMenuEntry);
+  }
+
+  void loadModule(String name, Base ribbon, Base mainContent){
+    _actionBar.setMenuAccessButtonText(name);
+    _actionBar.setRibbonBar(ribbon);
+    _mainContainer.setMainContent(mainContent);
   }
 
   void showMenu(){
-    _mainContainer.html.children.insert(0, _appMenu.html);
+    _mainContainer.html.append(_appMenu.html);
   }
 
   void hideMenu(){
     if(_appMenu.html.parent == _mainContainer.html){
-      _mainContainer.html.children.removeAt(0);
+      _mainContainer.html.children.remove(_mainContainer.html);
     }
   }
 

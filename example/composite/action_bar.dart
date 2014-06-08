@@ -36,6 +36,14 @@ class _ActionBar extends Control{
     });
   }
 
+  void setMenuAccessButtonText(String text){
+    _appMenuAccessButton..clear()..add(new Label(text));
+  }
+
+  void setRibbonBar(Base ribbon){
+    _ribbonBarContainer..clear()..add(ribbon);
+  }
+
   static final Style _actionBarStyle = new Style('''
     
     .$CLASS

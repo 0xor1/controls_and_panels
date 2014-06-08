@@ -23,9 +23,9 @@ class CommandLine extends Control{
 
   /**
    * The string that will be prefixed before each entry into the history feed,
-   * the default value is '>'
+   * the default value is '> '
    */
-  String entryPrefix = '>';
+  String entryPrefix = '> ';
   int _historyLength = 100;
   int get historyLength => _historyLength;
   /**
@@ -116,7 +116,6 @@ class CommandLine extends Control{
           > .${Paragraph.CLASS}
     {
       word-wrap: break-word;
-      margin-top: 0;
       margin-bottom: 5px;
     }
 

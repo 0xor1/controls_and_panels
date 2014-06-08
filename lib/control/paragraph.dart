@@ -8,23 +8,19 @@ class Paragraph extends Control{
 
   static const String CLASS = 'cnp-paragraph';
 
-  final ParagraphElement _paraEle = new ParagraphElement();
-  String get text => _paraEle.text;
-  void set text (String text){ _paraEle.text = text; }
+  String get text => html.text;
+  void set text (String text){ html.text = text; }
 
   Paragraph(String text){
     _paragraphStyle.insert();
     addClass(CLASS);
-    html.append(_paraEle);
     this.text = text;
   }
 
   static final Style _paragraphStyle = new Style('''
 
     .$CLASS
-      > p
     {
-      margin: 0;
     }
 
   ''');

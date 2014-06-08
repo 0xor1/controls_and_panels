@@ -25,8 +25,18 @@ class _AppMenu extends Control{
     .$CLASS
     {
       position: absolute;
-      max-height: 100%;
+      left: 0;
+      width: ${_AppMenuEntry.width}px;
+      height: 100%;
       overflow-y: auto;
+      background: ${_AppMenuEntry.background};
+    }
+    
+    .$CLASS
+      > .${StackPanel.CLASS}
+    {
+      width: ${_AppMenuEntry.width}px;
+      height: 100%;
     }
 
   ''');

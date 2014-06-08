@@ -12,11 +12,13 @@ class _AppMenuEntry extends Control{
   static const String backgroundHover = '#888';
   static const String color = '#fff';
 
-  final AlignPanel _rootLayout = new AlignPanel();
+  final AlignPanel _rootLayout = new AlignPanel()
+  ..fill();
 
-  _AppMenuEntry(Base content){
+  _AppMenuEntry(String name){
     _appMenuEntryStyle.insert();
     addClass(CLASS);
+    _rootLayout.add(new Label(name));
     html.append(_rootLayout.html);
   }
 
@@ -32,6 +34,7 @@ class _AppMenuEntry extends Control{
     }
 
     .$CLASS:hover
+      > *
     {
       background: $backgroundHover;
     }
