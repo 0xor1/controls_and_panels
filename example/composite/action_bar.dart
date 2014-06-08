@@ -16,6 +16,7 @@ class _ActionBar extends Control{
   final StackPanel _ribbonBarContainer = new StackPanel(Orientation.HORIZONTAL)
   ..addClass(RIBBON_BAR_CONTAINER);
   final AlignPanel _appMenuAccessButton = new AlignPanel()
+  ..add(new Label('Menu'))
   ..addClass(APP_MENU_ACCESS_BUTTON);
 
   _ActionBar(void showAppMenu()){
@@ -34,10 +35,6 @@ class _ActionBar extends Control{
     _appMenuAccessButton.html.onClick.listen((MouseEvent event){
       showAppMenu();
     });
-  }
-
-  void setMenuAccessButtonText(String text){
-    _appMenuAccessButton..clear()..add(new Label(text));
   }
 
   void setRibbonBar(Base ribbon){
@@ -60,6 +57,9 @@ class _ActionBar extends Control{
       width: ${_AppMenuEntry.width}px;
       height: 100%;
       background: ${_AppMenuEntry.background};
+      font-weight: bold;
+      color: ${_AppMenuEntry.color};
+      font-size: 20px;
     }
 
     .$CLASS

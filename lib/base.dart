@@ -123,6 +123,7 @@ abstract class Base{
       border: 0;
       padding: 0;
       overflow: hidden;
+      line-height: 1;
     }
 
     .$CLASS.$FILL

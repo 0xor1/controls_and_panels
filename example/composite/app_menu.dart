@@ -35,8 +35,7 @@ class _AppMenu extends Control{
     .$CLASS
       > .${StackPanel.CLASS}
     {
-      width: ${_AppMenuEntry.width}px;
-      height: 100%;
+      overflow: visible;
     }
 
   ''');

@@ -24,7 +24,10 @@ class DesktopApp extends Control{
     _header = new _Header(branding, title);
     _actionBar = new _ActionBar(showMenu);
     _mainContainer = new _MainContainer();
-    _appMenu = new _AppMenu();
+    _appMenu = new _AppMenu()
+    ..html.onMouseLeave.listen((_){
+      hideMenu();
+    });
     _rootLayout.addAll([_header, _actionBar, _mainContainer]);
     html.append(_rootLayout.html);
   }
@@ -38,7 +41,6 @@ class DesktopApp extends Control{
   }
 
   void loadModule(String name, Base ribbon, Base mainContent){
-    _actionBar.setMenuAccessButtonText(name);
     _actionBar.setRibbonBar(ribbon);
     _mainContainer.setMainContent(mainContent);
   }
@@ -49,7 +51,7 @@ class DesktopApp extends Control{
 
   void hideMenu(){
     if(_appMenu.html.parent == _mainContainer.html){
-      _mainContainer.html.children.remove(_mainContainer.html);
+      _mainContainer.html.children.remove(_appMenu.html);
     }
   }
 

@@ -28,7 +28,7 @@ class _AppMenuEntry extends Control{
     {
       position: absolute;
       width: ${width}px;
-      height: ${_ActionBar.height};
+      height: ${_ActionBar.height}px;
       background: $background;
       color: $color;
     }

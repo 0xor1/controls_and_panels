@@ -27,7 +27,6 @@ class _MainContainer extends Control{
     {
       width: 100%;
       height: calc(100% - ${_Header.height + _ActionBar.height}px);
-      overflow: auto;
     }
 
   ''');

@@ -32,10 +32,9 @@ abstract class Panel<TBase extends Base> extends Base{
   Base removeAt(int index);
 
   void clear(){
-    items.forEach((item){
-      remove(item);
-    });
-
+    while(items.length > 0){
+      remove(items.last);
+    }
   }
 
   static final Style _panelStyle = new Style('''

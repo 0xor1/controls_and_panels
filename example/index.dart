@@ -16,7 +16,11 @@ void main(){
           new Image(peaceImgPath, width: 50, height: 50),
           new Label('Peace')]),
       'Controls & Panels')
-    ..registerModule('cmdln', new StackPanel(Orientation.HORIZONTAL)..fill(),
+    ..registerModule(
+      'CommandLine',
+      new StackPanel(Orientation.HORIZONTAL)
+      ..add(new Label('CommandLine'))
+      ..fill(),
         new CommandLine()..setSize('100%', '100%'))).html);
 
   /*document.body.append((
