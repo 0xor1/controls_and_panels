@@ -3,27 +3,27 @@
  */
 
 import 'package:controls_and_panels/controls_and_panels.dart';
-import 'example.dart';
+
+const String stripeImg = 'resource/image/stripe.png';
 
 void main(){
 
-  var peaceImgPath = 'resource/image/peace_dove_icon.svg';
-
   document.body.append((
-    new DesktopApp(
-      new StackPanel(
-        Orientation.HORIZONTAL, [
-          new Image(peaceImgPath, width: 50, height: 50),
-          new Label('Peace')]),
-      'Controls & Panels')
-    ..registerModule(
-      'CommandLine',
-      new StackPanel(Orientation.HORIZONTAL)
-      ..add(new Label('CommandLine'))
-      ..fill(),
-        new CommandLine()..setSize('100%', '100%'))).html);
+    new PagePanel(new CommandLine()..fill())
+    ..float(
+      new Button.text('hi'),
+      new Image(stripeImg), 'window', 200, 200, 200, 200)).html);
 
-  /*document.body.append((
-    new CommandLine()
-    ..setSize('100%', '100%')).html);*/
+  _insertCustomStyles();
+}
+
+void _insertCustomStyles(){
+  document.head.appendHtml('''
+    <style id='cnp-example-custom-styles'>
+      .${Window.CLASS}
+      {
+        background: url($stripeImg);
+      }
+    </style>
+  ''');
 }
