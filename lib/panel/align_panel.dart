@@ -54,7 +54,7 @@ class AlignPanel<TBase extends Base> extends Panel<TBase>{
       _innerLayoutAssistant.children.add(item.html);
       return;
     }
-    throw 'sizer panel already has one child and cannot accept anymore';
+    throw 'AlignPanel already has one child and cannot accept anymore';
   }
 
   void insert(int index, TBase item){
@@ -62,7 +62,7 @@ class AlignPanel<TBase extends Base> extends Panel<TBase>{
       add(item);
       return;
     }
-    throw 'can only insert at index 0 on a sizer panel as it only accepts one child';
+    throw 'can only insert at index 0 on an AlignPanel as it only accepts one child';
   }
 
   bool remove(TBase item){

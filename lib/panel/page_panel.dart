@@ -4,7 +4,7 @@
 
 part of controls_and_panels;
 
-class PagePanel extends Panel<Window>{
+class PagePanel<TBase extends Base> extends Panel<TBase>{
 
   static const String CLASS = 'cnp-page-panel';
   static const String FLOAT_ANCHOR = 'cnp-float-anchor';
@@ -14,56 +14,64 @@ class PagePanel extends Panel<Window>{
   ..classes.add(FLOAT_ANCHOR);
   final DivElement _contentHolder = new DivElement()
   ..classes.add(CONTENT_HOLDER);
-  Base _content;
+  List<Window> _windows = new List<Window>();
+  static PagePanel _singleton;
 
-  PagePanel(this._content){
+  factory PagePanel(TBase content){
+    if(_singleton != null){
+      return _singleton;
+    }else{
+      return _singleton = new PagePanel._internal(content);
+    }
+  }
+  PagePanel._internal(TBase content){
     _pagePanelStyle.insert();
     addClass(CLASS);
-    _arrangeHtml();
+    _arrangeHtml(content);
   }
 
-  void _arrangeHtml(){
+  void _arrangeHtml(TBase content){
     html
     ..append(_contentHolder)
     ..append(_floatAnchor);
-    if(_content != null){
-      setContent(_content);
+    if(content != null){
+      add(content);
     }
   }
 
-  void add(Window item){
-    items.add(item);
-    _floatAnchor.children.add(item.html);
-  }
-
-  void insert(int index, Window item){
-    items.insert(index, item);
-    _floatAnchor.children.insert(index, item.html);
-  }
-
-  bool remove(Window base){
-    bool removed = items.remove(base);
-    if(removed){
-      _floatAnchor.children.remove(base.html);
+  void add(TBase item){
+    if(items.length == 0){
+      items.add(item);
+      _contentHolder.children.add(item.html);
+      return;
     }
-    return removed;
+    throw 'PagePanel already has one child and cannot accept anymore';
   }
 
-  Window removeAt(int index){
-    Window base = items.removeAt(index);
-    if(base != null){
-      _floatAnchor.children.remove(base.html);
+  void insert(int index, TBase item){
+    if(index == 0){
+      add(item);
+      return;
     }
-    return base;
+    throw 'can only insert at index 0 on an PagePanel as it only accepts one child';
+  }
+
+  bool remove(TBase item){
+    _contentHolder.children.remove(item.html);
+    return items.remove(item);
+  }
+
+  TBase removeAt(int index){
+    if(index == 0 && items.length == 1){
+      var base = items.removeAt(0);
+      _contentHolder.children.remove(base.html);
+      return base;
+    }
+    return null;
   }
 
   void float(Base content, Image icon, String name, int width, int height, int top, int left){
-    add(new Window(content, icon, name, width, height, top, left));
-  }
-
-  void setContent(Base content){
-    _contentHolder.children.clear();
-    _contentHolder.children.add(content.html);
+    _floatAnchor.children.add(new Window(content, icon, name, width, height, top, left).html);
   }
 
   static final Style _pagePanelStyle = new Style('''  
