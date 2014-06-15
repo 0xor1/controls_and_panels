@@ -33,41 +33,45 @@ class Window extends Control {
 
   StreamSubscription _currentMouseMoveSub;
 
-  int _top;
+  int _top = 0;
   int get top => _top;
   void set top(int t) {
     _top = t < 0? 0: t > window.innerHeight - _movementBuffer? window.innerHeight - _movementBuffer: t;
     html.style.top = '${_top}px';
   }
 
-  int _left;
+  int _left = 0;
   int get left => _left;
   void set left(int l) {
     _left = l < 0? 0: l > window.innerWidth - _movementBuffer? window.innerWidth - _movementBuffer: l;
     html.style.left = '${_left}px';
   }
 
-  int _width;
+  int _width = 0;
   int get width => _width;
   void set width(int w) {
     _width = w < _minSize? _minSize: w > window.innerWidth - _left? window.innerWidth - _left: w;
     html.style.width = '${_width}px';
   }
 
-  int _height;
+  int _height = 0;
   int get height => _height;
   void set height(int h) {
     _height = h < _minSize? _minSize: h > window.innerHeight - _top? window.innerHeight - _top: h;
     html.style.height = '${_height}px';
   }
 
-  Window(this.content, this.icon, this.name, this._width, this._height, this._top, this._left) {
+  int get right => _left + _width;
+
+  int get bottom => _top + _height;
+
+  Window(this.content, this.icon, this.name, width, height, top, left) {
     _windowStyle.insert();
-    setWindowSize(_width, _height);
-    setWindowPosition(_top, _left);
     addClass(CLASS);
     _arrangeHtml();
     _hookUpEvents();
+    setWindowSize(width, height);
+    setWindowPosition(top, left);
   }
 
   void _arrangeHtml() {
@@ -92,19 +96,36 @@ class Window extends Control {
   void _hookUpEvents(){
     _bottomResizer.onMouseDown.listen((_){
       _attachWindowMouseUpEvent();
-      if(_currentMouseMoveSub != null){
-        _currentMouseMoveSub.cancel();
-      }
+      _cancelCurrentMouseMoveSubIfNecessary();
       _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
-
+        height = event.client.y - top;
+      });
+    });
+    _topResizer.onMouseDown.listen((MouseEvent event){
+      _attachWindowMouseUpEvent();
+      _cancelCurrentMouseMoveSubIfNecessary();
+      int startBottom = bottom;
+      _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
+        if(event.client.y <= startBottom - _minSize){
+          top = event.client.y;
+          height = startBottom - top;
+        }
       });
     });
   }
 
+  void _cancelCurrentMouseMoveSubIfNecessary(){
+    if(_currentMouseMoveSub != null){
+      _currentMouseMoveSub.cancel();
+    }
+  }
+
   void _attachWindowMouseUpEvent(){
-    window.onMouseUp.listen((_){
+    StreamSubscription windowMouseUpSub;
+    windowMouseUpSub = window.onMouseUp.listen((_){
       if(_currentMouseMoveSub != null){
         _currentMouseMoveSub.cancel();
+        windowMouseUpSub.cancel();
       }
     });
   }
