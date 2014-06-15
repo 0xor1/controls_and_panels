@@ -106,7 +106,10 @@ class Window extends Control {
       _cancelCurrentMouseMoveSubIfNecessary();
       int startBottom = bottom;
       _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
-        if(event.client.y <= startBottom - _minSize){
+        if(event.client.y > startBottom - _minSize){
+          top = startBottom - _minSize;
+          height = _minSize;
+        }else{
           top = event.client.y;
           height = startBottom - top;
         }
