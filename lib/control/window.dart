@@ -94,27 +94,106 @@ class Window extends Control {
   }
 
   void _hookUpEvents(){
-    _bottomResizer.onMouseDown.listen((_){
-      _attachWindowMouseUpEvent();
-      _cancelCurrentMouseMoveSubIfNecessary();
-      _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
-        height = event.client.y - top;
-      });
-    });
     _topResizer.onMouseDown.listen((MouseEvent event){
       _attachWindowMouseUpEvent();
       _cancelCurrentMouseMoveSubIfNecessary();
       int startBottom = bottom;
       _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
-        if(event.client.y > startBottom - _minSize){
-          top = startBottom - _minSize;
-          height = _minSize;
-        }else{
-          top = event.client.y;
-          height = startBottom - top;
-        }
+        _handleTopMouseMove(event, startBottom);
       });
     });
+    _leftResizer.onMouseDown.listen((MouseEvent event){
+      _attachWindowMouseUpEvent();
+      _cancelCurrentMouseMoveSubIfNecessary();
+      int startRight = right;
+      _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
+        _handleLeftMouseMove(event, startRight);
+      });
+    });
+    _bottomResizer.onMouseDown.listen((_){
+      _attachWindowMouseUpEvent();
+      _cancelCurrentMouseMoveSubIfNecessary();
+      _currentMouseMoveSub = window.onMouseMove.listen(_handleBottomMouseMove);
+    });
+    _rightResizer.onMouseDown.listen((_){
+      _attachWindowMouseUpEvent();
+      _cancelCurrentMouseMoveSubIfNecessary();
+      _currentMouseMoveSub = window.onMouseMove.listen(_handleRightMouseMove);
+    });
+    _topLeftResizer.onMouseDown.listen((_){
+      _attachWindowMouseUpEvent();
+      _cancelCurrentMouseMoveSubIfNecessary();
+      int startBottom = bottom;
+      int startRight = right;
+      _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
+        _handleTopMouseMove(event, startBottom);
+        _handleLeftMouseMove(event, startRight);
+      });
+    });
+    _bottomRightResizer.onMouseDown.listen((_){
+      _attachWindowMouseUpEvent();
+      _cancelCurrentMouseMoveSubIfNecessary();
+      _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
+        _handleBottomMouseMove(event);
+        _handleRightMouseMove(event);
+      });
+    });
+    _topRightResizer.onMouseDown.listen((_){
+      _attachWindowMouseUpEvent();
+      _cancelCurrentMouseMoveSubIfNecessary();
+      int startBottom = bottom;
+      _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
+        _handleTopMouseMove(event, startBottom);
+        _handleRightMouseMove(event);
+      });
+    });
+    _bottomLeftResizer.onMouseDown.listen((_){
+      _attachWindowMouseUpEvent();
+      _cancelCurrentMouseMoveSubIfNecessary();
+      int startRight = right;
+      _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
+        _handleBottomMouseMove(event);
+        _handleLeftMouseMove(event, startRight);
+      });
+    });
+    _header.onMouseDown.listen((MouseEvent event){
+      _attachWindowMouseUpEvent();
+      _cancelCurrentMouseMoveSubIfNecessary();
+      int initOffsetX = event.client.x - left;
+      int initOffsetY = event.client.y - top;
+      _currentMouseMoveSub = window.onMouseMove.listen((MouseEvent event){
+        left = event.client.x - initOffsetX;
+        top = event.client.y - initOffsetY;
+      });
+    });
+  }
+
+  void _handleTopMouseMove(MouseEvent event, int startBottom) {
+    if(event.client.y > startBottom - _minSize){
+      top = startBottom - _minSize;
+      height = _minSize;
+    }else{
+      top = event.client.y;
+      height = startBottom - top;
+    }
+  }
+
+  void _handleLeftMouseMove(MouseEvent event, int startRight) {
+    if(event.client.x > startRight - _minSize){
+      left = startRight - _minSize;
+      width = _minSize;
+    }else{
+      left = event.client.x;
+      width = startRight - left;
+    }
+  }
+
+  void _handleBottomMouseMove(MouseEvent event) {
+    height = event.client.y - top;
+  }
+
+  void _handleRightMouseMove(MouseEvent event) {
+    width = event.client.x - left;
   }
 
   void _cancelCurrentMouseMoveSubIfNecessary(){
