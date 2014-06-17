@@ -34,4 +34,6 @@ part 'control/text_area.dart';
 part 'control/wrapper.dart';
 part 'control/command_line.dart';
 
-part 'util/command_line_app_binder.dart';
+part 'util/command_line_input_binder.dart';
+part 'util/command_line_binding.dart';
+part 'util/duplicate_command_line_binding_error.dart';
