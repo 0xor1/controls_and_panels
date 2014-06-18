@@ -7,11 +7,10 @@ part of controls_and_panels;
 typedef void CommandHandler(CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs);
 
 class CommandLineBinding{
-  final String fullName;
-  final String shortName;
+  final String command;
   final String description;
   final CommandHandler handler;
-  CommandLineBinding(this.fullName, this.shortName, this.description, this.handler);
+  CommandLineBinding(this.command, this.description, this.handler);
 }
 
 
