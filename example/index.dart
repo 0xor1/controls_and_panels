@@ -17,7 +17,8 @@ void main(){
       'echo',
       'repeats its first positional argument and will ingore any further arguments',
       (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
-        cmdLn.writeEntry(posArgs[0]);
+        String str = posArgs.length > 0? posArgs[0]: '';
+        cmdLn.writeEntry(str);
       }),
     new CommandLineBinding(
       'src',
