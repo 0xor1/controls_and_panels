@@ -23,20 +23,10 @@ void main(){
       'src',
       'prints the url of where the source code for this package can be found',
       (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
-        cmdLn.writeEntry('<a href="http://github.com/0xor1/controls_and_panels">http://github.com/0xor1/controls_and_panels</a>');
+        cmdLn.writeEntry('http://github.com/0xor1/controls_and_panels"');
       })]);
 
-  document.body.append((
-    new PagePanel(cmdLn)
-    ..float(
-      new Button.text('hi'),
-      new Image(peaceImg)
-      ..style.marginRight = '5px',
-      'a_window',
-      300,
-      300,
-      200,
-      200)).html);
+  document.body.append(new PagePanel(cmdLn).html);
 
   _insertCustomStyles();
 
