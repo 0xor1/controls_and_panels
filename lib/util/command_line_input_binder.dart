@@ -30,6 +30,11 @@ class CommandLineInputBinder{
   final List<CommandLineBinding> _bindings = new List<CommandLineBinding>();
 
   CommandLineInputBinder(this.commandLine){
+    _hookUpEvents();
+    _addDefaultBindings();
+  }
+
+  void _hookUpEvents(){
     commandLine.onUserEntry.listen((String input){
       //get binding
       input = input.trim();
@@ -39,13 +44,13 @@ class CommandLineInputBinder{
       try{
         binding = _bindings.singleWhere((binding) => binding.command == cmd);
       }on StateError catch(error){
-        commandLine.writeEntry('ERROR: <$cmd> is not a known command');
+        commandLine.enterText('ERROR: <$cmd> is not a known command');
         return;
       }
       //check for help request
       input = input.substring(cmdEndIdx);
       if(input.trim().startsWith('?')){
-        commandLine.writeEntry(binding.description);
+        commandLine.enterText(binding.description);
         return;
       }
       //parse args
@@ -53,13 +58,47 @@ class CommandLineInputBinder{
       var namArgs = new Map<String, String>();
       try{
         _parseArguments(input, posArgs, namArgs);
-      }on Exception catch(ex){
-        commandLine.writeEntry('ERROR: failed to parse arguments');
+      }catch(ex){
+        commandLine.enterText('ERROR: failed to parse arguments');
         return;
       }
       //invoke binding
       binding.handler(commandLine, posArgs, namArgs);
     });
+  }
+
+  void _addDefaultBindings(){
+    addAll([
+      new CommandLineBinding(
+        '?',
+        'Prints a simple how-to statement and lists all available commands',
+        (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        cmdLn.enterText('Enter commands in the format:');
+        cmdLn.enterBlankLines();
+        cmdLn.enterText('<command> <positionalArg-i> /<namedArg-name-j>=<namedArg-value-j>');
+        cmdLn.enterBlankLines();
+        cmdLn.enterText('''For any integer i and j >= 0. To enter string values with spaces
+        in them surround them with either " or ' characters, ensuring any quote marks within 
+        the string value are of the opposite type. To print the description for a single command run''');
+        cmdLn.enterBlankLines();
+        cmdLn.enterText('<command> ?');
+        cmdLn.enterBlankLines();
+        cmdLn.enterText('Available commands:');
+        cmdLn.enterBlankLines();
+        _bindings.forEach((binding){
+          cmdLn.enterText(binding.command);
+        });
+      }),
+      new CommandLineBinding(
+        'commandLineFeedLength',
+        'Used to set how many entries the feed will store for display before it starts removing old entries',
+        (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+          if(posArgs.length > 0){
+            int length = int.parse(posArgs[0], onError: (_) => 300);
+            cmdLn.hisotyLength = length;
+          }
+        })
+    ]);
   }
 
   int _indexOfFirstSpaceOrStringLength(String str, [int start = 0]){

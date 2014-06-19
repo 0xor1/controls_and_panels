@@ -55,7 +55,7 @@ class CommandLine extends Control{
   void _hookUpEvents(){
     _userInput.html.onKeyDown.listen((KeyboardEvent event){
       if(event.keyCode == KeyCode.ENTER){
-        writeEntry(_userInput.value);
+        enterText('$entryPrefix${_userInput.value}');
         _userEntryController.add(_userInput.value);
         _userInput.value = '';
       }
@@ -67,10 +67,19 @@ class CommandLine extends Control{
     });
   }
 
-  void writeEntry(String entry) {
-    Paragraph fullEntry = new Paragraph('$entryPrefix$entry');
-    _historyFeed.add(fullEntry);
-    fullEntry.html.scrollIntoView(ScrollAlignment.BOTTOM);
+  void enterBlankLines([int n = 2]){
+    for(var i = 0; i < n; i++){
+      enterText('');
+    }
+  }
+
+  void enterText(String text) => enterBase(new Paragraph(text));
+
+  void enterHtml(Element element) => enterBase(new Wrapper(element));
+
+  void enterBase(Base entry){
+    _historyFeed.add(entry);
+    entry.html.scrollIntoView(ScrollAlignment.BOTTOM);
     if(_historyFeed.items.length > historyLength){
       _historyFeed.remove(_historyFeed.items.first);
     }
