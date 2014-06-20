@@ -1,5 +1,5 @@
 name: controls_and_panels
-version: 0.3.0
+version: 0.4.0
 author: "Daniel Robinson\r\n<daniel.robinson.dart@gmail.com>"
 description: controls and panels for developing a UI programmatically.
 homepage: http://github.com/0xor1/controls_and_panels
@@ -7,6 +7,6 @@ environment:
   sdk: any
 dependencies:
   browser: '>=0.9.1 <1.0.0'
-  collection: any
+  collection: '>=0.9.3+1 <0.10.0'
 dev_dependencies:
   unittest: any
