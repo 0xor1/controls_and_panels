@@ -8,6 +8,7 @@ import 'dart:html';
 export 'dart:html';
 import 'dart:async';
 export 'dart:async';
+import 'package:collection/algorithms.dart';
 
 part 'style.dart';
 part 'base.dart';

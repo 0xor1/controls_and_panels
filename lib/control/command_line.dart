@@ -17,6 +17,18 @@ class CommandLine extends Control{
   final TextArea _userInput = new TextArea(placeholder: 'enter commands here')
   ..addClass(USER_INPUT);
 
+  final List<String> _userEntryHistory = new List<String>();
+
+  int _userEntryScrollIdx = 0;
+  int _userEntryHistoryLength = 100;
+  int get userEntryHistoryLength => _userEntryHistoryLength;
+  void set userEntryHistoryLength(int n){
+    _userEntryHistoryLength = n >= 0? n: _userEntryHistoryLength;
+    while(_userEntryHistory.length > _userEntryHistoryLength){
+      _userEntryHistory.remove(_userEntryHistory.first);
+    }
+  }
+
   final StreamController<String> _userEntryController = new StreamController<String>();
   Stream<String> _onUserEntry;
   Stream<String> get onUserEntry => _onUserEntry != null? _onUserEntry: _onUserEntry = _userEntryController.stream.asBroadcastStream();
@@ -26,15 +38,18 @@ class CommandLine extends Control{
    * the default value is '> '
    */
   String entryPrefix = '> ';
-  int _historyLength = 100;
-  int get historyLength => _historyLength;
+  int _historyFeedLength = 100;
+  int get historyFeedLength => _historyFeedLength;
   /**
    * Sets how many entries the history feed will hold before deleting the oldest entries,
    * the default value is 100.
    *  * [length] must be greater than 0.
    */
-  void set hisotyLength(int length){
-    _historyLength = length > 0? length: _historyLength;
+  void set hisotyFeedLength(int length){
+    _historyFeedLength = length > 0? length: _historyFeedLength;
+    while(_historyFeed.items.length > _historyFeedLength){
+      _historyFeed.remove(_historyFeed.items.first);
+    }
   }
 
   CommandLine(){
@@ -57,7 +72,21 @@ class CommandLine extends Control{
       if(event.keyCode == KeyCode.ENTER){
         enterText('$entryPrefix${_userInput.value}');
         _userEntryController.add(_userInput.value);
+        if(_userInput.value.isNotEmpty){
+          _userEntryHistory.add(_userInput.value);
+          _userEntryScrollIdx = _userEntryHistory.length;
+        }
         _userInput.value = '';
+      }
+      if(event.ctrlKey && event.keyCode == KeyCode.UP){
+        var idx = --_userEntryScrollIdx;
+        idx = idx < 0? _userEntryScrollIdx = 0: idx >= _userEntryHistory.length? _userEntryScrollIdx = _userEntryHistory.length - 1: idx;
+        _userInput.value = _userEntryHistory[idx];
+      }
+      if(event.ctrlKey && event.keyCode == KeyCode.DOWN){
+        var idx = ++_userEntryScrollIdx;
+        idx = idx < 0? _userEntryScrollIdx = 0: idx >= _userEntryHistory.length? _userEntryScrollIdx = _userEntryHistory.length - 1: idx;
+        _userInput.value = _userEntryHistory[idx];
       }
     });
     _userInput.html.onKeyUp.listen((KeyboardEvent event){
@@ -75,12 +104,14 @@ class CommandLine extends Control{
 
   void enterText(String text) => enterBase(new Paragraph(text));
 
-  void enterHtml(Element element) => enterBase(new Wrapper(element));
+  void enterElement(Element element) => enterBase(new Wrapper.ForElement(element));
+
+  void enterHtml(String html) => enterBase(new Wrapper.ForHtmlString(html));
 
   void enterBase(Base entry){
     _historyFeed.add(entry);
     entry.html.scrollIntoView(ScrollAlignment.BOTTOM);
-    if(_historyFeed.items.length > historyLength){
+    if(_historyFeed.items.length > historyFeedLength){
       _historyFeed.remove(_historyFeed.items.first);
     }
   }

@@ -40,6 +40,9 @@ class CommandLineInputBinder{
       input = input.trim();
       var cmdEndIdx = _indexOfFirstSpaceOrStringLength(input, 1);
       var cmd = input.substring(0, cmdEndIdx);
+      if(cmd == null || cmd == ''){
+        return;
+      }
       CommandLineBinding binding;
       try{
         binding = _bindings.singleWhere((binding) => binding.command == cmd);
@@ -67,41 +70,10 @@ class CommandLineInputBinder{
     });
   }
 
-  void _addDefaultBindings(){
-    addAll([
-      new CommandLineBinding(
-        '?',
-        'Prints a simple how-to statement and lists all available commands',
-        (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
-        cmdLn.enterText('Enter commands in the format:');
-        cmdLn.enterBlankLines();
-        cmdLn.enterText('<command> <positionalArg-i> /<namedArg-name-j>=<namedArg-value-j>');
-        cmdLn.enterBlankLines();
-        cmdLn.enterText('''For any integer i and j >= 0. To enter string values with spaces
-        in them surround them with either " or ' characters, ensuring any quote marks within 
-        the string value are of the opposite type. To print the description for a single command run''');
-        cmdLn.enterBlankLines();
-        cmdLn.enterText('<command> ?');
-        cmdLn.enterBlankLines();
-        cmdLn.enterText('Available commands:');
-        cmdLn.enterBlankLines();
-        _bindings.forEach((binding){
-          cmdLn.enterText(binding.command);
-        });
-      }),
-      new CommandLineBinding(
-        'commandLineFeedLength',
-        'Used to set how many entries the feed will store for display before it starts removing old entries',
-        (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
-          if(posArgs.length > 0){
-            int length = int.parse(posArgs[0], onError: (_) => 300);
-            cmdLn.hisotyLength = length;
-          }
-        })
-    ]);
-  }
-
   int _indexOfFirstSpaceOrStringLength(String str, [int start = 0]){
+    if(str.length == 0){
+      return 0;
+    }
     var idx = str.indexOf(' ', start);
     return idx != -1? idx: str.length;
   }
@@ -146,12 +118,17 @@ class CommandLineInputBinder{
   }
 
   void add(CommandLineBinding binding){
-    var existingBinding = _bindings.where((b) =>
-      b.command == binding.command);
-    if(existingBinding.length > 0){
-      throw new DuplicateCommandLineBindingError(binding, existingBinding.first);
+    var existingIdx = binarySearch(
+      _bindings,
+      binding,
+      compare: (CommandLineBinding a, CommandLineBinding b) => a.command.compareTo(b.command));
+    if(existingIdx != -1){
+      throw new DuplicateCommandLineBindingError(binding, _bindings[existingIdx]);
     }else{
       _bindings.add(binding);
+      insertionSort(
+        _bindings,
+        compare: (CommandLineBinding a, CommandLineBinding b) => a.command.compareTo(b.command));
     }
   }
 
@@ -159,7 +136,59 @@ class CommandLineInputBinder{
     bindings.forEach((cmdLnB) => add(cmdLnB));
   }
 
-  bool remove(CommandLineBinding binding) => _bindings.remove(binding);
+  bool remove(CommandLineBinding binding){
+    var existingIdx = binarySearch(
+      _bindings,
+      binding,
+      compare: (CommandLineBinding a, CommandLineBinding b) => a.command.compareTo(b.command));
+    if(existingIdx != -1){
+      _bindings.removeAt(existingIdx);
+    }
+  }
 
   void removeAll(Iterable<CommandLineBinding> bindings) => bindings.forEach((binding) => remove(binding));
+
+  void _addDefaultBindings(){
+    addAll([
+      new CommandLineBinding(
+        '?',
+        'Prints a simple how-to statement and lists all available commands',
+        (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        cmdLn.enterText('Enter commands in the format:');
+        cmdLn.enterBlankLines();
+        cmdLn.enterText('<command> <positionalArg-i> /<namedArg-name-j>=<namedArg-value-j>');
+        cmdLn.enterBlankLines();
+        cmdLn.enterText('''For any integer i and j >= 0. To enter string values with spaces in them or which
+        start with a / character, surround them with either " or ' characters, ensuring any quote marks within 
+        the string value are of the opposite type. To select a previously entered command use CTRL+UP and CTRL+DOWN
+        to auto cycle through previous inputs. To print the description for a single command run:''');
+        cmdLn.enterBlankLines();
+        cmdLn.enterText('<command> ?');
+        cmdLn.enterBlankLines();
+        cmdLn.enterText('Available commands:');
+        cmdLn.enterBlankLines();
+        _bindings.forEach((binding){
+          cmdLn.enterText(binding.command);
+        });
+      }),
+    new CommandLineBinding(
+      'commandLineFeedLength',
+      'Used to set how many entries the feed will store for display before it starts removing old entries',
+      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        if(posArgs.length > 0){
+          int length = int.parse(posArgs[0], onError: (_) => 300);
+          cmdLn.hisotyFeedLength = length;
+        }
+      }),
+    new CommandLineBinding(
+      'commandLineUserInputMemoryLength',
+      'Used to set how many user entries the feed will store for CTRL+UP/DOWN navigation',
+      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        if(posArgs.length > 0){
+          int length = int.parse(posArgs[0], onError: (_) => 300);
+          cmdLn.hisotyFeedLength = length;
+        }
+      })
+    ]);
+  }
 }
