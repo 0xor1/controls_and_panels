@@ -47,7 +47,7 @@ class CommandLineInputBinder{
       try{
         binding = _bindings.singleWhere((binding) => binding.command == cmd);
       }on StateError catch(error){
-        commandLine.enterText('ERROR: <$cmd> is not a known command');
+        commandLine.enterText('ERROR: <$cmd> is not a known command, enter ? to see a list of valid commands');
         return;
       }
       //check for help request
