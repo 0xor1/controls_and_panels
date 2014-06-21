@@ -78,7 +78,12 @@ class Window extends Control {
 
   int get bottom => _top + _height;
 
-  Window(this.content, this.icon, this.name, int width, int height, int top, int left) {
+  factory Window(Base content, String name, int width, int height, int top, int left, [Image icon]){
+    icon = icon != null? icon: new Image('', width: 0, height: 0);
+    return new Window._internal(content, name, width, height, top, left, icon);
+  }
+
+  Window._internal(this.content, this.name, int width, int height, int top, int left, this.icon) {
     _windowStyle.insert();
     addClass(CLASS);
     _arrangeHtml();
@@ -107,6 +112,9 @@ class Window extends Control {
   }
 
   void _hookUpEvents(){
+    html.onMouseDown.listen((_){
+      PagePanel._singleton.html.append(html);
+    });
     _topResizer.onMouseDown.listen((MouseEvent event){
       _attachWindowMouseUpEvent();
       _cancelCurrentMouseMoveSubIfNecessary();
@@ -179,6 +187,17 @@ class Window extends Control {
         top = event.client.y - initOffsetY;
       });
     });
+  }
+
+  void show(){
+    var page = PagePanel._singleton;
+    if(page != null){
+      page._floatAnchor.append(html);
+    }
+  }
+
+  void hide(){
+    html.remove();
   }
 
   void _handleTopMouseMove(MouseEvent event, int startBottom) {

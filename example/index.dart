@@ -11,6 +11,9 @@ void main(){
 
   var cmdLn = new CommandLine()..fill();
   var cmdLnInputBinder = new CommandLineInputBinder(cmdLn);
+  var page = new PagePanel(cmdLn);
+  Map<String, Window> windows = new Map<String, Window>();
+  int _windowId = 0;
 
   cmdLnInputBinder.addAll([
     new CommandLineBinding(
@@ -33,9 +36,26 @@ void main(){
         if(posArgs.length > 0){
           cmdLn.enterHtml(posArgs[0]);
         }
+      }),
+    new CommandLineBinding(
+      'openWindow',
+      'opens an empty floating window.',
+      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        var winId = _windowId++;
+        var win = new Window(new Wrapper.ForHtmlString(''), '${winId}', 200, 200, 0, 0);
+        windows[winId.toString()] = win;
+        win.show();
+      }),
+    new CommandLineBinding(
+      'closeWindow',
+      'closes the window with the specified id.',
+      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        if(posArgs.length > 0 && windows.containsKey(posArgs[0])){
+          windows.remove(posArgs[0]).hide();
+        }
       })]);
 
-  document.body.append(new PagePanel(cmdLn).html);
+  document.body.append(page.html);
 
   _insertCustomStyles();
 }

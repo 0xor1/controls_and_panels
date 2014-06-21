@@ -21,7 +21,6 @@ part 'h_align.dart';
 part 'v_align.dart';
 
 part 'panel/stack_panel.dart';
-part 'panel/flow_panel.dart';
 part 'panel/align_panel.dart';
 part 'panel/page_panel.dart';
 part 'control/window.dart';

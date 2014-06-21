@@ -70,10 +70,6 @@ class PagePanel<TBase extends Base> extends Panel<TBase>{
     return null;
   }
 
-  void float(Base content, Image icon, String name, int width, int height, int top, int left){
-    _floatAnchor.children.add(new Window(content, icon, name, width, height, top, left).html);
-  }
-
   static final Style _pagePanelStyle = new Style('''  
 
     .$CLASS
