@@ -113,7 +113,10 @@ class Window extends Control {
 
   void _hookUpEvents(){
     html.onMouseDown.listen((_){
-      PagePanel._singleton.html.append(html);
+      var windows = PagePanel._singleton._floatAnchor.children;
+      for(var insertIdx = windows.indexOf(html); insertIdx < windows.length - 1; insertIdx++){
+        windows.insert(insertIdx, windows[insertIdx + 1]);
+      }
     });
     _topResizer.onMouseDown.listen((MouseEvent event){
       _attachWindowMouseUpEvent();
