@@ -21,8 +21,8 @@ class CommandLine extends Control{
 
   int _userEntryScrollIdx = 0;
   int _userEntryHistoryLength = 100;
-  int get userEntryHistoryLength => _userEntryHistoryLength;
-  void set userEntryHistoryLength(int n){
+  int get userEntryMemoryLength => _userEntryHistoryLength;
+  void set userEntryMemoryLength(int n){
     _userEntryHistoryLength = n >= 0? n: _userEntryHistoryLength;
     while(_userEntryHistory.length > _userEntryHistoryLength){
       _userEntryHistory.remove(_userEntryHistory.first);
@@ -38,7 +38,7 @@ class CommandLine extends Control{
    * the default value is '> '
    */
   String entryPrefix = '> ';
-  int _historyFeedLength = 100;
+  int _historyFeedLength = 300;
   int get historyFeedLength => _historyFeedLength;
   /**
    * Sets how many entries the history feed will hold before deleting the oldest entries,
@@ -72,8 +72,8 @@ class CommandLine extends Control{
       if(event.keyCode == KeyCode.ENTER){
         enterText('$entryPrefix${_userInput.value}');
         _userEntryController.add(_userInput.value);
-        if(_userInput.value.isNotEmpty){
-          _userEntryHistory.add(_userInput.value);
+        if(_userInput.value.trim().isNotEmpty){
+          _userEntryHistory.add(_userInput.value.trim());
           _userEntryScrollIdx = _userEntryHistory.length;
         }
         _userInput.value = '';

@@ -27,6 +27,19 @@ class Window extends Control {
 
   final DivElement _contentHolder = new DivElement()..classes.add(PagePanel.CONTENT_HOLDER);
 
+  final StyleElement _windowStyleElement = new StyleElement()
+  ..id = 'cnp-window-selection-style'
+  ..text = '''
+    * {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  ''';
+
   final Base content;
   final Image icon;
   final String name;
@@ -203,8 +216,10 @@ class Window extends Control {
   }
 
   void _attachWindowMouseUpEvent(){
+    document.head.append(_windowStyleElement);
     StreamSubscription windowMouseUpSub;
     windowMouseUpSub = window.onMouseUp.listen((_){
+      _windowStyleElement.remove();
       if(_currentMouseMoveSub != null){
         _currentMouseMoveSub.cancel();
         windowMouseUpSub.cancel();
