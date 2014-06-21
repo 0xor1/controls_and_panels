@@ -329,7 +329,6 @@ class Window extends Control {
       bottom: ${_resizer_thickness}px;
       background: #fff;
       border: 1px solid #aaaaaa;
-      overflow: auto;
     }
 
     .$CLASS
