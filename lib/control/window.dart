@@ -78,7 +78,7 @@ class Window extends Control {
 
   int get bottom => _top + _height;
 
-  Window(this.content, this.icon, this.name, width, height, top, left) {
+  Window(this.content, this.icon, this.name, int width, int height, int top, int left) {
     _windowStyle.insert();
     addClass(CLASS);
     _arrangeHtml();
