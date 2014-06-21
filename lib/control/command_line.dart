@@ -9,7 +9,7 @@ class CommandLine extends Control{
   static const String CLASS = 'cnp-command-line';
   static const String USER_INPUT = 'cnp-user-input';
   static const String HISTORY_FEED = 'cnp-history-feed';
-  static const String DISABLED = 'cnp-disabled';
+  static const String USER_INPUT_DISABLED = 'cnp-user-input-disabled';
 
   final StackPanel _rootLayout = new StackPanel(Orientation.VERTICAL);
   final StackPanel _historyFeed = new StackPanel(Orientation.VERTICAL)
@@ -96,6 +96,17 @@ class CommandLine extends Control{
     });
   }
 
+  void disableUserInput(){
+    addClass(USER_INPUT_DISABLED);
+    _userInput.disabled = true;
+  }
+
+  void enabledUserInput(){
+    removeClass(USER_INPUT_DISABLED);
+    _userInput.disabled = false;
+    _userInput.focus();
+  }
+
   void enterBlankLines([int n = 2]){
     for(var i = 0; i < n; i++){
       enterText('');
@@ -122,7 +133,7 @@ class CommandLine extends Control{
   }
 
   static final Style _commandLineStyle = new Style('''
-
+    
     .$CLASS
       > .${StackPanel.CLASS}
     {
@@ -138,7 +149,7 @@ class CommandLine extends Control{
       background: #000;
       color: #3f3;
       font-family: "Lucida Console", Monaco, monospace;
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .$CLASS
@@ -148,6 +159,13 @@ class CommandLine extends Control{
       height: calc(100% - 52px);
       margin-bottom: 2px;
       overflow-y: scroll;
+    }
+
+    .$CLASS.$USER_INPUT_DISABLED
+      > .${StackPanel.CLASS}
+        > .${HISTORY_FEED}
+    {
+      height: 100%;
     }
 
     .$CLASS
@@ -164,6 +182,13 @@ class CommandLine extends Control{
         > .${USER_INPUT}
     {
       height: 50px;
+    }
+
+    .$CLASS.$USER_INPUT_DISABLED
+      > .${StackPanel.CLASS}
+        > .${USER_INPUT}
+    {
+      height: 0;
     }
 
     .$CLASS
