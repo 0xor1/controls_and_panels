@@ -264,7 +264,7 @@ class Window extends Control {
     .$CLASS
     {
       position: absolute;
-      background: #fff;
+      background: #ccc;
       border: 1px solid #aaaaaa;
     }
 
@@ -343,13 +343,6 @@ class Window extends Control {
       bottom: calc(100% - ${_resizer_thickness + _header_thickness}px);
       overflow: hidden;
       cursor: move;
-      padding: 2px;
-    }
-
-    .$CLASS
-      > .$HEADER
-        > *
-    {
       background: #fff;
       border: 1px solid #aaaaaa;
     }

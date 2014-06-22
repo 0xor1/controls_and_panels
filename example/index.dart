@@ -56,17 +56,4 @@ void main(){
       })]);
 
   document.body.append(page.html);
-
-  _insertCustomStyles();
-}
-
-void _insertCustomStyles(){
-  document.head.appendHtml('''
-    <style id='cnp-example-custom-styles'>
-      .${Window.CLASS}
-      {
-        background: url($stripeImg);
-      }
-    </style>
-  ''');
 }
