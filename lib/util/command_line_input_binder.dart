@@ -170,26 +170,6 @@ class CommandLineInputBinder{
         _bindings.forEach((binding){
           cmdLn.enterText(binding.command);
         });
-      }),
-    new CommandLineBinding(
-      'cmdFeedHistory',
-      'Used to set how many entries the history feed will store for display before it starts removing old entries',
-      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
-        if(posArgs.length > 0){
-          int length = int.parse(posArgs[0], onError: (_) => 300);
-          cmdLn.hisotyFeedLength = length;
-        }
-        cmdLn.enterText('${cmdLn.historyFeedLength}');
-      }),
-    new CommandLineBinding(
-      'cmdUserInputMemory',
-      'Used to set how many user input entries will be stored for CTRL+UP/DOWN navigation',
-      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
-        if(posArgs.length > 0){
-          int length = int.parse(posArgs[0], onError: (_) => 100);
-          cmdLn.userEntryMemoryLength = length;
-        }
-        cmdLn.enterText('${cmdLn.userEntryMemoryLength}');
       })
     ]);
   }

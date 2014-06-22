@@ -38,7 +38,7 @@ class CommandLine extends Control{
    * the default value is '> '
    */
   String entryPrefix = '> ';
-  int _historyFeedLength = 300;
+  int _historyFeedLength = 200;
   int get historyFeedLength => _historyFeedLength;
   /**
    * Sets how many entries the history feed will hold before deleting the oldest entries,
