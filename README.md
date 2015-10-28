@@ -3,4 +3,4 @@ Controls and Panels
 
 ~~Problematic~~ Programmatic UI development in Dart.
 
-[Current demo](http://0xor1.net/controls_and_panels)
+[Current demo](http://robsix.github.io/controls_and_panels/)

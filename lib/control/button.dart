@@ -1,5 +1,5 @@
 /*
- * author:  Daniel Robinson http://github.com/0xor1
+ * Author:  Daniel Robinson http://github.com/0xor1
  */
 
 part of controls_and_panels;
@@ -21,7 +21,7 @@ class Button extends Control{
 
   Button(Base content){
     _buttonStyle.insert();
-    html.classes.add(CLASS);
+    addClass(CLASS);
     this.content = content;
   }
 
@@ -51,6 +51,7 @@ class Button extends Control{
       border-radius: 3px;
       padding: 2px 4px;
       cursor: pointer;
+      line-height: 1;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       -khtml-user-select: none;

@@ -1,5 +1,5 @@
 /*
- * author:  Daniel Robinson http://github.com/0xor1
+ * Author:  Daniel Robinson http://github.com/0xor1
  */
 
 
@@ -8,32 +8,32 @@ part of controls_and_panels;
 class TextArea extends Control{
 
   static const String CLASS = 'cnp-text-area';
-  TextAreaElement _textAreaElement = new TextAreaElement();
-  String get value => _textAreaElement.value;
+  TextAreaElement _textArea = new TextAreaElement();
+  String get value => _textArea.value;
   void set value (String str){
-    _textAreaElement.value = str == null? '': str;
+    _textArea.value = str == null? '': str;
   }
 
-  String get placeholder => _textAreaElement.placeholder;
+  String get placeholder => _textArea.placeholder;
   void set placeholder (String str){
-    _textAreaElement.placeholder = str == null? '': str;
+    _textArea.placeholder = str == null? '': str;
   }
 
-  int get rows => _textAreaElement.rows;
+  int get rows => _textArea.rows;
   void set rows(int num){
-    _textAreaElement.rows = num;
+    _textArea.rows = num;
   }
 
-  int get cols => _textAreaElement.cols;
+  int get cols => _textArea.cols;
   void set cols(int num){
-    _textAreaElement.cols = num;
+    _textArea.cols = num;
   }
 
   TextArea({ int rows: 4, int cols: 50, String placeholder: ''}){
     _textAreaStyle.insert();
-    html.classes.add(CLASS);
-    html.children.add(_textAreaElement);
-    _textAreaElement
+    addClass(CLASS);
+    html.children.add(_textArea);
+    _textArea
       ..onBlur.listen((_) => blur())
       ..onFocus.listen((_) => focus());
     this.placeholder = placeholder;
@@ -41,13 +41,15 @@ class TextArea extends Control{
     this.cols = cols;
   }
 
+  bool get disabled => _textArea.disabled;
+  void set disabled(bool disabled){
+    _textArea.disabled = disabled;
+  }
+
   static final Style _textAreaStyle = new Style('''
 
-    $CLASS > textarea
+    $CLASS
     {
-      margin: 0;
-      border: 1px solid #888;
-      padding: 5px;
     }
 
   ''');

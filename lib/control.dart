@@ -1,43 +1,35 @@
 /*
- * author:  Daniel Robinson http://github.com/0xor1
+ * Author:  Daniel Robinson http://github.com/0xor1
  */
 
 part of controls_and_panels;
 
 abstract class Control extends Base{
-  
+
   static int _idSource = 0;
   static const String CLASS = 'cnp-control';
   static const String FOCUS = 'cnp-focus';
   static const String CONTROL_ID = 'cnp-control-id';
-  static final Map<int, Control> _controls = new Map<int, Control>();
   static Control _currentFocus = null;
   static Control get currentFocus => _currentFocus;
-  static Control getWithId(int id){ return _controls[id]; }
-  static Control getFromHtml(DivElement html){
-    if(html.classes.contains(CLASS) && html.dataset[CONTROL_ID] != null){
-      return getWithId(int.parse(html.dataset[CONTROL_ID]));
-    }
-    return null;
-  }
-  final int _id;
-  int get controlId => _id;
-  String get htmlId => html.id;
-  void set htmlId(String id){ html.id = id; }
   static String _namespace;
   static String get namespace => _namespace;
   static void set namespace (String ns){
     String oldNamespace = _namespace;
     _namespace = ns;
-    _controls.forEach((int id, Control control){
+    querySelectorAll('.$CLASS')
+    .forEach((Element element){
       if(oldNamespace != null){
-        control.html.classes.remove(oldNamespace);
+        element.classes.remove(oldNamespace);
       }
       if(_namespace != null && _namespace != ''){
-        control.html.classes.add(_namespace);
+        element.classes.add(_namespace);
       }
     });
   }
+
+  final int _id;
+  int get controlId => _id;
 
   StreamController<Control> _blurController = new StreamController();
   Stream<Control> get onBlur => _blurController.stream.asBroadcastStream();
@@ -68,14 +60,11 @@ abstract class Control extends Base{
   Control():
   _id = _idSource++{
     _controlStyle.insert();
-    html
-    ..classes.add(CLASS)
-    ..dataset[CONTROL_ID] = _id.toString();
-
-    _controls[_id] = this;
+    addClass(CLASS);
+    html.dataset[CONTROL_ID] = _id.toString();
 
     if(_namespace != null){
-      html.classes.add(_namespace);
+      addClass(_namespace);
     }
 
     html.onClick.listen((event) => focus());

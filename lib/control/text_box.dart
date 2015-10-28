@@ -1,5 +1,5 @@
 /*
- * author:  Daniel Robinson http://github.com/0xor1
+ * Author:  Daniel Robinson http://github.com/0xor1
  */
 
 
@@ -23,7 +23,7 @@ class TextBox extends Control{
 
   TextBox({String value: null, String placeholder: null}){
     _textBoxStyle.insert();
-    html.classes.add(CLASS);
+    addClass(CLASS);
     html.children.add(_inputElement);
     _inputElement
       ..onBlur.listen((_) => blur())

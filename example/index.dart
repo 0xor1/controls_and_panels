@@ -1,47 +1,59 @@
 /*
- * author:  Daniel Robinson http://github.com/0xor1
+ * Author:  Daniel Robinson http://github.com/0xor1
  */
 
 import 'package:controls_and_panels/controls_and_panels.dart';
 
+const String stripeImg = 'resource/image/stripe.png';
+const String peaceImg = 'resource/image/peace.png';
+
 void main(){
 
-  var peaceImgPath = 'resource/image/peace_dove_icon.svg';
+  var cmdLn = new CommandLine()..fill();
+  var cmdLnInputBinder = new CommandLineInputBinder(cmdLn);
+  var page = new PagePanel(cmdLn);
+  Map<String, Window> windows = new Map<String, Window>();
+  int _windowId = 0;
 
-  var sizerPanel = new AlignmentPanel()
-  ..setSize('100%', '100%');
-  var rootStack = new StackPanel(Orientation.HORIZONTAL);
-  sizerPanel.add(rootStack);
-  document.body.append(sizerPanel.html);
-  
-  var stackPanels = new List<StackPanel>();
-  var stackPanel1 = new StackPanel(Orientation.VERTICAL);
-  rootStack.add(stackPanel1);
-  stackPanels.add(stackPanel1);
+  cmdLnInputBinder.addAll([
+    new CommandLineBinding(
+      'printArgs',
+      'prints all the arguments passed to it',
+      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        cmdLn.enterText('posArgs=$posArgs');
+        cmdLn.enterText('namArgs=$namArgs');
+      }),
+    new CommandLineBinding(
+      'src',
+      'prints a link to where the source code for this package can be found',
+      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        cmdLn.enterElement(new AnchorElement()..href='http://github.com/0xor1/controls_and_panels'..text='github repository');
+      }),
+    new CommandLineBinding(
+      'embed',
+      'embeds a valid HTML string into the command line history feed. the HTML must have a single root element.',
+      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        if(posArgs.length > 0){
+          cmdLn.enterHtml(posArgs[0]);
+        }
+      }),
+    new CommandLineBinding(
+      'openWindow',
+      'opens an empty floating window.',
+      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        var winId = _windowId++;
+        var win = new Window(new Wrapper.ForHtmlString(''), '${winId}', 200, 200, 0, 0);
+        windows[winId.toString()] = win;
+        win.show();
+      }),
+    new CommandLineBinding(
+      'closeWindow',
+      'closes the window with the specified id.',
+      (CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+        if(posArgs.length > 0 && windows.containsKey(posArgs[0])){
+          windows.remove(posArgs[0]).hide();
+        }
+      })]);
 
-  var stackPanel2 = new StackPanel(Orientation.VERTICAL);
-  rootStack.add(stackPanel2);
-  stackPanels.add(stackPanel2);
-
-  var stackPanel3 = new StackPanel(Orientation.VERTICAL);
-  rootStack.add(stackPanel3);
-  stackPanels.add(stackPanel3);
-
-  for(var stackPanel in stackPanels){
-    var controls = new List<Base>()
-    ..add(new Image(peaceImgPath, alt: 'Yomma!', width:95, height:95))
-    ..add(new TextBox(placeholder:'Please enter first name'))
-    ..add(new TextArea(rows: 4, cols: 20, placeholder:'Please enter first name'))
-    ..add(new Label("Label!"))
-    ..add(new Paragraph("A paragraph is like a label, only the text wraps. Just like this, but it's not very interesting"))
-    ..add(new Button.iconText(peaceImgPath, 'Peace', iconWidth:25, iconHeight:25))
-    ..add(new Wrapper(new DivElement()..style.width = '50px' ..style.height = '50px' ..style.background = '#36c'));
-
-    for(var base in controls){
-      stackPanel.add(
-        new AlignmentPanel()
-          ..add(base)
-          ..setSize('250px', '100px'));
-    }
-  }
+  document.body.append(page.html);
 }
